@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://du3hehbcrge3s"]
+
+[ext_resource type="Texture2D" uid="uid://b73ahykjharrn" path="res://imported_assets/01.jpg" id="1_8fg84"]
+[ext_resource type="Script" uid="uid://cr82occqkwycq" path="res://junk/junk.gd" id="1_apwdv"]
+[ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="2_3o712"]
+[ext_resource type="Shader" uid="uid://q47lbd4knjrd" path="res://tools/shaders/post_process.gdshader" id="2_apwdv"]
+[ext_resource type="Texture2D" uid="uid://c5x788uhdvdoo" path="res://imported_assets/1.png" id="2_pya7e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_te1mf"]
+resource_local_to_scene = true
+shader = ExtResource("2_apwdv")
+shader_parameter/shader_enabled = true
+shader_parameter/saturation_enabled = true
+shader_parameter/sharpness_enabled = true
+shader_parameter/brightness_enabled = true
+shader_parameter/warmth_enabled = true
+shader_parameter/contrast_enabled = true
+shader_parameter/chromatic_abberation_enabled = true
+shader_parameter/saturation_amount = 0.8
+shader_parameter/monochrome_color = Color(0.145, 0.145, 0.145, 1)
+shader_parameter/sharpness_size = 1.0
+shader_parameter/sharpness_intensity = 3.0
+shader_parameter/brightness_amount = 0.0
+shader_parameter/warmth_amount = 0.39
+shader_parameter/contrast_amount = 0.38
+shader_parameter/chromatic_abberation_seperation = 0.016
+shader_parameter/chromatic_abberation_intensity = 1.5
+shader_parameter/chromatic_abberation_blur_strength = 1.0
+
+[node name="Junk" type="Node2D"]
+script = ExtResource("1_apwdv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-127, -6)
+scale = Vector2(1.52, 1.52)
+texture = ExtResource("1_8fg84")
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D2"]
+material = SubResource("ShaderMaterial_te1mf")
+offset_left = -357.0
+offset_top = -253.0
+offset_right = 358.0
+offset_bottom = 259.0
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(18, 91)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_3o712")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.505, 0.505)
+texture = ExtResource("2_pya7e")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0.999998, -1)
+scale = Vector2(0.505, 0.505)
+zoom = Vector2(0.915, 0.915)

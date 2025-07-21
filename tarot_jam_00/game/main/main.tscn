@@ -1,11 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://b578jtugl6bw6"]
+[gd_scene load_steps=11 format=3 uid="uid://b578jtugl6bw6"]
 
 [ext_resource type="Script" uid="uid://duwgp8a3wh5ha" path="res://tools/main/main.gd" id="1_5520f"]
-[ext_resource type="Script" uid="uid://bs5h5b6eopk0m" path="res://game/main/main_canvas.gd" id="2_psm6y"]
+[ext_resource type="Script" uid="uid://bs5h5b6eopk0m" path="res://tools/ui/main_canvas.gd" id="2_psm6y"]
 [ext_resource type="Script" uid="uid://drjvjcav1oxno" path="res://tools/ui/hud.gd" id="3_yil3p"]
 [ext_resource type="Script" uid="uid://bm6aa0napfwuy" path="res://tools/ui/start_menu.gd" id="4_8y833"]
+[ext_resource type="Texture2D" uid="uid://c2opkctxv8w0h" path="res://imported_assets/test_pattern.jpg" id="5_kk62w"]
 [ext_resource type="Script" uid="uid://x3t6g5vutel5" path="res://tools/ui/transition_screen.gd" id="5_tkdpa"]
-[ext_resource type="Texture2D" uid="uid://b85sgxgob6pm8" path="res://icon.svg" id="5_yymkh"]
+[ext_resource type="Script" uid="uid://yqfcbvak5m45" path="res://tools/ui/logo_splash.gd" id="7_sifka"]
+[ext_resource type="Script" uid="uid://r2cxlf7ivdqd" path="res://tools/shaders/post_process.gd" id="8_2st6t"]
+[ext_resource type="Shader" uid="uid://q47lbd4knjrd" path="res://tools/shaders/post_process.gdshader" id="9_kk62w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xvake"]
+resource_local_to_scene = true
+shader = ExtResource("9_kk62w")
+shader_parameter/shader_enabled = true
+shader_parameter/saturation_enabled = true
+shader_parameter/sharpness_enabled = true
+shader_parameter/brightness_enabled = true
+shader_parameter/warmth_enabled = true
+shader_parameter/contrast_enabled = true
+shader_parameter/chromatic_abberation_enabled = false
+shader_parameter/saturation_amount = 1.0
+shader_parameter/monochrome_color = Color(0.145, 0.145, 0.145, 1)
+shader_parameter/sharpness_size = 1.0
+shader_parameter/sharpness_intensity = 1.0
+shader_parameter/brightness_amount = 0.0
+shader_parameter/warmth_amount = 0.0
+shader_parameter/contrast_amount = 0.0
+shader_parameter/chromatic_abberation_seperation = 0.016
+shader_parameter/chromatic_abberation_intensity = 1.5
+shader_parameter/chromatic_abberation_blur_strength = 1.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5520f")
@@ -52,7 +76,6 @@ vertical_alignment = 1
 
 [node name="StartMenu" type="Control" parent="MainCanvas"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,7 +91,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_yymkh")
+texture = ExtResource("5_kk62w")
 stretch_mode = 1
 
 [node name="StartMenuButtonsVbox" type="VBoxContainer" parent="MainCanvas/StartMenu/StartMenuBackground"]
@@ -114,6 +137,7 @@ anchor_right = 1.0
 offset_top = 115.43
 offset_bottom = 138.43
 grow_horizontal = 2
+theme_override_colors/font_color = Color(100, 0, 0, 1)
 text = "Game Name"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -138,3 +162,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="LogoSplash" type="Control" parent="MainCanvas"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_sifka")
+
+[node name="PostProcessCanvas" type="CanvasLayer" parent="."]
+
+[node name="PostProcess" type="Control" parent="PostProcessCanvas"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_2st6t")
+
+[node name="PostProcessRect" type="ColorRect" parent="PostProcessCanvas/PostProcess"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_xvake")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
