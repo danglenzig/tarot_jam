@@ -1,0 +1,2 @@
+class_name BackgroundSprite
+extends Sprite2D

@@ -1,14 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://b578jtugl6bw6"]
+[gd_scene load_steps=19 format=3 uid="uid://b578jtugl6bw6"]
 
 [ext_resource type="Script" uid="uid://duwgp8a3wh5ha" path="res://tools/main/main.gd" id="1_5520f"]
 [ext_resource type="Script" uid="uid://bs5h5b6eopk0m" path="res://tools/ui/main_canvas.gd" id="2_psm6y"]
+[ext_resource type="PackedScene" uid="uid://eitf1sq8k0q1" path="res://game/dialogue/test_convo.tscn" id="2_yj2gc"]
 [ext_resource type="Script" uid="uid://drjvjcav1oxno" path="res://tools/ui/hud.gd" id="3_yil3p"]
 [ext_resource type="Script" uid="uid://bm6aa0napfwuy" path="res://tools/ui/start_menu.gd" id="4_8y833"]
 [ext_resource type="Texture2D" uid="uid://c2opkctxv8w0h" path="res://imported_assets/test_pattern.jpg" id="5_kk62w"]
 [ext_resource type="Script" uid="uid://x3t6g5vutel5" path="res://tools/ui/transition_screen.gd" id="5_tkdpa"]
 [ext_resource type="Script" uid="uid://yqfcbvak5m45" path="res://tools/ui/logo_splash.gd" id="7_sifka"]
 [ext_resource type="Script" uid="uid://r2cxlf7ivdqd" path="res://tools/shaders/post_process.gd" id="8_2st6t"]
+[ext_resource type="Script" uid="uid://cy2gfw1vdpsjn" path="res://tools/dialogue/dialogue.gd" id="8_xvake"]
 [ext_resource type="Shader" uid="uid://q47lbd4knjrd" path="res://tools/shaders/post_process.gdshader" id="9_kk62w"]
+[ext_resource type="Script" uid="uid://cvl7yb2354368" path="res://tools/main/game_environment.gd" id="11_2v5lu"]
+[ext_resource type="Texture2D" uid="uid://b73ahykjharrn" path="res://imported_assets/01.jpg" id="11_6idrh"]
+[ext_resource type="Texture2D" uid="uid://c5x788uhdvdoo" path="res://imported_assets/1.png" id="11_7q7ho"]
+[ext_resource type="Script" uid="uid://wr6rc314hrua" path="res://tools/dialogue/speaker_sprite.gd" id="13_0j5er"]
+[ext_resource type="Script" uid="uid://cfpnhdnp1bwse" path="res://tools/main/background_sprite.gd" id="13_g7cwu"]
+[ext_resource type="Script" uid="uid://baegaj6bejomk" path="res://tools/main/game_camera.gd" id="13_yj2gc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xvake"]
 resource_local_to_scene = true
@@ -33,6 +41,7 @@ shader_parameter/chromatic_abberation_blur_strength = 1.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5520f")
+test_convo_scene = ExtResource("2_yj2gc")
 
 [node name="MainCanvas" type="CanvasLayer" parent="."]
 script = ExtResource("2_psm6y")
@@ -76,6 +85,7 @@ vertical_alignment = 1
 
 [node name="StartMenu" type="Control" parent="MainCanvas"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -144,6 +154,7 @@ vertical_alignment = 1
 
 [node name="TransitionScreen" type="Control" parent="MainCanvas"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -172,6 +183,89 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_sifka")
 
+[node name="Dialogue" type="Control" parent="MainCanvas"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_xvake")
+
+[node name="DialogueUi" type="Panel" parent="MainCanvas/Dialogue"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="DialoguePanel" type="Panel" parent="MainCanvas/Dialogue/DialogueUi"]
+unique_name_in_owner = true
+self_modulate = Color(0.601, 0.022, 0.012, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -527.0
+offset_top = -236.0
+offset_right = 288.0
+offset_bottom = -115.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogueText" type="RichTextLabel" parent="MainCanvas/Dialogue/DialogueUi/DialoguePanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 21.0
+offset_top = 24.0
+offset_right = 808.0
+offset_bottom = 108.0
+text = "Soluta repudiandae blanditiis nesciunt voluptas et enim ullam quasi. Cupiditate accusamus consequatur vel dolore quo. Ex deserunt officiis qui non et. Harum praesentium et cum eos dolores. Omnis et voluptas at ea autem aut ex. Perferendis a est dicta non. Vel architecto non expedita. "
+scroll_following = true
+
+[node name="DialogChoicesVbox" type="VBoxContainer" parent="MainCanvas/Dialogue/DialogueUi/DialoguePanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -209.0
+offset_right = -57.0
+offset_bottom = -108.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+
+[node name="Button" type="Button" parent="MainCanvas/Dialogue/DialogueUi/DialoguePanel/DialogChoicesVbox"]
+layout_mode = 2
+text = "Some dialogue choice text"
+
+[node name="Button2" type="Button" parent="MainCanvas/Dialogue/DialogueUi/DialoguePanel/DialogChoicesVbox"]
+layout_mode = 2
+text = "Some dialogue choice text"
+
+[node name="Button3" type="Button" parent="MainCanvas/Dialogue/DialogueUi/DialoguePanel/DialogChoicesVbox"]
+layout_mode = 2
+text = "Some dialogue choice text"
+
+[node name="Button4" type="Button" parent="MainCanvas/Dialogue/DialogueUi/DialoguePanel/DialogChoicesVbox"]
+layout_mode = 2
+text = "Some dialogue choice text"
+
+[node name="SpeakerNameLabel" type="Label" parent="MainCanvas/Dialogue/DialogueUi/DialoguePanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 23.0
+offset_top = -24.0
+offset_right = 81.0
+offset_bottom = -1.0
+text = "Maddie"
+
 [node name="PostProcessCanvas" type="CanvasLayer" parent="."]
 
 [node name="PostProcess" type="Control" parent="PostProcessCanvas"]
@@ -195,3 +289,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="GameEnvironment" type="Node2D" parent="."]
+position = Vector2(640, 360)
+script = ExtResource("11_2v5lu")
+
+[node name="BackgroundSprite" type="Sprite2D" parent="GameEnvironment"]
+unique_name_in_owner = true
+position = Vector2(1, -3)
+texture = ExtResource("11_6idrh")
+script = ExtResource("13_g7cwu")
+
+[node name="LeftSpeakerSprite" type="Sprite2D" parent="GameEnvironment"]
+unique_name_in_owner = true
+position = Vector2(-336, 26)
+scale = Vector2(0.4, 0.4)
+flip_h = true
+script = ExtResource("13_0j5er")
+
+[node name="RightSpeakerSprite" type="Sprite2D" parent="GameEnvironment"]
+unique_name_in_owner = true
+position = Vector2(108, 17)
+scale = Vector2(0.4, 0.4)
+script = ExtResource("13_0j5er")
+
+[node name="TVFrameSprite" type="Sprite2D" parent="GameEnvironment"]
+unique_name_in_owner = true
+scale = Vector2(0.445, 0.445)
+texture = ExtResource("11_7q7ho")
+
+[node name="GameCamera" type="Camera2D" parent="GameEnvironment"]
+unique_name_in_owner = true
+script = ExtResource("13_yj2gc")
+zoom_pos = Vector2(-121, -4)
+zoom_value = 1.545
+
+[node name="MiniGameHolder" type="Node2D" parent="GameEnvironment"]

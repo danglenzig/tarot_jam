@@ -1,0 +1,2 @@
+class_name SpeakerSprite
+extends Sprite2D

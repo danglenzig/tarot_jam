@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://eitf1sq8k0q1"]
+
+[ext_resource type="Script" uid="uid://dqr60we44mcdv" path="res://tools/dialogue/conversation.gd" id="1_ji0y7"]
+[ext_resource type="Script" uid="uid://dymadn8xeg0aj" path="res://tools/dialogue/dialogue_line.gd" id="2_wwqic"]
+[ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="3_li30u"]
+[ext_resource type="Script" uid="uid://kwf8edpxnkk1" path="res://tools/dialogue/dialogue_choice.gd" id="3_tdhue"]
+
+[node name="TestConvo" type="Node" node_paths=PackedStringArray("dialogue_lines")]
+script = ExtResource("1_ji0y7")
+dialogue_lines = [NodePath("Line01"), NodePath("Line02")]
+
+[node name="Line01" type="Node" parent="." node_paths=PackedStringArray("choices")]
+script = ExtResource("2_wwqic")
+portrait_texture = ExtResource("3_li30u")
+text = "This is a test"
+choices = [NodePath("Choice01"), NodePath("Choice02"), NodePath("Choice03")]
+
+[node name="Choice01" type="Node" parent="Line01"]
+script = ExtResource("3_tdhue")
+text = "Continue 01"
+target_line_index = 1
+
+[node name="Choice02" type="Node" parent="Line01"]
+script = ExtResource("3_tdhue")
+text = "Continue"
+target_line_index = 1
+
+[node name="Choice03" type="Node" parent="Line01"]
+script = ExtResource("3_tdhue")
+text = "Quit"
+is_quit = true
+
+[node name="Line02" type="Node" parent="."]
+script = ExtResource("2_wwqic")
+portrait_texture = ExtResource("3_li30u")
+portrait_side = 1
+text = "BuhBye"
+is_quit = true
