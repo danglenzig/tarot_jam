@@ -1,0 +1,171 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqhyt5pd54c4l"]
+
+[ext_resource type="Script" uid="uid://cv38t3kubtwql" path="res://tools/main/mini_games/memory/memory_game.gd" id="1_qn7ub"]
+[ext_resource type="PackedScene" uid="uid://cqjfmiqsb5or6" path="res://game/main/mini_games/memory/memory_game_card.tscn" id="2_n8elq"]
+[ext_resource type="Texture2D" uid="uid://m6plmdq2n3wh" path="res://imported_assets/cards/Card png/Judgement.png" id="3_qcd4y"]
+[ext_resource type="Script" uid="uid://c7ed7v8jddadt" path="res://tools/main/mini_games/memory/memory_results_holder.gd" id="3_tpxl8"]
+[ext_resource type="Texture2D" uid="uid://wk6nuvey7khb" path="res://imported_assets/cards/Card png/Death.png" id="4_lhs7w"]
+[ext_resource type="FontFile" uid="uid://rydj71xjixua" path="res://imported_assets/fonts/double-feature.regular.ttf" id="5_lhs7w"]
+
+[node name="MemoryGame" type="Panel"]
+offset_right = 800.0
+offset_bottom = 450.0
+script = ExtResource("1_qn7ub")
+
+[node name="CardHolder" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(83, 120)
+layout_mode = 0
+offset_left = 60.405
+offset_top = 59.0
+offset_right = 460.405
+offset_bottom = 389.0
+theme_override_constants/h_separation = 80
+theme_override_constants/v_separation = 110
+columns = 6
+
+[node name="MemoryGameCard" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard2" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard3" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard4" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard5" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard6" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard7" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard8" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard9" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard10" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard11" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard12" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard13" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard14" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard15" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard16" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard17" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard18" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard19" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard20" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard21" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard22" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard23" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="MemoryGameCard24" parent="CardHolder" instance=ExtResource("2_n8elq")]
+layout_mode = 2
+
+[node name="ResultsHolder" type="Node2D" parent="."]
+position = Vector2(0, -124.155)
+script = ExtResource("3_tpxl8")
+
+[node name="ResultCards" type="HBoxContainer" parent="ResultsHolder"]
+unique_name_in_owner = true
+offset_left = 580.13
+offset_top = 266.0
+offset_right = 750.13
+offset_bottom = 306.0
+theme_override_constants/separation = 135
+
+[node name="CardAResult" type="Control" parent="ResultsHolder/ResultCards"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="ResultsHolder/ResultCards/CardAResult"]
+rotation = -0.0750492
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_qcd4y")
+
+[node name="CardBResult" type="Control" parent="ResultsHolder/ResultCards"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="ResultsHolder/ResultCards/CardBResult"]
+position = Vector2(-10.125, -9)
+rotation = 0.148353
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_lhs7w")
+
+[node name="CheckLabel" type="Label" parent="ResultsHolder"]
+unique_name_in_owner = true
+offset_left = 587.0
+offset_top = 146.0
+offset_right = 699.0
+offset_bottom = 346.0
+theme_override_colors/font_color = Color(0, 100, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_lhs7w")
+theme_override_font_sizes/font_size = 150
+text = "✓"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExLabel" type="Label" parent="ResultsHolder"]
+unique_name_in_owner = true
+offset_left = 596.0
+offset_top = 187.0
+offset_right = 689.0
+offset_bottom = 338.0
+theme_override_colors/font_color = Color(100, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_lhs7w")
+theme_override_font_sizes/font_size = 150
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 697.0
+offset_top = 399.0
+offset_right = 776.0
+offset_bottom = 430.0
+text = "Continue"

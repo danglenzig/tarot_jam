@@ -1,11 +1,12 @@
 class_name GameEnvironment
 extends Node2D
 
-@onready var game_camera: Camera2D = %GameCamera
+@onready var game_camera: GameCamera = %GameCamera
 @onready var background_sprite: BackgroundSprite = %BackgroundSprite
 @onready var left_speaker_sprite: SpeakerSprite = %LeftSpeakerSprite
 @onready var right_speaker_sprite: SpeakerSprite = %RightSpeakerSprite
 @onready var tv_frame_sprite: Sprite2D = %TVFrameSprite
+@onready var mini_game_manager: Node2D = %MiniGameManager
 
 @onready var event_bus: EventBus = SingletonHolder.event_bus
 

@@ -3,12 +3,38 @@ extends Node2D
 
 @onready var main_canvas: MainCanvas = $MainCanvas
 @onready var post_process: PostProcess = %PostProcess
+@onready var game_environment: GameEnvironment = %GameEnvironment
 
 @export var test_convo_scene: PackedScene
 
 
 func _ready() -> void:
 	SingletonHolder.game_manager.main = self
+	
+	
+	
+	
+	%BradsTestButton.pressed.connect(_on_brads_test_button_pressed)
+	
+func _on_brads_test_button_pressed():
+	%BradsTestButton.visible = false
+	game_environment.game_camera.zoom_in()
+	SingletonHolder.event_bus.start_minigame.emit()
+	
+	
+	"""
+	# camera zoom test
+	#await get_tree().create_timer(2.0).timeout
+	game_environment.game_camera.zoom_in()
+	await game_environment.game_camera.zoom_in_complete
+	print_debug("FOO")
+	
+	await get_tree().create_timer(2.0).timeout
+	game_environment.game_camera.zoom_out()
+	await game_environment.game_camera.zoom_out_complete
+	print_debug("BAR")
+	
+	%BradsTestButton.visible = true
 	
 	
 	# dialogue test
@@ -30,3 +56,4 @@ func _ready() -> void:
 	
 	
 	
+	"""

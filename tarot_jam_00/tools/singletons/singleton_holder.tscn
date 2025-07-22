@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4pmubk6hpimt"]
+[gd_scene load_steps=6 format=3 uid="uid://b4pmubk6hpimt"]
 
 [ext_resource type="Script" uid="uid://cq6uaofhp5vy4" path="res://tools/singletons/singleton_holder.gd" id="1_igpjk"]
 [ext_resource type="Script" uid="uid://b3x6cwe5x3317" path="res://tools/singletons/misc_tools.gd" id="2_vs1cy"]
 [ext_resource type="Script" uid="uid://pxoob6uc7smw" path="res://tools/singletons/event_bus.gd" id="3_p0omo"]
 [ext_resource type="Script" uid="uid://2hakx5rb3ftu" path="res://tools/singletons/game_manager.gd" id="4_ahj13"]
+[ext_resource type="Script" uid="uid://ck07qfdj42o25" path="res://tools/singletons/deck_helper.gd" id="5_iwug1"]
 
 [node name="SingletonHolder" type="Node"]
 script = ExtResource("1_igpjk")
@@ -16,3 +17,6 @@ script = ExtResource("3_p0omo")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("4_ahj13")
+
+[node name="DeckHelper" type="Node" parent="."]
+script = ExtResource("5_iwug1")

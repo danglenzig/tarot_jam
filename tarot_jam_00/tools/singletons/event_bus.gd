@@ -9,3 +9,6 @@ signal dialogue_started
 signal dialogue_ended(uuid_string: String)
 @warning_ignore("unused_signal")
 signal dialogue_line_updated(speaker_sprite_side: int , speaker_texture: Texture)
+
+@warning_ignore("unused_signal")
+signal start_minigame
