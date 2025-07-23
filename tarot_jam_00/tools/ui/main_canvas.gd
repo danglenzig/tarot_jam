@@ -6,6 +6,8 @@ extends CanvasLayer
 @onready var transition_screen: Control = %TransitionScreen
 @onready var logo_splash: LogoSplash = %LogoSplash
 @onready var dialogue: Dialogue = %Dialogue
+@onready var theme_alert: ThemeAlert = $ThemeAlert
+
 
 @onready var event_bus: EventBus = SingletonHolder.event_bus
 

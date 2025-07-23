@@ -1,0 +1,107 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1shnmu06acyh"]
+
+[ext_resource type="Script" uid="uid://dqr60we44mcdv" path="res://tools/dialogue/conversation.gd" id="1_cnvi1"]
+[ext_resource type="Script" uid="uid://dymadn8xeg0aj" path="res://tools/dialogue/dialogue_line.gd" id="2_gvues"]
+[ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="3_36l7d"]
+[ext_resource type="Script" uid="uid://kwf8edpxnkk1" path="res://tools/dialogue/dialogue_choice.gd" id="4_2krig"]
+
+[node name="MaddieIntroConvo01" type="Node" node_paths=PackedStringArray("dialogue_lines")]
+script = ExtResource("1_cnvi1")
+dialogue_lines = [NodePath("0"), NodePath("1"), NodePath("2"), NodePath("3"), NodePath("3_1"), NodePath("4"), NodePath("5"), NodePath("6"), NodePath("7"), NodePath("8")]
+metadata/_custom_type_script = "uid://dqr60we44mcdv"
+
+[node name="0" type="Node" parent="."]
+script = ExtResource("2_gvues")
+speaker_name = "Madame Massacre"
+portrait_texture = ExtResource("3_36l7d")
+portrait_side = 1
+text = "Hi everybody! Welcome to the show!"
+end_signal_data_string = "theme_alert"
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="1" type="Node" parent="."]
+script = ExtResource("2_gvues")
+speaker_name = "Madame Massacre"
+portrait_texture = ExtResource("3_36l7d")
+portrait_side = 1
+text = "As always, I'm your host Madame Massacre..."
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="2" type="Node" parent="."]
+script = ExtResource("2_gvues")
+speaker_name = "Madame Massacre"
+portrait_texture = ExtResource("3_36l7d")
+portrait_side = 1
+text = "...but you can call me Maddie."
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="3" type="Node" parent="."]
+script = ExtResource("2_gvues")
+speaker_name = "Maddie"
+portrait_texture = ExtResource("3_36l7d")
+portrait_side = 1
+text = "This is normally where I'd introduce our contestants. But frankly I'm sick of them and their stupid faces."
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="3_1" type="Node" parent="."]
+script = ExtResource("2_gvues")
+speaker_name = "Maddie"
+text = "Seriously -- just look at their stupid faces."
+begin_signal_data_string = "show_contestants"
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="4" type="Node" parent="."]
+script = ExtResource("2_gvues")
+speaker_name = "Maddie"
+portrait_texture = ExtResource("3_36l7d")
+portrait_side = 1
+text = "So instead of that...Are YOU ready to play?"
+begin_signal_data_string = "studio_cam_1"
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="5" type="Node" parent="."]
+script = ExtResource("2_gvues")
+speaker_name = ""
+portrait_texture = ExtResource("3_36l7d")
+portrait_side = 1
+text = "..."
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="6" type="Node" parent="." node_paths=PackedStringArray("choices")]
+script = ExtResource("2_gvues")
+speaker_name = ""
+portrait_texture = ExtResource("3_36l7d")
+portrait_side = 1
+text = "..."
+choices = [NodePath("WhoMeChoice")]
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="WhoMeChoice" type="Node" parent="6"]
+script = ExtResource("4_2krig")
+text = "...who, me?"
+target_line_index = 8
+metadata/_custom_type_script = "uid://kwf8edpxnkk1"
+
+[node name="7" type="Node" parent="." node_paths=PackedStringArray("choices")]
+script = ExtResource("2_gvues")
+portrait_texture = ExtResource("3_36l7d")
+portrait_side = 1
+text = "Yes! You, the sad, bored and lonely person at home on your cheap Ikea futon!"
+choices = [NodePath("UhOkChoice")]
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="UhOkChoice" type="Node" parent="7"]
+script = ExtResource("4_2krig")
+text = "Uh...okay, I guess."
+target_line_index = 9
+metadata/_custom_type_script = "uid://kwf8edpxnkk1"
+
+[node name="8" type="Node" parent="."]
+script = ExtResource("2_gvues")
+speaker_name = "Maddie"
+portrait_texture = ExtResource("3_36l7d")
+portrait_side = 1
+text = "Fastastic! Our first round is a little game we like to call..."
+is_quit = true
+end_signal_data_string = "end_of_intro"
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"

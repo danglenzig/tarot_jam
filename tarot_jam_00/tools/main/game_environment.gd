@@ -10,6 +10,8 @@ extends Node2D
 
 @onready var event_bus: EventBus = SingletonHolder.event_bus
 
+var mini_game_mode := false
+
 func _ready() -> void:
 	left_speaker_sprite.texture = null
 	right_speaker_sprite.texture = null
@@ -17,10 +19,16 @@ func _ready() -> void:
 	event_bus.dialogue_ended.connect(_on_dialogue_ended)
 
 func _on_dialogue_ended(_uuid):
+	
+	if mini_game_mode: return
+	
 	left_speaker_sprite.texture = null
 	right_speaker_sprite.texture = null
 
 func _on_dialogue_line_updated(speaker_sprite_side: int ,speaker_texture: Texture):
+	
+	if mini_game_mode: return
+	
 	if speaker_texture:
 		match speaker_sprite_side:
 			DialogueLine.PortaitSide.LEFT: # 0
@@ -29,4 +37,7 @@ func _on_dialogue_line_updated(speaker_sprite_side: int ,speaker_texture: Textur
 			DialogueLine.PortaitSide.RIGHT: # 1
 				left_speaker_sprite.texture = null
 				right_speaker_sprite.texture = speaker_texture
+	else:
+		left_speaker_sprite.texture = null
+		right_speaker_sprite.texture = null
 				

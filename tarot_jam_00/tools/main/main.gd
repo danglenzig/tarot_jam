@@ -4,56 +4,72 @@ extends Node2D
 @onready var main_canvas: MainCanvas = $MainCanvas
 @onready var post_process: PostProcess = %PostProcess
 @onready var game_environment: GameEnvironment = %GameEnvironment
+@onready var intro: Intro = %Intro
+@onready var act_one: ActOne = %ActOne
 
-@export var test_convo_scene: PackedScene
 
+
+signal start_game_signal
+signal intro_complete
+signal game_one_complete
+signal advert_one_complete
+signal game_two_complete
+signal advert_two_complete
+signal game_three_complete
+signal advert_three_complete
 
 func _ready() -> void:
 	SingletonHolder.game_manager.main = self
 	
 	
+	#main_canvas.dialogue.dialogue_choice_taken.connect(_on_rx_dialogue_choice_taken)
 	
 	
-	%BradsTestButton.pressed.connect(_on_brads_test_button_pressed)
+	start_game_signal.connect(_play_intro)
+	intro_complete.connect(_play_game_one)
+	game_one_complete.connect(_play_advert_one)
+	advert_one_complete.connect(_play_game_two)
+	game_two_complete.connect(_play_advert_two)
+	advert_two_complete.connect(_play_game_three)
+	game_three_complete.connect(_play_advert_three)
+	advert_three_complete.connect(_play_outro)
 	
-func _on_brads_test_button_pressed():
-	%BradsTestButton.visible = false
-	game_environment.game_camera.zoom_in()
-	SingletonHolder.event_bus.start_minigame.emit()
+	_initialize_game_phases()
 	
+	_show_start_menu() # start game signal emitted when player hits start
+
+func _initialize_game_phases():
+	intro.main = self
+
+func _show_start_menu():
+	main_canvas.show_layer(main_canvas.start_menu, true, true)
+
+func _play_intro():
+	intro.play()
 	
-	"""
-	# camera zoom test
-	#await get_tree().create_timer(2.0).timeout
-	game_environment.game_camera.zoom_in()
-	await game_environment.game_camera.zoom_in_complete
-	print_debug("FOO")
+
+func _play_game_one():
+	act_one.play()
 	
-	await get_tree().create_timer(2.0).timeout
-	game_environment.game_camera.zoom_out()
-	await game_environment.game_camera.zoom_out_complete
-	print_debug("BAR")
+func _play_advert_one():
+	pass
 	
-	%BradsTestButton.visible = true
+func _play_game_two():
+	pass
 	
+func _play_advert_two():
+	pass
 	
-	# dialogue test
+func _play_game_three():
+	pass
 	
-	var current_convo_uuid := ""
+func _play_advert_three():
+	pass
 	
-	await get_tree().create_timer(2.0).timeout
-	var test_convo = test_convo_scene.instantiate() as Conversation
-	test_convo.conversation_uuid = SingletonHolder.misc_tools.get_uuid()
-	current_convo_uuid = test_convo.conversation_uuid
-	SingletonHolder.event_bus.start_dialogue_signal.emit(test_convo, 0)
+func _play_outro():
+	pass
 	
-	SingletonHolder.event_bus.dialogue_ended.connect(
-		func(uuid: String)->void:
-			if uuid == current_convo_uuid:
-				current_convo_uuid = ""
-				test_convo.queue_free()
-	)
+
 	
+
 	
-	
-	"""

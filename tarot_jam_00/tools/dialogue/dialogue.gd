@@ -11,6 +11,13 @@ enum EnumClickAction {ADVANCE, END}
 
 var current_click_action: EnumClickAction = EnumClickAction.END
 
+#@warning_ignore("unused_signal")
+#signal dialogue_choice_taken(data: String)
+
+#@warning_ignore("unused_signal")
+#signal line_finished_signal(data: String)
+signal dialogue_data_signal(data: String)
+
 var current_convo: Conversation = null:
 	set(new_value):
 		
@@ -34,6 +41,9 @@ var listen_for_click := false
 
 const SHOW_TEXT_INTERVAL := 0.025
 
+signal dialogue_ended(uuid: String)
+signal end_dialogue
+
 
 func _ready() -> void:
 	dialogue_ui.size = get_viewport_rect().size
@@ -47,6 +57,7 @@ func _ready() -> void:
 	
 
 func _input(event: InputEvent) -> void:
+	if not current_convo: return
 	if not listen_for_click: return
 	if (
 		event is InputEventMouseButton and
@@ -72,6 +83,9 @@ func _advance_dialogue():
 
 func _start_dialogue(convo: Conversation, start_index: int = 0):
 	
+	call_deferred("add_child", convo)
+	await convo.tree_entered
+	
 	current_convo = convo
 	current_line_index = start_index
 	var dialogue_line := _get_dialogue_line(start_index)
@@ -81,18 +95,34 @@ func _start_dialogue(convo: Conversation, start_index: int = 0):
 	
 func _end_dialogue():
 	assert(current_convo, "No conversation")
+	
+	dialogue_ended.emit(current_convo.convo_uuid)
+	current_convo.call_deferred("queue_free")
+	await current_convo.tree_exited
+	
 	current_convo = null
 	current_line_index = -1
 	listen_for_click = false
 	current_click_action = EnumClickAction.END
 	
+	SingletonHolder.game_manager.main.main_canvas.show_layer(self, false)
+	
 func _handle_speaker_label(line: DialogueLine):
 	speaker_name_label.text = line.speaker_name
 	
 func _handle_text(line: DialogueLine):
+	
+	_handle_speaker_label(line)
+	
+	if line.begin_signal_data_string.length() > 0:
+		dialogue_data_signal.emit(line.begin_signal_data_string)
+	
 	var side = line.portrait_side
 	var texture = line.portrait_texture
-	event_bus.dialogue_line_updated.emit(side, texture) # game_environment listens for this
+	if line.portrait_texture:
+		event_bus.dialogue_line_updated.emit(side, texture) # game_environment listens for this
+	else:
+		event_bus.dialogue_line_updated.emit(side, null)
 	
 	_clear_buttons()
 	dialogue_text.visible_ratio = 0.0
@@ -110,6 +140,9 @@ func _handle_text(line: DialogueLine):
 	)
 	dialogue_text_tween.finished.connect(
 		func()->void:
+			if line.end_signal_data_string.length()>0:
+				dialogue_data_signal.emit(line.end_signal_data_string)
+			
 			if line.is_quit:
 				current_click_action = EnumClickAction.END
 			else:
@@ -124,9 +157,6 @@ func _handle_text(line: DialogueLine):
 	
 	
 func _setup_buttons():
-	
-	print_debug("foobar")
-	
 	await _clear_buttons()
 	assert(current_convo, "No conversation")
 	assert(
@@ -144,10 +174,17 @@ func _setup_buttons():
 		new_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		new_button.text = choice.text
 		if choice.is_quit:
-			new_button.pressed.connect(_end_dialogue)
+			new_button.pressed.connect(
+				func()->void:
+					if choice.signal_data_string != "":
+						dialogue_data_signal.emit(choice.signal_data_string)
+					_end_dialogue()
+			)
 		else:
 			new_button.pressed.connect(
 				func()->void:
+					if choice.signal_data_string != "":
+						dialogue_data_signal.emit(choice.signal_data_string)
 					current_line_index = choice.target_line_index
 					var new_line := _get_dialogue_line(choice.target_line_index)
 					_handle_text(new_line)

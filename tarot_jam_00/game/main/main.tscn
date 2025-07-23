@@ -1,12 +1,16 @@
-[gd_scene load_steps=21 format=3 uid="uid://b578jtugl6bw6"]
+[gd_scene load_steps=29 format=3 uid="uid://b578jtugl6bw6"]
 
 [ext_resource type="Script" uid="uid://duwgp8a3wh5ha" path="res://tools/main/main.gd" id="1_5520f"]
+[ext_resource type="Script" uid="uid://ei305fu26y4r" path="res://tools/main/game_phases/intro.gd" id="2_kmyu1"]
 [ext_resource type="Script" uid="uid://bs5h5b6eopk0m" path="res://tools/ui/main_canvas.gd" id="2_psm6y"]
-[ext_resource type="PackedScene" uid="uid://eitf1sq8k0q1" path="res://game/dialogue/test_convo.tscn" id="2_yj2gc"]
+[ext_resource type="PackedScene" uid="uid://cookh3m4hn1jb" path="res://game/dialogue/inrto_monologue.tscn" id="3_0hvxd"]
 [ext_resource type="Script" uid="uid://drjvjcav1oxno" path="res://tools/ui/hud.gd" id="3_yil3p"]
 [ext_resource type="Script" uid="uid://bm6aa0napfwuy" path="res://tools/ui/start_menu.gd" id="4_8y833"]
+[ext_resource type="PackedScene" uid="uid://cnc8wehvsvcb7" path="res://game/dialogue/this_will_do.tscn" id="4_bbfrq"]
 [ext_resource type="Texture2D" uid="uid://c2opkctxv8w0h" path="res://imported_assets/test_pattern.jpg" id="5_kk62w"]
+[ext_resource type="PackedScene" uid="uid://b1shnmu06acyh" path="res://game/dialogue/maddie_intro_convo_01.tscn" id="5_pwodh"]
 [ext_resource type="Script" uid="uid://x3t6g5vutel5" path="res://tools/ui/transition_screen.gd" id="5_tkdpa"]
+[ext_resource type="Script" uid="uid://dc1n7cnk1rjg3" path="res://tools/main/game_phases/act_one.gd" id="6_teqhh"]
 [ext_resource type="Script" uid="uid://yqfcbvak5m45" path="res://tools/ui/logo_splash.gd" id="7_sifka"]
 [ext_resource type="Script" uid="uid://r2cxlf7ivdqd" path="res://tools/shaders/post_process.gd" id="8_2st6t"]
 [ext_resource type="Script" uid="uid://cy2gfw1vdpsjn" path="res://tools/dialogue/dialogue.gd" id="8_xvake"]
@@ -14,11 +18,15 @@
 [ext_resource type="Script" uid="uid://cvl7yb2354368" path="res://tools/main/game_environment.gd" id="11_2v5lu"]
 [ext_resource type="Texture2D" uid="uid://b73ahykjharrn" path="res://imported_assets/01.jpg" id="11_6idrh"]
 [ext_resource type="Texture2D" uid="uid://c5x788uhdvdoo" path="res://imported_assets/1.png" id="11_7q7ho"]
+[ext_resource type="FontFile" uid="uid://b0k8jkn78gdgh" path="res://imported_assets/fonts/Dynamo.ttf" id="12_1bifg"]
+[ext_resource type="Theme" uid="uid://coxmhd3kyotxv" path="res://tools/ui/dialogue_ui_theme.tres" id="12_bfeae"]
+[ext_resource type="Script" uid="uid://c4qicaqa3486" path="res://game/main/theme_alert.gd" id="12_vbnl1"]
 [ext_resource type="Script" uid="uid://wr6rc314hrua" path="res://tools/dialogue/speaker_sprite.gd" id="13_0j5er"]
 [ext_resource type="Script" uid="uid://cfpnhdnp1bwse" path="res://tools/main/background_sprite.gd" id="13_g7cwu"]
 [ext_resource type="Script" uid="uid://baegaj6bejomk" path="res://tools/main/game_camera.gd" id="13_yj2gc"]
+[ext_resource type="FontFile" uid="uid://c2pqt31wie6sg" path="res://imported_assets/fonts/actionis.ttf" id="16_lw3xc"]
+[ext_resource type="FontFile" uid="uid://bemtfcrjhd0vw" path="res://imported_assets/fonts/IMPACT.TTF" id="17_0d1l5"]
 [ext_resource type="Script" uid="uid://bu0kyn26ihist" path="res://tools/main/mini_game_holder.gd" id="18_kmyu1"]
-[ext_resource type="PackedScene" uid="uid://cqhyt5pd54c4l" path="res://game/main/mini_games/memory/memory_game.tscn" id="19_0hvxd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xvake"]
 resource_local_to_scene = true
@@ -43,7 +51,19 @@ shader_parameter/chromatic_abberation_blur_strength = 1.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5520f")
-test_convo_scene = ExtResource("2_yj2gc")
+
+[node name="GamePhases" type="Node" parent="."]
+
+[node name="Intro" type="Node" parent="GamePhases"]
+unique_name_in_owner = true
+script = ExtResource("2_kmyu1")
+intro_monologue_scene = ExtResource("3_0hvxd")
+this_will_do_scene = ExtResource("4_bbfrq")
+maddie_intro_convo_scene_01 = ExtResource("5_pwodh")
+
+[node name="ActOne" type="Node" parent="GamePhases"]
+unique_name_in_owner = true
+script = ExtResource("6_teqhh")
 
 [node name="MainCanvas" type="CanvasLayer" parent="."]
 script = ExtResource("2_psm6y")
@@ -126,11 +146,6 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Start"
 
-[node name="ContinueButton" type="Button" parent="MainCanvas/StartMenu/StartMenuBackground/StartMenuButtonsVbox"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Continue"
-
 [node name="AboutButton" type="Button" parent="MainCanvas/StartMenu/StartMenuBackground/StartMenuButtonsVbox"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -167,7 +182,6 @@ script = ExtResource("5_tkdpa")
 
 [node name="BlackRect" type="ColorRect" parent="MainCanvas/TransitionScreen"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -187,11 +201,11 @@ script = ExtResource("7_sifka")
 
 [node name="Dialogue" type="Control" parent="MainCanvas"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("12_bfeae")
 script = ExtResource("8_xvake")
 
 [node name="DialogueUi" type="Panel" parent="MainCanvas/Dialogue"]
@@ -224,7 +238,7 @@ offset_left = 21.0
 offset_top = 24.0
 offset_right = 808.0
 offset_bottom = 108.0
-text = "Soluta repudiandae blanditiis nesciunt voluptas et enim ullam quasi. Cupiditate accusamus consequatur vel dolore quo. Ex deserunt officiis qui non et. Harum praesentium et cum eos dolores. Omnis et voluptas at ea autem aut ex. Perferendis a est dicta non. Vel architecto non expedita. "
+text = "Soluta repudiandae blanditiis nesciunt voluptas et enim ullam quasi. Cupiditate accusamus consequatur vel dolore quo. Ex deserunt officiis qui non et. Harum praesentium et cum eos dolores. Omnis et voluptas at ea autem aut ex."
 scroll_following = true
 
 [node name="DialogChoicesVbox" type="VBoxContainer" parent="MainCanvas/Dialogue/DialogueUi/DialoguePanel"]
@@ -235,10 +249,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -130.0
-offset_top = -209.0
-offset_right = -57.0
-offset_bottom = -108.0
+offset_left = -206.0
+offset_top = -224.0
+offset_right = -28.0
+offset_bottom = -112.0
 grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
@@ -268,6 +282,40 @@ offset_right = 81.0
 offset_bottom = -1.0
 text = "Maddie"
 
+[node name="ThemeAlert" type="Control" parent="MainCanvas"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("12_vbnl1")
+
+[node name="Panel" type="Panel" parent="MainCanvas/ThemeAlert"]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 137.45
+offset_right = 938.0
+offset_bottom = 434.45
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="MainCanvas/ThemeAlert/Panel"]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 822.0
+offset_bottom = 293.0
+theme_override_colors/font_color = Color(100, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("12_1bifg")
+theme_override_font_sizes/font_size = 130
+text = "THEME
+ALERT!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PostProcessCanvas" type="CanvasLayer" parent="."]
 
 [node name="PostProcess" type="Control" parent="PostProcessCanvas"]
@@ -294,6 +342,7 @@ mouse_filter = 2
 
 [node name="BradsTestButton" type="Button" parent="PostProcessCanvas"]
 unique_name_in_owner = true
+visible = false
 offset_right = 119.0
 offset_bottom = 77.0
 text = "BRAD'S
@@ -309,6 +358,40 @@ unique_name_in_owner = true
 position = Vector2(-54, -3)
 texture = ExtResource("11_6idrh")
 script = ExtResource("13_g7cwu")
+
+[node name="GameShowTitleLabel" type="Label" parent="GameEnvironment/BackgroundSprite"]
+visible = false
+offset_left = -612.0
+offset_top = -268.0
+offset_right = 485.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0.0507337, 0.667555, 0.0419462, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("16_lw3xc")
+theme_override_font_sizes/font_size = 100
+text = "Madame Massacre's
+Dumb-Ass Game Show
+For Stupid Babies!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="GameEnvironment/BackgroundSprite/GameShowTitleLabel"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 326.0
+offset_right = 905.0
+offset_bottom = 376.0
+theme_override_colors/font_color = Color(0.824565, 0.0499538, 0.0281721, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("17_0d1l5")
+theme_override_font_sizes/font_size = 30
+text = "(we'll think of a better name later...)"
 
 [node name="LeftSpeakerSprite" type="Sprite2D" parent="GameEnvironment"]
 unique_name_in_owner = true
@@ -340,5 +423,3 @@ zoom_value = 1.545
 unique_name_in_owner = true
 position = Vector2(-525, -227)
 script = ExtResource("18_kmyu1")
-
-[node name="MemoryGame" parent="GameEnvironment/MiniGameManager" instance=ExtResource("19_0hvxd")]

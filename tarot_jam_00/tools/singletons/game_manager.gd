@@ -2,9 +2,15 @@ class_name GameManager
 extends Node
 
 signal main_added
+signal hp_updated(new_hp: float)
 const SAVE_PATH = "user://game_data.tres"
 
 var game_data: GameData = null
+
+var hp := 1000.0:
+	set(new_value):
+		hp = new_value
+		hp_updated.emit(hp)
 
 var main: Main = null:
 	set(new_value):
@@ -18,7 +24,11 @@ var damage_per_hit := {
 	"three_card_monte": 15.0
 }
 
-func _recalculate_mannequinity(hp):
+
+func _ready() -> void:
+	start_new_game()
+
+func _recalculate_mannequinity(_hp):
 	pass # TODO
 	
 func _on_fully_mannequin():
@@ -51,6 +61,7 @@ func _load_saved_data()->void:
 func start_new_game()->void:
 	_clear_saved_data()
 	game_data = GameData.new()
+	
 
 func _clear_saved_data()->void:
 	if not ResourceLoader.exists(SAVE_PATH):

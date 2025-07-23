@@ -12,6 +12,9 @@ enum PortaitSide {LEFT, RIGHT}
 @export_multiline var text := "This is the words the speaker is saying on this line"
 @export var is_quit := false
 
+@export var begin_signal_data_string := ""
+@export var end_signal_data_string := ""
+
 
 @export_category("Choices")
 @export var choices: Array[DialogueChoice]
