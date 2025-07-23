@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://fhs4wtytrtgv" path="res://tools/main/mini_games/memory/memory_game_card.gd" id="1_no0uv"]
 [ext_resource type="Texture2D" uid="uid://bj8w86rr8ycdr" path="res://imported_assets/cards/Card png/reverse.png" id="2_l8drx"]
 [ext_resource type="Shader" uid="uid://d0m8rw3q77jpq" path="res://game/main/mini_games/memory/card_flip_shader.gdshader" id="2_pdxy1"]
-[ext_resource type="Script" uid="uid://gwwlopwmi0pw" path="res://game/main/mini_games/memory/select_rect.gd" id="4_pdxy1"]
+[ext_resource type="Script" uid="uid://gwwlopwmi0pw" path="res://tools/main/mini_games/select_rect.gd" id="4_pdxy1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d16ye"]
 resource_local_to_scene = true

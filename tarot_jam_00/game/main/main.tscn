@@ -341,9 +341,4 @@ unique_name_in_owner = true
 position = Vector2(-525, -227)
 script = ExtResource("18_kmyu1")
 
-[node name="Panel" type="Panel" parent="GameEnvironment/MiniGameManager"]
-visible = false
-offset_right = 800.0
-offset_bottom = 450.0
-
 [node name="MemoryGame" parent="GameEnvironment/MiniGameManager" instance=ExtResource("19_0hvxd")]

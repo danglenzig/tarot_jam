@@ -2,6 +2,7 @@ class_name GameManager
 extends Node
 
 signal main_added
+const SAVE_PATH = "user://game_data.tres"
 
 var game_data: GameData = null
 
@@ -10,8 +11,30 @@ var main: Main = null:
 		main = new_value
 		if main: main_added.emit()
 		
-const SAVE_PATH = "user://game_data.tres"
+var damage_per_hit := {
+	# these values will need tuning & balancing
+	"mastermind": 		10.0,
+	"memory": 			5.0,
+	"three_card_monte": 15.0
+}
 
+func _recalculate_mannequinity(hp):
+	pass # TODO
+	
+func _on_fully_mannequin():
+	pass # TODO
+
+func take_hit(mini_game_name: String):
+	if not game_data: return
+	assert(mini_game_name in damage_per_hit.keys())
+	var current_hp = game_data.hp
+	var damage: float = damage_per_hit[mini_game_name]
+	if current_hp - damage > 0:
+		game_data.hp -= damage
+		_recalculate_mannequinity(game_data.hp)
+	else:
+		_on_fully_mannequin() # master lose condition
+		
 func _load_saved_data()->void:
 	if ResourceLoader.exists(SAVE_PATH):
 	#if FileAccess.file_exists(SAVE_PATH):
@@ -34,3 +57,4 @@ func _clear_saved_data()->void:
 	#if not FileAccess.file_exists(SAVE_PATH):
 		return
 	DirAccess.remove_absolute(SAVE_PATH)
+		

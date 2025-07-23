@@ -1,5 +1,147 @@
-[gd_scene format=3 uid="uid://cwcpnx281nbfm"]
+[gd_scene load_steps=7 format=3 uid="uid://cwcpnx281nbfm"]
+
+[ext_resource type="PackedScene" uid="uid://dpigylkl12g66" path="res://tools/main/mini_games/mastermind/mastermind_card.tscn" id="1_1oaob"]
+[ext_resource type="Script" uid="uid://cot7l2ak8l18g" path="res://tools/main/mini_games/mastermind/mastermind_symbols_holder.gd" id="1_khlcc"]
+[ext_resource type="Script" uid="uid://c0fe4ied2l2n6" path="res://tools/main/mini_games/mastermind/mastermind_game.gd" id="1_vi4gl"]
+[ext_resource type="Script" uid="uid://b32ru7e3jwauk" path="res://tools/main/mini_games/mastermind/solution_slot.gd" id="2_fd32q"]
+[ext_resource type="Script" uid="uid://efgk7tar3kim" path="res://tools/main/mini_games/mastermind/mastermind_solution_holder.gd" id="3_tvt01"]
+[ext_resource type="Script" uid="uid://djegd4mcbwfyb" path="res://tools/main/mini_games/mastermind/mouse_chaser.gd" id="6_6ntod"]
 
 [node name="MastermindGame" type="Panel"]
 offset_right = 800.0
 offset_bottom = 450.0
+script = ExtResource("1_vi4gl")
+
+[node name="SymbolsHolder" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 77.0
+offset_right = 684.0
+offset_bottom = 207.0
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 130
+columns = 6
+script = ExtResource("1_khlcc")
+
+[node name="MastermindCard" parent="SymbolsHolder" instance=ExtResource("1_1oaob")]
+layout_mode = 2
+
+[node name="MastermindCard2" parent="SymbolsHolder" instance=ExtResource("1_1oaob")]
+layout_mode = 2
+
+[node name="MastermindCard3" parent="SymbolsHolder" instance=ExtResource("1_1oaob")]
+layout_mode = 2
+
+[node name="MastermindCard4" parent="SymbolsHolder" instance=ExtResource("1_1oaob")]
+layout_mode = 2
+
+[node name="MastermindCard5" parent="SymbolsHolder" instance=ExtResource("1_1oaob")]
+layout_mode = 2
+
+[node name="MastermindCard6" parent="SymbolsHolder" instance=ExtResource("1_1oaob")]
+layout_mode = 2
+
+[node name="MastermindCard7" parent="SymbolsHolder" instance=ExtResource("1_1oaob")]
+layout_mode = 2
+
+[node name="MastermindCard8" parent="SymbolsHolder" instance=ExtResource("1_1oaob")]
+layout_mode = 2
+
+[node name="MastermindCard9" parent="SymbolsHolder" instance=ExtResource("1_1oaob")]
+layout_mode = 2
+
+[node name="MastermindCard10" parent="SymbolsHolder" instance=ExtResource("1_1oaob")]
+layout_mode = 2
+
+[node name="MastermindCard11" parent="SymbolsHolder" instance=ExtResource("1_1oaob")]
+layout_mode = 2
+
+[node name="MastermindCard12" parent="SymbolsHolder" instance=ExtResource("1_1oaob")]
+layout_mode = 2
+
+[node name="SolutionHolder" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 345.0
+offset_right = 628.0
+offset_bottom = 385.0
+theme_override_constants/h_separation = 110
+theme_override_constants/v_separation = 110
+columns = 4
+script = ExtResource("3_tvt01")
+
+[node name="SolutionSlot0" type="Control" parent="SolutionHolder"]
+layout_mode = 2
+script = ExtResource("2_fd32q")
+
+[node name="SolutionRect" type="ColorRect" parent="SolutionHolder/SolutionSlot0"]
+layout_mode = 0
+offset_left = -101.0
+offset_top = -60.0
+offset_right = -10.28
+offset_bottom = 71.76
+color = Color(0.314, 0.314, 0.314, 0.322)
+
+[node name="Sprite2D" type="Sprite2D" parent="SolutionHolder/SolutionSlot0/SolutionRect"]
+position = Vector2(45, 65)
+scale = Vector2(0.3, 0.3)
+
+[node name="SolutionSlot1" type="Control" parent="SolutionHolder"]
+layout_mode = 2
+script = ExtResource("2_fd32q")
+
+[node name="SolutionRect" type="ColorRect" parent="SolutionHolder/SolutionSlot1"]
+layout_mode = 0
+offset_left = -101.0
+offset_top = -60.0
+offset_right = -10.28
+offset_bottom = 71.76
+color = Color(0.314, 0.314, 0.314, 0.322)
+
+[node name="Sprite2D" type="Sprite2D" parent="SolutionHolder/SolutionSlot1/SolutionRect"]
+position = Vector2(45, 66)
+scale = Vector2(0.3, 0.3)
+
+[node name="SolutionSlot2" type="Control" parent="SolutionHolder"]
+layout_mode = 2
+script = ExtResource("2_fd32q")
+
+[node name="SolutionRect" type="ColorRect" parent="SolutionHolder/SolutionSlot2"]
+layout_mode = 0
+offset_left = -101.0
+offset_top = -60.0
+offset_right = -10.28
+offset_bottom = 71.76
+color = Color(0.314, 0.314, 0.314, 0.322)
+
+[node name="Sprite2D" type="Sprite2D" parent="SolutionHolder/SolutionSlot2/SolutionRect"]
+position = Vector2(46, 67)
+scale = Vector2(0.3, 0.3)
+
+[node name="SolutionSlot3" type="Control" parent="SolutionHolder"]
+layout_mode = 2
+script = ExtResource("2_fd32q")
+
+[node name="SolutionRect" type="ColorRect" parent="SolutionHolder/SolutionSlot3"]
+layout_mode = 0
+offset_left = -101.0
+offset_top = -60.0
+offset_right = -10.28
+offset_bottom = 71.76
+color = Color(0.314, 0.314, 0.314, 0.322)
+
+[node name="Sprite2D" type="Sprite2D" parent="SolutionHolder/SolutionSlot3/SolutionRect"]
+position = Vector2(45, 67)
+scale = Vector2(0.3, 0.3)
+
+[node name="MouseChaser" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("6_6ntod")
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 672.0
+offset_top = 373.0
+offset_right = 751.0
+offset_bottom = 404.0
+text = "Continue"

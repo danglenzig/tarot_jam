@@ -1,0 +1,216 @@
+[gd_scene load_steps=17 format=3 uid="uid://dgx38x6f5wlqd"]
+
+[ext_resource type="Texture2D" uid="uid://b85sgxgob6pm8" path="res://icon.svg" id="1_btqdn"]
+[ext_resource type="Script" uid="uid://c5bf7885t8fw4" path="res://tools/main/mini_games/three_card_monte/three_card_monte.gd" id="1_otfhb"]
+[ext_resource type="Script" uid="uid://bpvjwc1nmcpjh" path="res://tools/main/mini_games/three_card_monte/monte_card.gd" id="2_22bsi"]
+[ext_resource type="Script" uid="uid://bfksjdp187ath" path="res://tools/main/mini_games/three_card_monte/monte_position.gd" id="2_emsaf"]
+[ext_resource type="Script" uid="uid://gwwlopwmi0pw" path="res://tools/main/mini_games/select_rect.gd" id="3_emuaf"]
+[ext_resource type="Texture2D" uid="uid://chogmcc8pyc8q" path="res://imported_assets/cards/Card png/reverse_01.png" id="4_otfhb"]
+[ext_resource type="Shader" uid="uid://d0m8rw3q77jpq" path="res://game/main/mini_games/memory/card_flip_shader.gdshader" id="6_deflt"]
+
+[sub_resource type="Curve2D" id="Curve2D_btqdn"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3, -10, 0, 0, 0, 0, 16, -23, 0, 0, 0, 0, 42, -38, 0, 0, 0, 0, 67, -45, 0, 0, 0, 0, 90, -48, 0, 0, 0, 0, 127, -51, 0, 0, 0, 0, 153, -47, 0, 0, 0, 0, 175, -32, 0, 0, 0, 0, 199, -18, 0, 0, 0, 0, 211, -5, 0, 0, 0, 0, 222, 4)
+}
+point_count = 11
+
+[sub_resource type="Curve2D" id="Curve2D_22bsi"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3, -13, 0, 0, 0, 0, 11, -37, 0, 0, 0, 0, 37, -59, 0, 0, 0, 0, 60, -85, 0, 0, 0, 0, 95, -99, 0, 0, 0, 0, 122, -101, 0, 0, 0, 0, 185, -111, 0, 0, 0, 0, 221, -107, 0, 0, 0, 0, 260, -112, 0, 0, 0, 0, 288, -99, 0, 0, 0, 0, 325, -80, 0, 0, 0, 0, 364, -62, 0, 0, 0, 0, 410, -38, 0, 0, 0, 0, 431, -20, 0, 0, 0, 0, 451, -5, 0, 0, 0, 0, 468, 1)
+}
+point_count = 16
+
+[sub_resource type="Curve2D" id="Curve2D_jsuug"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -7, 8, 0, 0, 0, 0, -26, 24, 0, 0, 0, 0, -48, 35, 0, 0, 0, 0, -91, 48, 0, 0, 0, 0, -124, 45, 0, 0, 0, 0, -167, 40, 0, 0, 0, 0, -187, 26, 0, 0, 0, 0, -208, 16, 0, 0, 0, 0, -224, 4)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_emuaf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3, -7, 0, 0, 0, 0, 18, -24, 0, 0, 0, 0, 45, -44, 0, 0, 0, 0, 78, -54, 0, 0, 0, 0, 107, -57, 0, 0, 0, 0, 137, -60, 0, 0, 0, 0, 174, -66, 0, 0, 0, 0, 198, -55, 0, 0, 0, 0, 215, -37, 0, 0, 0, 0, 230, -14, 0, 0, 0, 0, 234, -2)
+}
+point_count = 11
+
+[sub_resource type="Curve2D" id="Curve2D_otfhb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -7, 8, 0, 0, 0, 0, -23, 27, 0, 0, 0, 0, -46, 45, 0, 0, 0, 0, -79, 57, 0, 0, 0, 0, -101, 71, 0, 0, 0, 0, -128, 85, 0, 0, 0, 0, -162, 89, 0, 0, 0, 0, -218, 88, 0, 0, 0, 0, -263, 95, 0, 0, 0, 0, -323, 87, 0, 0, 0, 0, -340, 78, 0, 0, 0, 0, -413, 55, 0, 0, 0, 0, -449, 38, 0, 0, 0, 0, -468, 25, 0, 0, 0, 0, -475, 1)
+}
+point_count = 15
+
+[sub_resource type="Curve2D" id="Curve2D_emsaf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -8, 6, 0, 0, 0, 0, -28, 17, 0, 0, 0, 0, -58, 31, 0, 0, 0, 0, -78, 36, 0, 0, 0, 0, -112, 45, 0, 0, 0, 0, -145, 46, 0, 0, 0, 0, -176, 39, 0, 0, 0, 0, -229, 23, 0, 0, 0, 0, -237, 9, 0, 0, 0, 0, -245, -1)
+}
+point_count = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ofkl"]
+resource_local_to_scene = true
+shader = ExtResource("6_deflt")
+shader_parameter/fov = 40.0
+shader_parameter/cull_back = false
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fn0uo"]
+resource_local_to_scene = true
+shader = ExtResource("6_deflt")
+shader_parameter/fov = 40.0
+shader_parameter/cull_back = false
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aqb4p"]
+resource_local_to_scene = true
+shader = ExtResource("6_deflt")
+shader_parameter/fov = 40.0
+shader_parameter/cull_back = false
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[node name="ThreeCardMonte" type="Panel"]
+offset_right = 800.0
+offset_bottom = 450.0
+script = ExtResource("1_otfhb")
+
+[node name="PositionHolder" type="Node2D" parent="."]
+
+[node name="Position01" type="Marker2D" parent="PositionHolder"]
+position = Vector2(175, 212)
+script = ExtResource("2_emsaf")
+start_value = "A"
+
+[node name="MarkerSprite" type="Sprite2D" parent="PositionHolder/Position01"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_btqdn")
+
+[node name="Path_Position01_Position02" type="Path2D" parent="PositionHolder/Position01"]
+curve = SubResource("Curve2D_btqdn")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PositionHolder/Position01/Path_Position01_Position02"]
+position = Vector2(3, -10)
+rotation = -0.785398
+rotates = false
+
+[node name="Path_Position01_Position03" type="Path2D" parent="PositionHolder/Position01"]
+curve = SubResource("Curve2D_22bsi")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PositionHolder/Position01/Path_Position01_Position03"]
+position = Vector2(3, -13)
+rotation = -1.24905
+rotates = false
+
+[node name="Position02" type="Marker2D" parent="PositionHolder"]
+position = Vector2(403, 219)
+script = ExtResource("2_emsaf")
+start_value = "B"
+
+[node name="Sprite2D" type="Sprite2D" parent="PositionHolder/Position02"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_btqdn")
+
+[node name="Path_Position02_Position01" type="Path2D" parent="PositionHolder/Position02"]
+curve = SubResource("Curve2D_jsuug")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PositionHolder/Position02/Path_Position02_Position01"]
+position = Vector2(-7, 8)
+rotation = 2.4417
+rotates = false
+
+[node name="Path_Position02_Position03" type="Path2D" parent="PositionHolder/Position02"]
+curve = SubResource("Curve2D_emuaf")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PositionHolder/Position02/Path_Position02_Position03"]
+position = Vector2(3, -7)
+rotation = -0.847817
+rotates = false
+
+[node name="Position03" type="Marker2D" parent="PositionHolder"]
+position = Vector2(652, 220)
+script = ExtResource("2_emsaf")
+start_value = "C"
+
+[node name="Sprite2D" type="Sprite2D" parent="PositionHolder/Position03"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_btqdn")
+
+[node name="Path_Position03_Position01" type="Path2D" parent="PositionHolder/Position03"]
+curve = SubResource("Curve2D_otfhb")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PositionHolder/Position03/Path_Position03_Position01"]
+position = Vector2(-7, 8)
+rotation = 2.27069
+rotates = false
+
+[node name="Path_Position03_Position02" type="Path2D" parent="PositionHolder/Position03"]
+curve = SubResource("Curve2D_emsaf")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PositionHolder/Position03/Path_Position03_Position02"]
+position = Vector2(-8, 6)
+rotation = 2.63875
+rotates = false
+
+[node name="CardHolder" type="Node2D" parent="."]
+
+[node name="CardA" type="Node2D" parent="CardHolder"]
+position = Vector2(198, 379)
+script = ExtResource("2_22bsi")
+
+[node name="SelectRect" type="ColorRect" parent="CardHolder/CardA"]
+offset_left = -37.8
+offset_top = -53.4
+offset_right = 37.8
+offset_bottom = 53.4
+script = ExtResource("3_emuaf")
+metadata/_custom_type_script = "uid://gwwlopwmi0pw"
+
+[node name="CardSprite" type="Sprite2D" parent="CardHolder/CardA"]
+material = SubResource("ShaderMaterial_0ofkl")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_otfhb")
+
+[node name="CardB" type="Node2D" parent="CardHolder"]
+position = Vector2(392, 379)
+script = ExtResource("2_22bsi")
+
+[node name="SelectRect" type="ColorRect" parent="CardHolder/CardB"]
+offset_left = -37.8
+offset_top = -53.4
+offset_right = 37.8
+offset_bottom = 53.4
+script = ExtResource("3_emuaf")
+metadata/_custom_type_script = "uid://gwwlopwmi0pw"
+
+[node name="CardSprite" type="Sprite2D" parent="CardHolder/CardB"]
+material = SubResource("ShaderMaterial_fn0uo")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_otfhb")
+
+[node name="CardC" type="Node2D" parent="CardHolder"]
+position = Vector2(620, 380)
+script = ExtResource("2_22bsi")
+
+[node name="SelectRect" type="ColorRect" parent="CardHolder/CardC"]
+offset_left = -37.8
+offset_top = -53.4
+offset_right = 37.8
+offset_bottom = 53.4
+script = ExtResource("3_emuaf")
+metadata/_custom_type_script = "uid://gwwlopwmi0pw"
+
+[node name="CardSprite" type="Sprite2D" parent="CardHolder/CardC"]
+material = SubResource("ShaderMaterial_aqb4p")
+position = Vector2(1, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_otfhb")
+
+[node name="ShuffleButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 706.0
+offset_top = 383.0
+offset_right = 769.0
+offset_bottom = 414.0
+text = "Shuffle"
