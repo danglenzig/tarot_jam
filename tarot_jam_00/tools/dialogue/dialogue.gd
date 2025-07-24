@@ -82,6 +82,10 @@ func _advance_dialogue():
 	)
 	current_line_index += 1
 	var dialogue_line := _get_dialogue_line(current_line_index)
+	
+	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+	sm.play_one_shot_sfx(sm.DIALOGUE_ADVANCE)
+	
 	_handle_text(dialogue_line)
 
 func _start_dialogue(convo: Conversation, start_index: int = 0):
@@ -102,6 +106,9 @@ func _start_dialogue(convo: Conversation, start_index: int = 0):
 	
 func _end_dialogue():
 	assert(current_convo, "No conversation")
+	
+	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+	sm.play_one_shot_sfx(sm.DIALOGUE_ADVANCE)
 	
 	if current_convo.end_convo_signal_data_string.length() > 0:
 		dialogue_data_signal.emit(current_convo.end_convo_signal_data_string)

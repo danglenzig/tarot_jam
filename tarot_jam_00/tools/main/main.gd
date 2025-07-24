@@ -11,6 +11,9 @@ extends Node2D
 @onready var advert_two_phase: AdvertTwoPhase = %AdvertTwoPhase
 @onready var act_three: ActThree = %ActThree
 @onready var advert_three_phase: AdvertThreePhase = %AdvertThreePhase
+@onready var outro: Outro = %Outro
+
+@onready var sound_manager: SoundManager = $SoundManager
 
 
 
@@ -22,6 +25,7 @@ signal game_two_complete
 signal advert_two_complete
 signal game_three_complete
 signal advert_three_complete
+signal outro_complete
 
 func _ready() -> void:
 	SingletonHolder.game_manager.main = self
@@ -39,18 +43,29 @@ func _ready() -> void:
 	game_three_complete.connect(_play_advert_three)
 	advert_three_complete.connect(_play_outro)
 	
+	outro_complete.connect(
+		func()->void:
+			var gm: GameManager = SingletonHolder.game_manager
+			gm.hp = gm.MAX_HP
+			
+			# fade in black
+			get_tree().reload_current_scene()
+			# fade out black
+	)
+	
 	_initialize_game_phases()
 	
 	_show_start_menu() # start game signal emitted when player hits start
 
 func _initialize_game_phases():
-	intro.main = self
-	act_one.main = self
-	advert_one_phase.main = self
-	act_two.main = self
-	advert_two_phase.main = self
-	act_three.main = self
+	intro.main 				= self
+	act_one.main 			= self
+	advert_one_phase.main 	= self
+	act_two.main 			= self
+	advert_two_phase.main 	= self
+	act_three.main 			= self
 	advert_three_phase.main = self
+	outro.main				= self
 	
 
 func _show_start_menu():
@@ -78,7 +93,13 @@ func _play_advert_three():
 	advert_three_phase.play()
 	
 func _play_outro():
-	print_debug("PLAY OUTRO")
+	outro.play()
+	
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.keycode == KEY_ESCAPE:
+			if event.is_pressed():
+				get_tree().quit()
 	
 
 	

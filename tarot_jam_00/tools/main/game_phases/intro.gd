@@ -34,6 +34,8 @@ func play():
 	
 	mc.show_layer(mc.start_menu, false)
 	
+	
+	
 	var background: BackgroundSprite = ge.background_sprite
 	background.texture = load("res://imported_assets/black_screenjp.jpg")
 	await get_tree().create_timer(1.0).timeout
@@ -54,6 +56,8 @@ func _on_tv_turned_on():
 	background.texture = load("res://imported_assets/01.jpg")
 	background.game_show_title_label.visible = true
 	
+	main.sound_manager._play_main_music(true)
+	
 	await get_tree().create_timer(1.0).timeout
 	
 	var mc: MainCanvas = main.main_canvas
@@ -69,11 +73,14 @@ func _on_this_will_do_pressed():
 	
 	await get_tree().create_timer(1.75).timeout
 	
+	main.sound_manager.tween_music_down(4.0)
+	
 	bg.game_show_title_label.visible = false
 	
 	var dialoge: Dialogue = main.main_canvas.dialogue
 	var maddie_convo: Conversation = maddie_intro_convo_scene_01.instantiate()
 	dialoge._start_dialogue(maddie_convo)
+	
 
 func _on_end_of_intro():
 	await get_tree().create_timer(1.0).timeout

@@ -1,9 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://pv3vocjvwbwd"]
 
 [ext_resource type="Script" uid="uid://d4f7t2mkuoe32" path="res://tools/main/game_phases/advert_base.gd" id="1_oiuxs"]
-
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_oiuxs"]
-file = "res://imported_assets/video/test_video.ogg"
+[ext_resource type="VideoStream" uid="uid://c0bam05vwvgj8" path="res://imported_assets/video/test_video.ogv" id="2_g5s6x"]
 
 [node name="AdvertThree" type="Panel" node_paths=PackedStringArray("dev_button", "video")]
 script = ExtResource("1_oiuxs")
@@ -24,7 +22,7 @@ offset_bottom = 495.0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.345, 0.345)
-stream = SubResource("VideoStreamTheora_oiuxs")
+stream = ExtResource("2_g5s6x")
 autoplay = true
 
 [node name="DevButton" type="Button" parent="Node2D"]

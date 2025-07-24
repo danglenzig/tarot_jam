@@ -32,11 +32,14 @@ func zoom_in():
 		zoom_pos,
 		TWEEN_DURATION
 	)
+	#var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+	#sm.tween_up_sine_tone(TWEEN_DURATION)
 	zoom_tween.finished.connect(
 		func()->void:
 			zoom_tween.kill()
 			zoom_tween = null
 			zoom_in_complete.emit()
+			#sm.play_buzz(sm.BUZZ_2)
 	)
 	
 func zoom_out():

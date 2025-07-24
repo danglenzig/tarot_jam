@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://uj14jva7sule"]
+
+[ext_resource type="Script" uid="uid://dqr60we44mcdv" path="res://tools/dialogue/conversation.gd" id="1_8hdtt"]
+[ext_resource type="Script" uid="uid://dymadn8xeg0aj" path="res://tools/dialogue/dialogue_line.gd" id="2_ddksn"]
+[ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="3_2dx4x"]
+
+[node name="MaddieOutroConvo01" type="Node" node_paths=PackedStringArray("dialogue_lines")]
+script = ExtResource("1_8hdtt")
+dialogue_lines = [NodePath("0")]
+end_convo_signal_data_string = "outro_finished"
+metadata/_custom_type_script = "uid://dqr60we44mcdv"
+
+[node name="0" type="Node" parent="."]
+script = ExtResource("2_ddksn")
+speaker_name = "Maddie"
+portrait_texture = ExtResource("3_2dx4x")
+text = "Bye!"
+is_quit = true
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"

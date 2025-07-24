@@ -14,6 +14,10 @@ func _ready() -> void:
 		button.pressed.connect(_on_start_menu_button_pressed.bind(button))
 
 func _on_start_menu_button_pressed(button: Button):
+	
+	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+	sm.play_one_shot_sfx(sm.UI_BUTTON)
+	
 	match button:
 		start_button:
 			var main = SingletonHolder.game_manager.main

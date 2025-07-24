@@ -29,15 +29,19 @@ func activate()->bool:
 	gk_label.visible = true
 	
 	_clear_tween()
+	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
 	
-	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
+	tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	sm.tween_up_sine_tone(TWEEN_DURATION)
 	tween.tween_property(
 		gk_label_holder,
 		"scale",
 		Vector2(1.0, 1.0),
 		TWEEN_DURATION
 	)
+	
 	await tween.finished
+	sm.play_one_shot_sfx(sm.BELL)
 	# TODO: play bell sound effect
 	_clear_tween()
 	return true
@@ -48,7 +52,9 @@ func show_red_X():
 	gk_label.visible = true
 	red_x.visible = true
 	tcm_label.visible = false
-	# TODO: play buzzer sound effect
+	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+	#sm.play_buzz(sm.BUZZ_1)
+	sm.play_one_shot_sfx(sm.BUZZ_1)
 
 func show_tcm()->bool:
 	gk_label.visible = false
@@ -59,16 +65,18 @@ func show_tcm()->bool:
 	tcm_label.visible = true
 	
 	_clear_tween()
-	
-	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
+	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+	tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	sm.tween_up_sine_tone(TWEEN_DURATION)
 	tween.tween_property(
 		tcm_label_holer,
 		"scale",
 		Vector2(1.0,1.0),
 		TWEEN_DURATION
 	)
+	
 	await tween.finished
-	# TODO: play bell sound effect
+	sm.play_one_shot_sfx(sm.BELL)
 	_clear_tween()
 	
 	return true

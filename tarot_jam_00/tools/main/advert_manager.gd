@@ -26,6 +26,9 @@ func start_advert(advert_id: int):
 	assert(advert_id in [0,1,2])
 	game_env.game_mode = game_env.GameMode.ADVERT
 	
+	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+	sm._play_main_music(false)
+	
 	await clear_adverts()
 	await _adjust_camera("in")
 	
@@ -94,3 +97,6 @@ func _on_advert_complete(advert_string):
 	await _adjust_camera("out")
 	game_env.game_mode = game_env.GameMode.NONE
 	advert_complete.emit()
+	
+	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+	sm._play_main_music(true)

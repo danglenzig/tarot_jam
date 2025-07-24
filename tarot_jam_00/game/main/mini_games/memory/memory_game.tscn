@@ -177,7 +177,7 @@ offset_left = 565.0
 offset_top = 306.0
 offset_right = 674.0
 offset_bottom = 337.0
-text = "DEV BUTTON"
+text = "DEV OVERRIDE"
 
 [node name="TakeHitButton" type="Button" parent="."]
 layout_mode = 0

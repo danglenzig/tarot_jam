@@ -19,7 +19,9 @@ func activate()->bool:
 	
 	_clear_tween()
 	
-	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
+	tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+	sm.tween_up_sine_tone(TWEEN_DURATION)
 	tween.tween_property(
 		memory_label_holder,
 		"scale",

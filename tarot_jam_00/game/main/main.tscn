@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b578jtugl6bw6"]
+[gd_scene load_steps=51 format=3 uid="uid://b578jtugl6bw6"]
 
 [ext_resource type="Script" uid="uid://duwgp8a3wh5ha" path="res://tools/main/main.gd" id="1_5520f"]
 [ext_resource type="Script" uid="uid://ei305fu26y4r" path="res://tools/main/game_phases/intro.gd" id="2_kmyu1"]
@@ -40,10 +40,14 @@
 [ext_resource type="FontFile" uid="uid://c2pqt31wie6sg" path="res://imported_assets/fonts/actionis.ttf" id="16_lw3xc"]
 [ext_resource type="FontFile" uid="uid://bemtfcrjhd0vw" path="res://imported_assets/fonts/IMPACT.TTF" id="17_0d1l5"]
 [ext_resource type="Script" uid="uid://cganvi5x5hfcw" path="res://tools/ui/general_knowledge.gd" id="17_8nvb1"]
+[ext_resource type="Script" uid="uid://vn1njtnwui22" path="res://tools/main/game_phases/outro.gd" id="18_11etk"]
 [ext_resource type="Script" uid="uid://bu0kyn26ihist" path="res://tools/main/mini_game_holder.gd" id="18_kmyu1"]
+[ext_resource type="PackedScene" uid="uid://uj14jva7sule" path="res://game/dialogue/maddie_outro_convo_01.tscn" id="19_tm1wi"]
 [ext_resource type="Script" uid="uid://qvjaiwl36kd7" path="res://game/main/master_mind_label.gd" id="25_p63cf"]
 [ext_resource type="Script" uid="uid://cu6ijknjcdrl4" path="res://game/main/memory_label.gd" id="28_25ivp"]
 [ext_resource type="Script" uid="uid://bsqdd5qsaabm0" path="res://tools/main/advert_manager.gd" id="33_qfxf6"]
+[ext_resource type="Script" uid="uid://b37nqqaqg3pv" path="res://tools/main/sound_manager.gd" id="47_ip5y8"]
+[ext_resource type="AudioStream" uid="uid://vj7uq1421tk3" path="res://imported_assets/Sound/sine_440hz.ogg" id="48_fjw5i"]
 
 [sub_resource type="Theme" id="Theme_8uf10"]
 
@@ -109,6 +113,11 @@ maddie_convo_02_scene = ExtResource("16_873xb")
 [node name="AdvertThreePhase" type="Node" parent="GamePhases"]
 unique_name_in_owner = true
 script = ExtResource("13_jvcmg")
+
+[node name="Outro" type="Node" parent="GamePhases"]
+unique_name_in_owner = true
+script = ExtResource("18_11etk")
+maddie_convo_01_scene = ExtResource("19_tm1wi")
 
 [node name="MainCanvas" type="CanvasLayer" parent="."]
 script = ExtResource("2_psm6y")
@@ -629,3 +638,16 @@ script = ExtResource("18_kmyu1")
 unique_name_in_owner = true
 position = Vector2(-525, -227)
 script = ExtResource("33_qfxf6")
+
+[node name="SoundManager" type="Node" parent="."]
+script = ExtResource("47_ip5y8")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="SoundManager"]
+bus = &"Music"
+
+[node name="OneShotSFX" type="AudioStreamPlayer" parent="SoundManager"]
+
+[node name="SinePlayer" type="AudioStreamPlayer" parent="SoundManager"]
+stream = ExtResource("48_fjw5i")
+volume_db = -20.0
+bus = &"SFX"
