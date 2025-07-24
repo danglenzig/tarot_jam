@@ -73,7 +73,7 @@ func _on_this_will_do_pressed():
 	
 	await get_tree().create_timer(1.75).timeout
 	
-	main.sound_manager.tween_music_down(4.0)
+	#main.sound_manager.tween_music_down(4.0)
 	
 	bg.game_show_title_label.visible = false
 	

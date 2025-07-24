@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b578jtugl6bw6"]
+[gd_scene load_steps=52 format=3 uid="uid://b578jtugl6bw6"]
 
 [ext_resource type="Script" uid="uid://duwgp8a3wh5ha" path="res://tools/main/main.gd" id="1_5520f"]
 [ext_resource type="Script" uid="uid://ei305fu26y4r" path="res://tools/main/game_phases/intro.gd" id="2_kmyu1"]
@@ -48,6 +48,7 @@
 [ext_resource type="Script" uid="uid://bsqdd5qsaabm0" path="res://tools/main/advert_manager.gd" id="33_qfxf6"]
 [ext_resource type="Script" uid="uid://b37nqqaqg3pv" path="res://tools/main/sound_manager.gd" id="47_ip5y8"]
 [ext_resource type="AudioStream" uid="uid://vj7uq1421tk3" path="res://imported_assets/Sound/sine_440hz.ogg" id="48_fjw5i"]
+[ext_resource type="AudioStream" uid="uid://b01mets2qvi2e" path="res://imported_assets/Sound/sine_220hz.ogg" id="49_mfvav"]
 
 [sub_resource type="Theme" id="Theme_8uf10"]
 
@@ -651,3 +652,6 @@ bus = &"Music"
 stream = ExtResource("48_fjw5i")
 volume_db = -20.0
 bus = &"SFX"
+
+[node name="LowSinePlayer" type="AudioStreamPlayer" parent="SoundManager"]
+stream = ExtResource("49_mfvav")

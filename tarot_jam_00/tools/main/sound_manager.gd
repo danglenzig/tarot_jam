@@ -9,6 +9,8 @@ extends Node
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 @onready var one_shot_sfx: AudioStreamPlayer = $OneShotSFX
 @onready var sine_player: AudioStreamPlayer = $SinePlayer
+@onready var low_sine_player: AudioStreamPlayer = $LowSinePlayer
+
 
 
 var music_volume_tween: Tween
@@ -55,7 +57,7 @@ const SINE_MIN_PITCH := 0.25
 
 
 func _ready() -> void:	
-	music_volume = MUSIC_MAX_VOLUME
+	music_volume = MUSIC_MIN_VOLUME
 	
 func _play_main_music(play_music := true):
 	if play_music:
@@ -129,22 +131,32 @@ func play_one_shot_sfx(sfx: Resource):
 func tween_up_sine_tone(duration: float):
 	duration = clamp(duration, 0.1, 5.0)
 	sine_player.pitch_scale = SINE_MIN_PITCH
+	low_sine_player.pitch_scale = SINE_MIN_PITCH
 	if sine_pitch_tween:
 		sine_pitch_tween.kill()
 		sine_pitch_tween = null
-	sine_pitch_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	sine_pitch_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD).set_parallel()
 	sine_player.play()
+	low_sine_player.play()
 	sine_pitch_tween.tween_property(
 		sine_player,
 		"pitch_scale",
 		SINE_MAX_PITCH,
 		duration
 	)
+	sine_pitch_tween.tween_property(
+		low_sine_player,
+		"pitch_scale",
+		SINE_MAX_PITCH,
+		duration
+	)
+	
 	sine_pitch_tween.finished.connect(
 		func()->void:
 			sine_pitch_tween.kill()
 			sine_pitch_tween = null
 			sine_player.stop()
+			low_sine_player.stop()
 	)
 	
 	
