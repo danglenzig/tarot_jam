@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b578jtugl6bw6"]
+[gd_scene load_steps=47 format=3 uid="uid://b578jtugl6bw6"]
 
 [ext_resource type="Script" uid="uid://duwgp8a3wh5ha" path="res://tools/main/main.gd" id="1_5520f"]
 [ext_resource type="Script" uid="uid://ei305fu26y4r" path="res://tools/main/game_phases/intro.gd" id="2_kmyu1"]
@@ -11,22 +11,41 @@
 [ext_resource type="PackedScene" uid="uid://b1shnmu06acyh" path="res://game/dialogue/maddie_intro_convo_01.tscn" id="5_pwodh"]
 [ext_resource type="Script" uid="uid://x3t6g5vutel5" path="res://tools/ui/transition_screen.gd" id="5_tkdpa"]
 [ext_resource type="Script" uid="uid://dc1n7cnk1rjg3" path="res://tools/main/game_phases/act_one.gd" id="6_teqhh"]
+[ext_resource type="PackedScene" uid="uid://cb1lvra7kpfw8" path="res://game/dialogue/maddie_act_one_convo_01.tscn" id="7_8uf10"]
 [ext_resource type="Script" uid="uid://yqfcbvak5m45" path="res://tools/ui/logo_splash.gd" id="7_sifka"]
 [ext_resource type="Script" uid="uid://r2cxlf7ivdqd" path="res://tools/shaders/post_process.gd" id="8_2st6t"]
+[ext_resource type="PackedScene" uid="uid://crtal61tsqeyv" path="res://game/dialogue/maddie_act_one_convo_02.tscn" id="8_w52mn"]
 [ext_resource type="Script" uid="uid://cy2gfw1vdpsjn" path="res://tools/dialogue/dialogue.gd" id="8_xvake"]
 [ext_resource type="Shader" uid="uid://q47lbd4knjrd" path="res://tools/shaders/post_process.gdshader" id="9_kk62w"]
+[ext_resource type="Script" uid="uid://dwvjruvlotpcl" path="res://tools/main/game_phases/advert_one_phase.gd" id="9_uyy1o"]
+[ext_resource type="Theme" uid="uid://ds14fr3sip8dp" path="res://tools/ui/progress_bar_theme.tres" id="10_3uspg"]
+[ext_resource type="Script" uid="uid://bmxldouq5igfw" path="res://tools/main/game_phases/act_two.gd" id="10_e46pp"]
+[ext_resource type="Script" uid="uid://elstbjqnj6n3" path="res://tools/main/game_phases/advert_two_phase.gd" id="11_0sbp2"]
 [ext_resource type="Script" uid="uid://cvl7yb2354368" path="res://tools/main/game_environment.gd" id="11_2v5lu"]
 [ext_resource type="Texture2D" uid="uid://b73ahykjharrn" path="res://imported_assets/01.jpg" id="11_6idrh"]
 [ext_resource type="Texture2D" uid="uid://c5x788uhdvdoo" path="res://imported_assets/1.png" id="11_7q7ho"]
+[ext_resource type="PackedScene" uid="uid://jfbb5g450eni" path="res://game/dialogue/maddie_act_two_convo_01.tscn" id="11_e8msk"]
 [ext_resource type="FontFile" uid="uid://b0k8jkn78gdgh" path="res://imported_assets/fonts/Dynamo.ttf" id="12_1bifg"]
+[ext_resource type="PackedScene" uid="uid://vamosmrbs67y" path="res://game/dialogue/maddie_act_two_convo_02.tscn" id="12_25ivp"]
 [ext_resource type="Theme" uid="uid://coxmhd3kyotxv" path="res://tools/ui/dialogue_ui_theme.tres" id="12_bfeae"]
-[ext_resource type="Script" uid="uid://c4qicaqa3486" path="res://game/main/theme_alert.gd" id="12_vbnl1"]
+[ext_resource type="Script" uid="uid://j4xw5m1qpxo7" path="res://tools/main/game_phases/act_three.gd" id="12_p63cf"]
+[ext_resource type="Script" uid="uid://c4qicaqa3486" path="res://tools/ui/theme_alert.gd" id="12_vbnl1"]
 [ext_resource type="Script" uid="uid://wr6rc314hrua" path="res://tools/dialogue/speaker_sprite.gd" id="13_0j5er"]
 [ext_resource type="Script" uid="uid://cfpnhdnp1bwse" path="res://tools/main/background_sprite.gd" id="13_g7cwu"]
+[ext_resource type="Script" uid="uid://bydiatghgru4g" path="res://tools/main/game_phases/advert_three_phase.gd" id="13_jvcmg"]
 [ext_resource type="Script" uid="uid://baegaj6bejomk" path="res://tools/main/game_camera.gd" id="13_yj2gc"]
+[ext_resource type="PackedScene" uid="uid://dfomeqbnk04d4" path="res://game/dialogue/maddie_act_three_convo_01.tscn" id="15_kxcex"]
+[ext_resource type="Texture2D" uid="uid://bpivy57lrq53x" path="res://imported_assets/red_x.png" id="16_6q5ef"]
+[ext_resource type="PackedScene" uid="uid://duamv8iv67e1g" path="res://game/dialogue/maddie_act_three_convo_02.tscn" id="16_873xb"]
 [ext_resource type="FontFile" uid="uid://c2pqt31wie6sg" path="res://imported_assets/fonts/actionis.ttf" id="16_lw3xc"]
 [ext_resource type="FontFile" uid="uid://bemtfcrjhd0vw" path="res://imported_assets/fonts/IMPACT.TTF" id="17_0d1l5"]
+[ext_resource type="Script" uid="uid://cganvi5x5hfcw" path="res://tools/ui/general_knowledge.gd" id="17_8nvb1"]
 [ext_resource type="Script" uid="uid://bu0kyn26ihist" path="res://tools/main/mini_game_holder.gd" id="18_kmyu1"]
+[ext_resource type="Script" uid="uid://qvjaiwl36kd7" path="res://game/main/master_mind_label.gd" id="25_p63cf"]
+[ext_resource type="Script" uid="uid://cu6ijknjcdrl4" path="res://game/main/memory_label.gd" id="28_25ivp"]
+[ext_resource type="Script" uid="uid://bsqdd5qsaabm0" path="res://tools/main/advert_manager.gd" id="33_qfxf6"]
+
+[sub_resource type="Theme" id="Theme_8uf10"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xvake"]
 resource_local_to_scene = true
@@ -64,13 +83,38 @@ maddie_intro_convo_scene_01 = ExtResource("5_pwodh")
 [node name="ActOne" type="Node" parent="GamePhases"]
 unique_name_in_owner = true
 script = ExtResource("6_teqhh")
+maddie_convo_01_scene = ExtResource("7_8uf10")
+maddie_convo_02_scene = ExtResource("8_w52mn")
+
+[node name="AdvertOnePhase" type="Node" parent="GamePhases"]
+unique_name_in_owner = true
+script = ExtResource("9_uyy1o")
+
+[node name="ActTwo" type="Node" parent="GamePhases"]
+unique_name_in_owner = true
+script = ExtResource("10_e46pp")
+maddie_convo_01_scene = ExtResource("11_e8msk")
+maddie_convo_02_scene = ExtResource("12_25ivp")
+
+[node name="AdvertTwoPhase" type="Node" parent="GamePhases"]
+unique_name_in_owner = true
+script = ExtResource("11_0sbp2")
+
+[node name="ActThree" type="Node" parent="GamePhases"]
+unique_name_in_owner = true
+script = ExtResource("12_p63cf")
+maddie_convo_01_scene = ExtResource("15_kxcex")
+maddie_convo_02_scene = ExtResource("16_873xb")
+
+[node name="AdvertThreePhase" type="Node" parent="GamePhases"]
+unique_name_in_owner = true
+script = ExtResource("13_jvcmg")
 
 [node name="MainCanvas" type="CanvasLayer" parent="."]
 script = ExtResource("2_psm6y")
 
 [node name="Hud" type="Control" parent="MainCanvas"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
@@ -87,8 +131,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = SubResource("Theme_8uf10")
 
 [node name="TempLabel" type="Label" parent="MainCanvas/Hud/HudPanel"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -104,6 +150,16 @@ grow_vertical = 2
 text = "I am the HUD"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="MainCanvas/Hud/HudPanel"]
+layout_mode = 0
+offset_left = 955.0
+offset_top = 17.0
+offset_right = 1240.0
+offset_bottom = 44.0
+theme = ExtResource("10_3uspg")
+max_value = 1000.0
+value = 666.0
 
 [node name="StartMenu" type="Control" parent="MainCanvas"]
 unique_name_in_owner = true
@@ -199,6 +255,185 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_sifka")
 
+[node name="ThemeAlert" type="Control" parent="MainCanvas"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("12_vbnl1")
+
+[node name="Panel" type="Panel" parent="MainCanvas/ThemeAlert"]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 137.45
+offset_right = 938.0
+offset_bottom = 434.45
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="MainCanvas/ThemeAlert/Panel"]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 822.0
+offset_bottom = 293.0
+theme_override_colors/font_color = Color(100, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("12_1bifg")
+theme_override_font_sizes/font_size = 130
+text = "THEME
+ALERT!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GeneralKnowledge" type="Control" parent="MainCanvas"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("17_8nvb1")
+
+[node name="Panel" type="Panel" parent="MainCanvas/GeneralKnowledge"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 215.0
+offset_right = 943.0
+offset_bottom = 423.0
+mouse_filter = 2
+
+[node name="GKLabelHolder" type="Node2D" parent="MainCanvas/GeneralKnowledge/Panel"]
+unique_name_in_owner = true
+position = Vector2(416, 102)
+
+[node name="GKLabel" type="Label" parent="MainCanvas/GeneralKnowledge/Panel/GKLabelHolder"]
+unique_name_in_owner = true
+offset_left = -529.0
+offset_top = -106.0
+offset_right = 534.0
+offset_bottom = 206.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("12_1bifg")
+theme_override_font_sizes/font_size = 74
+text = "GENERAL
+KNOWLEDGE!
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TCMLabelHoler" type="Node2D" parent="MainCanvas/GeneralKnowledge/Panel"]
+unique_name_in_owner = true
+position = Vector2(415, 108)
+
+[node name="TCMLabel" type="Label" parent="MainCanvas/GeneralKnowledge/Panel/TCMLabelHoler"]
+unique_name_in_owner = true
+offset_left = -508.0
+offset_top = -112.0
+offset_right = 555.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("12_1bifg")
+theme_override_font_sizes/font_size = 74
+text = "THREE-CARD
+MONTE!
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="MainCanvas/GeneralKnowledge/Panel"]
+position = Vector2(405, 131)
+texture = ExtResource("16_6q5ef")
+
+[node name="MasterMind" type="Control" parent="MainCanvas"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("25_p63cf")
+
+[node name="Panel" type="Panel" parent="MainCanvas/MasterMind"]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 215.0
+offset_right = 943.0
+offset_bottom = 423.0
+
+[node name="MastermindLabelHolder" type="Node2D" parent="MainCanvas/MasterMind/Panel"]
+unique_name_in_owner = true
+position = Vector2(386, 120)
+
+[node name="MastermindLabel" type="Label" parent="MainCanvas/MasterMind/Panel/MastermindLabelHolder"]
+unique_name_in_owner = true
+offset_left = -502.0
+offset_top = -152.0
+offset_right = 561.0
+offset_bottom = 160.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("12_1bifg")
+theme_override_font_sizes/font_size = 70
+text = "MASTERMIND!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Memory" type="Control" parent="MainCanvas"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("28_25ivp")
+
+[node name="Panel" type="Panel" parent="MainCanvas/Memory"]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 215.0
+offset_right = 943.0
+offset_bottom = 423.0
+
+[node name="MemoryLabelHolder" type="Node2D" parent="MainCanvas/Memory/Panel"]
+unique_name_in_owner = true
+position = Vector2(390, 95)
+
+[node name="MemoryLabel" type="Label" parent="MainCanvas/Memory/Panel/MemoryLabelHolder"]
+unique_name_in_owner = true
+offset_left = -510.0
+offset_top = -139.0
+offset_right = 553.0
+offset_bottom = 173.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("12_1bifg")
+theme_override_font_sizes/font_size = 100
+text = "MEMORY!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="Dialogue" type="Control" parent="MainCanvas"]
 unique_name_in_owner = true
 layout_mode = 3
@@ -281,40 +516,6 @@ offset_top = -24.0
 offset_right = 81.0
 offset_bottom = -1.0
 text = "Maddie"
-
-[node name="ThemeAlert" type="Control" parent="MainCanvas"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-script = ExtResource("12_vbnl1")
-
-[node name="Panel" type="Panel" parent="MainCanvas/ThemeAlert"]
-layout_mode = 0
-offset_left = 107.0
-offset_top = 137.45
-offset_right = 938.0
-offset_bottom = 434.45
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="MainCanvas/ThemeAlert/Panel"]
-layout_mode = 0
-offset_top = 10.0
-offset_right = 822.0
-offset_bottom = 293.0
-theme_override_colors/font_color = Color(100, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 4
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_1bifg")
-theme_override_font_sizes/font_size = 130
-text = "THEME
-ALERT!"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="PostProcessCanvas" type="CanvasLayer" parent="."]
 
@@ -423,3 +624,8 @@ zoom_value = 1.545
 unique_name_in_owner = true
 position = Vector2(-525, -227)
 script = ExtResource("18_kmyu1")
+
+[node name="AdvertManager" type="Node2D" parent="GameEnvironment"]
+unique_name_in_owner = true
+position = Vector2(-525, -227)
+script = ExtResource("33_qfxf6")

@@ -6,6 +6,11 @@ extends Node2D
 @onready var game_environment: GameEnvironment = %GameEnvironment
 @onready var intro: Intro = %Intro
 @onready var act_one: ActOne = %ActOne
+@onready var advert_one_phase: AdvertOnePhase = %AdvertOnePhase
+@onready var act_two: ActTwo = %ActTwo
+@onready var advert_two_phase: AdvertTwoPhase = %AdvertTwoPhase
+@onready var act_three: ActThree = %ActThree
+@onready var advert_three_phase: AdvertThreePhase = %AdvertThreePhase
 
 
 
@@ -40,34 +45,40 @@ func _ready() -> void:
 
 func _initialize_game_phases():
 	intro.main = self
+	act_one.main = self
+	advert_one_phase.main = self
+	act_two.main = self
+	advert_two_phase.main = self
+	act_three.main = self
+	advert_three_phase.main = self
+	
 
 func _show_start_menu():
 	main_canvas.show_layer(main_canvas.start_menu, true, true)
 
 func _play_intro():
 	intro.play()
-	
 
 func _play_game_one():
 	act_one.play()
 	
 func _play_advert_one():
-	pass
+	advert_one_phase.play()
 	
 func _play_game_two():
-	pass
+	act_two.play()
 	
 func _play_advert_two():
-	pass
+	advert_two_phase.play()
 	
 func _play_game_three():
-	pass
+	act_three.play()
 	
 func _play_advert_three():
-	pass
+	advert_three_phase.play()
 	
 func _play_outro():
-	pass
+	print_debug("PLAY OUTRO")
 	
 
 	

@@ -21,9 +21,9 @@ var damage_per_hit := {
 	# these values will need tuning & balancing
 	"mastermind": 		10.0,
 	"memory": 			5.0,
-	"three_card_monte": 15.0
+	"three_card_monte": 20.0
 }
-
+const MAX_HP := 1000.0
 
 func _ready() -> void:
 	start_new_game()
@@ -35,13 +35,12 @@ func _on_fully_mannequin():
 	pass # TODO
 
 func take_hit(mini_game_name: String):
-	if not game_data: return
+	#if not game_data: return
 	assert(mini_game_name in damage_per_hit.keys())
-	var current_hp = game_data.hp
 	var damage: float = damage_per_hit[mini_game_name]
-	if current_hp - damage > 0:
-		game_data.hp -= damage
-		_recalculate_mannequinity(game_data.hp)
+	if hp - damage > 0:
+		hp -= damage
+		_recalculate_mannequinity(hp)
 	else:
 		_on_fully_mannequin() # master lose condition
 		

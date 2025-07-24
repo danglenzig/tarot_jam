@@ -7,7 +7,7 @@
 
 [node name="MaddieIntroConvo01" type="Node" node_paths=PackedStringArray("dialogue_lines")]
 script = ExtResource("1_cnvi1")
-dialogue_lines = [NodePath("0"), NodePath("1"), NodePath("2"), NodePath("3"), NodePath("3_1"), NodePath("4"), NodePath("5"), NodePath("6"), NodePath("7"), NodePath("8")]
+dialogue_lines = [NodePath("0"), NodePath("1"), NodePath("2"), NodePath("3"), NodePath("4"), NodePath("5"), NodePath("6"), NodePath("7"), NodePath("8"), NodePath("9")]
 metadata/_custom_type_script = "uid://dqr60we44mcdv"
 
 [node name="0" type="Node" parent="."]
@@ -43,14 +43,14 @@ portrait_side = 1
 text = "This is normally where I'd introduce our contestants. But frankly I'm sick of them and their stupid faces."
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="3_1" type="Node" parent="."]
+[node name="4" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = "Maddie"
 text = "Seriously -- just look at their stupid faces."
 begin_signal_data_string = "show_contestants"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="4" type="Node" parent="."]
+[node name="5" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = "Maddie"
 portrait_texture = ExtResource("3_36l7d")
@@ -59,7 +59,7 @@ text = "So instead of that...Are YOU ready to play?"
 begin_signal_data_string = "studio_cam_1"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="5" type="Node" parent="."]
+[node name="6" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = ""
 portrait_texture = ExtResource("3_36l7d")
@@ -67,7 +67,7 @@ portrait_side = 1
 text = "..."
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="6" type="Node" parent="." node_paths=PackedStringArray("choices")]
+[node name="7" type="Node" parent="." node_paths=PackedStringArray("choices")]
 script = ExtResource("2_gvues")
 speaker_name = ""
 portrait_texture = ExtResource("3_36l7d")
@@ -76,27 +76,28 @@ text = "..."
 choices = [NodePath("WhoMeChoice")]
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="WhoMeChoice" type="Node" parent="6"]
+[node name="WhoMeChoice" type="Node" parent="7"]
 script = ExtResource("4_2krig")
 text = "...who, me?"
 target_line_index = 8
 metadata/_custom_type_script = "uid://kwf8edpxnkk1"
 
-[node name="7" type="Node" parent="." node_paths=PackedStringArray("choices")]
+[node name="8" type="Node" parent="." node_paths=PackedStringArray("choices")]
 script = ExtResource("2_gvues")
+speaker_name = "Maddie"
 portrait_texture = ExtResource("3_36l7d")
 portrait_side = 1
 text = "Yes! You, the sad, bored and lonely person at home on your cheap Ikea futon!"
 choices = [NodePath("UhOkChoice")]
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="UhOkChoice" type="Node" parent="7"]
+[node name="UhOkChoice" type="Node" parent="8"]
 script = ExtResource("4_2krig")
 text = "Uh...okay, I guess."
 target_line_index = 9
 metadata/_custom_type_script = "uid://kwf8edpxnkk1"
 
-[node name="8" type="Node" parent="."]
+[node name="9" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = "Maddie"
 portrait_texture = ExtResource("3_36l7d")

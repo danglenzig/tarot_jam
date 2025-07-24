@@ -8,6 +8,8 @@ extends Node
 
 signal main_ready
 
+var active := false
+
 var main: Main = null:
 	set(new_value):
 		main = new_value
@@ -16,14 +18,12 @@ var main: Main = null:
 
 func _ready() -> void:
 	await main_ready
-	#tv_turned_on.connect(_on_tv_turned_on)
-	#this_will_do_pressed.connect(_on_this_will_do_pressed)
-	
-	#main.main_canvas.dialogue.dialogue_choice_taken.connect(_on_dialogue_choice_taken)
-	#main.main_canvas.dialogue.line_finished_signal.connect(_on_dialogue_line_finished_signal)
 	main.main_canvas.dialogue.dialogue_data_signal.connect(_on_dialogue_data_signal_rxd)
 
 func play():
+	
+	active = true
+	
 	var mc: MainCanvas = main.main_canvas
 	var ge: GameEnvironment = main.game_environment
 	
@@ -74,59 +74,11 @@ func _on_this_will_do_pressed():
 	var dialoge: Dialogue = main.main_canvas.dialogue
 	var maddie_convo: Conversation = maddie_intro_convo_scene_01.instantiate()
 	dialoge._start_dialogue(maddie_convo)
-	
-	
-func _on_dialogue_data_signal_rxd(data: String):
-	var bg: BackgroundSprite = main.game_environment.background_sprite
-	match data:
-		"tv_turned_on":
-			_on_tv_turned_on()
-		"this_will_do":
-			_on_this_will_do_pressed()
-			
-		"theme_alert":
-			await _on_theme_alert()
-		"end_of_intro":
-			_on_end_of_intro()
-			
-		"show_contestants":
-			
-			bg.texture = load("res://imported_assets/contestants.png")
-			
-		"studio_cam_1":
-			bg.texture = load("res://imported_assets/01.jpg")
-func _on_dialogue_choice_taken(data: String):
-	match data:
-		"tv_turned_on":
-			_on_tv_turned_on()
-		"this_will_do":
-			_on_this_will_do_pressed()
-		_:
-			return
-			
-func _on_dialogue_line_finished_signal(data: String):
-	var bg: BackgroundSprite = main.game_environment.background_sprite
-	match data:
-		"theme_alert":
-			await _on_theme_alert()
-		"end_of_intro":
-			_on_end_of_intro()
-			
-		"show_contestants":
-			
-			bg.texture = load("res://imported_assets/contestants.png")
-			
-		"studio_cam_1":
-			bg.texture = load("res://imported_assets/01.jpg")
-			
-		_:
-			return
 
 func _on_end_of_intro():
+	await get_tree().create_timer(1.0).timeout
 	
-	await get_tree().create_timer(1.5).timeout
-	
-	print_debug("FOOOOOOOOO BAAAAAAAAR")
+	active = false
 	
 	main.intro_complete.emit()
 
@@ -136,3 +88,24 @@ func _on_theme_alert()->bool:
 	mc.show_layer(mc.theme_alert, true)
 	await ta.theme_alret_complete
 	return true
+
+func _on_dialogue_data_signal_rxd(data: String):
+	if not active: return
+	var bg: BackgroundSprite = main.game_environment.background_sprite
+	match data:
+		"tv_turned_on":
+			_on_tv_turned_on()
+		"this_will_do":
+			_on_this_will_do_pressed()
+			
+		"theme_alert":
+			await _on_theme_alert()
+		"end_of_intro":
+			_on_end_of_intro()
+			
+		"show_contestants":
+			
+			bg.texture = load("res://imported_assets/contestants.png")
+			
+		"studio_cam_1":
+			bg.texture = load("res://imported_assets/01.jpg")

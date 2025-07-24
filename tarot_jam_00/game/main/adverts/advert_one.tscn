@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://hwwtwqf8xl2v"]
+
+[ext_resource type="Script" uid="uid://d4f7t2mkuoe32" path="res://tools/main/game_phases/advert_base.gd" id="1_kfxsa"]
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_kfxsa"]
+file = "res://imported_assets/video/test_video.ogg"
+
+[node name="AdvertOne" type="Panel" node_paths=PackedStringArray("dev_button", "video")]
+offset_right = 880.0
+offset_bottom = 495.0
+script = ExtResource("1_kfxsa")
+advert_name = "advert_one"
+dev_button = NodePath("Holder/DevButton")
+dev_mode = true
+video = NodePath("Holder/VideoStreamPlayer")
+metadata/_custom_type_script = "uid://d4f7t2mkuoe32"
+
+[node name="Holder" type="Node2D" parent="."]
+position = Vector2(-34.59, -18)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Holder"]
+offset_right = 2560.0
+offset_bottom = 1440.0
+scale = Vector2(0.345, 0.345)
+stream = SubResource("VideoStreamTheora_kfxsa")
+autoplay = true
+
+[node name="Panel" type="Panel" parent="Holder"]
+offset_left = 90.0
+offset_top = 74.0
+offset_right = 291.0
+offset_bottom = 114.0
+
+[node name="TempLabel" type="Label" parent="Holder"]
+offset_left = 95.0
+offset_top = 83.0
+offset_right = 287.0
+offset_bottom = 106.0
+text = "PLACEHOLDER CONTENT"
+
+[node name="DevButton" type="Button" parent="Holder"]
+offset_left = 401.0
+offset_top = 391.0
+offset_right = 467.0
+offset_bottom = 411.0
+theme_override_font_sizes/font_size = 8
+text = "SKIP ADVERT"

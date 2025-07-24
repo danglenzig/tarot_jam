@@ -39,9 +39,12 @@ var current_line_index := -1
 var dialogue_text_tween: Tween = null
 var listen_for_click := false
 
-const SHOW_TEXT_INTERVAL := 0.025
+#const SHOW_TEXT_INTERVAL := 0.025
+const SHOW_TEXT_INTERVAL := 0.01
 
 signal dialogue_ended(uuid: String)
+
+@warning_ignore("unused_signal")
 signal end_dialogue
 
 
@@ -89,12 +92,19 @@ func _start_dialogue(convo: Conversation, start_index: int = 0):
 	current_convo = convo
 	current_line_index = start_index
 	var dialogue_line := _get_dialogue_line(start_index)
+	
+	if convo.begin_convo_signal_data_string.length() > 0:
+		dialogue_data_signal.emit(convo.begin_convo_signal_data_string)
+	
 	_handle_text(dialogue_line)
 	
 
 	
 func _end_dialogue():
 	assert(current_convo, "No conversation")
+	
+	if current_convo.end_convo_signal_data_string.length() > 0:
+		dialogue_data_signal.emit(current_convo.end_convo_signal_data_string)
 	
 	dialogue_ended.emit(current_convo.convo_uuid)
 	current_convo.call_deferred("queue_free")

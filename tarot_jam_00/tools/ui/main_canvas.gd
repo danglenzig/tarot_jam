@@ -7,6 +7,9 @@ extends CanvasLayer
 @onready var logo_splash: LogoSplash = %LogoSplash
 @onready var dialogue: Dialogue = %Dialogue
 @onready var theme_alert: ThemeAlert = $ThemeAlert
+@onready var general_knowledge: GeneralKnowledge = $GeneralKnowledge
+@onready var master_mind: MastermindLabel = $MasterMind
+@onready var memory: MemoryLabel = %Memory
 
 
 @onready var event_bus: EventBus = SingletonHolder.event_bus

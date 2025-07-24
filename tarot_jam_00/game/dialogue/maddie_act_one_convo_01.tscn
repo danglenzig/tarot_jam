@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb1lvra7kpfw8"]
+
+[ext_resource type="Script" uid="uid://dqr60we44mcdv" path="res://tools/dialogue/conversation.gd" id="1_se23n"]
+[ext_resource type="Script" uid="uid://dymadn8xeg0aj" path="res://tools/dialogue/dialogue_line.gd" id="2_drmwi"]
+
+[node name="MaddieActOneConvo01" type="Node" node_paths=PackedStringArray("dialogue_lines")]
+script = ExtResource("1_se23n")
+dialogue_lines = [NodePath("1"), NodePath("2")]
+end_convo_signal_data_string = "start_three_card_monte"
+metadata/_custom_type_script = "uid://dqr60we44mcdv"
+
+[node name="1" type="Node" parent="."]
+script = ExtResource("2_drmwi")
+speaker_name = "Maddie"
+portrait_side = 1
+text = "No, that sounds boring."
+begin_signal_data_string = "show_red_x"
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="2" type="Node" parent="."]
+script = ExtResource("2_drmwi")
+speaker_name = "Maddie"
+text = "Much better."
+is_quit = true
+begin_signal_data_string = "show_tcm"
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"

@@ -11,6 +11,7 @@
 offset_right = 800.0
 offset_bottom = 450.0
 script = ExtResource("1_qn7ub")
+dev_mode = true
 
 [node name="CardHolder" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(83, 120)
@@ -169,3 +170,19 @@ offset_top = 399.0
 offset_right = 776.0
 offset_bottom = 430.0
 text = "Continue"
+
+[node name="DevButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 565.0
+offset_top = 306.0
+offset_right = 674.0
+offset_bottom = 337.0
+text = "DEV BUTTON"
+
+[node name="TakeHitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 583.0
+offset_top = 354.0
+offset_right = 660.0
+offset_bottom = 385.0
+text = "TAKE HIT"

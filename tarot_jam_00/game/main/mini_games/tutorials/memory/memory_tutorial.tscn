@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://5mk6nofgft71"]
+
+[ext_resource type="Script" uid="uid://cedkj87jpwo7w" path="res://tools/main/mini_games/tutorials/memory/memory_tutorial.gd" id="1_6t3xi"]
+[ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="2_fyet2"]
+
+[node name="MemoryTutorial" type="Panel"]
+script = ExtResource("1_6t3xi")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 450.0
+
+[node name="MaddieSprite" type="Sprite2D" parent="."]
+position = Vector2(597, 362)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_fyet2")
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 297.0
+offset_right = 403.0
+offset_bottom = 328.0
+text = "Continue"
+
+[node name="TempLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 293.0
+offset_top = 180.0
+offset_right = 454.0
+offset_bottom = 229.0
+text = "Memory
+tutorial coming soon"
+horizontal_alignment = 1
+vertical_alignment = 1

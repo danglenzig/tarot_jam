@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cek4jhpl7ku3i"]
+
+[ext_resource type="Script" uid="uid://cqa70ryykyngc" path="res://tools/main/mini_games/tutorials/three_card_monte/three_card_monte_tutorial.gd" id="1_8icmq"]
+[ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="2_uh181"]
+
+[node name="ThreeCardMonteTutorial" type="Panel"]
+offset_right = 800.0
+offset_bottom = 450.0
+script = ExtResource("1_8icmq")
+
+[node name="MaddieSprite" type="Sprite2D" parent="."]
+position = Vector2(573, 352)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_uh181")
+
+[node name="TempLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 144.0
+offset_right = 341.0
+offset_bottom = 193.0
+text = "Three-Card Monte
+tutorial coming soon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 211.0
+offset_right = 302.0
+offset_bottom = 242.0
+text = "Continue"

@@ -6,11 +6,19 @@ var ba_tween: Tween = null
 
 const SHUFFLE_TWEEN_DURATION := 0.1
 
+@export var dev_mode := false
+
 @onready var card_holder: Node2D = $CardHolder
 @onready var position_holder: Node2D = $PositionHolder
 @onready var shuffle_button: Button = $ShuffleButton
+@onready var dev_button: Button = $DevButton
+@onready var take_hit_button: Button = $TakeHitButton
+
+
 
 var round_number := -1
+
+signal game_complete
 
 var curently_active_card_uuid := "":
 	set(new_value):
@@ -20,10 +28,14 @@ var curently_active_card_uuid := "":
 var card_list: Array[MonteCard] = []
 var position_list: Array[MontePosition] = []
 
+@warning_ignore("unused_signal")
 signal continue_signal
 signal shuffle_complete
 
 func _ready() -> void:
+	dev_button.visible = false
+	take_hit_button.visible = false
+	
 	for child: Node in position_holder.get_children():
 		position_list.append(child as MontePosition)
 	
@@ -44,6 +56,13 @@ func _ready() -> void:
 	)
 	_assign_face_texture_paths()
 	_setup_cards()
+	
+	dev_button.visible = dev_mode
+	take_hit_button.visible = dev_mode
+	dev_button.pressed.connect(_on_dev_button_pressed)
+	take_hit_button.pressed.connect(_on_take_hit_pressed)
+	
+	
 	
 	
 func _setup_cards():
@@ -85,8 +104,8 @@ func shuffle_cards():
 		var pos_2_card: MonteCard = pos_2.find_children("*","MonteCard")[0]
 		
 		# get the tree name of each card's destination position
-		var pos_1_card_destination := pos_2.name
-		var pos_2_card_destination := pos_1.name
+		#var pos_1_card_destination := pos_2.name
+		#var pos_2_card_destination := pos_1.name
 		
 		# reparent pos_1_card to pos_1's PathFollow2D toward pos_1_card_destination
 		var pos_1_card_path_name := str(
@@ -170,3 +189,9 @@ func _assign_face_texture_paths():
 			
 func _replace_tarot_with_standard_texture(number_of_cards):
 	pass
+	
+func _on_dev_button_pressed():
+	game_complete.emit()
+	
+func _on_take_hit_pressed():
+	SingletonHolder.game_manager.take_hit("three_card_monte")

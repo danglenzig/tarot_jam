@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfomeqbnk04d4"]
+
+[ext_resource type="Script" uid="uid://dqr60we44mcdv" path="res://tools/dialogue/conversation.gd" id="1_5xlsr"]
+[ext_resource type="Script" uid="uid://dymadn8xeg0aj" path="res://tools/dialogue/dialogue_line.gd" id="2_0nhch"]
+[ext_resource type="Script" uid="uid://kwf8edpxnkk1" path="res://tools/dialogue/dialogue_choice.gd" id="3_8axhn"]
+[ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="3_8po2r"]
+
+[node name="MaddieActThreeConvo01" type="Node" node_paths=PackedStringArray("dialogue_lines")]
+script = ExtResource("1_5xlsr")
+dialogue_lines = [NodePath("0"), NodePath("1")]
+metadata/_custom_type_script = "uid://dqr60we44mcdv"
+
+[node name="0" type="Node" parent="."]
+script = ExtResource("2_0nhch")
+speaker_name = "Maddie"
+portrait_texture = ExtResource("3_8po2r")
+portrait_side = 1
+text = "This is the beginning of ACT THREE! Our next game is called..."
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="1" type="Node" parent="." node_paths=PackedStringArray("choices")]
+script = ExtResource("2_0nhch")
+speaker_name = "Maddie"
+text = "Memory!"
+begin_signal_data_string = "show_memory_label"
+choices = [NodePath("ContinueChoice")]
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="ContinueChoice" type="Node" parent="1"]
+script = ExtResource("3_8axhn")
+text = "Finally..."
+is_quit = true
+signal_data_string = "start_memory"
+metadata/_custom_type_script = "uid://kwf8edpxnkk1"

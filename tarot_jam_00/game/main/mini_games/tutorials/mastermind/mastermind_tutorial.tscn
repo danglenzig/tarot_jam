@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfh3fe86iq76k"]
+
+[ext_resource type="Script" uid="uid://dphiybq8ao062" path="res://tools/main/mini_games/tutorials/mastermind/mastermind_tutorial.gd" id="1_8fxtk"]
+[ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="2_il3ip"]
+
+[node name="MastermindTutorial" type="Panel"]
+offset_right = 800.0
+offset_bottom = 450.0
+script = ExtResource("1_8fxtk")
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 368.0
+offset_right = 144.0
+offset_bottom = 399.0
+text = "Continue"
+
+[node name="TempLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 297.0
+offset_top = 177.0
+offset_right = 486.0
+offset_bottom = 226.0
+text = "Mastermind
+tutorial comming soon..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaddieSprite" type="Sprite2D" parent="."]
+position = Vector2(591, 366)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_il3ip")

@@ -128,8 +128,16 @@ func flip_to_face_up()->bool:
 	return true
 	
 func _on_select_area_clicked():
+	
+	
+	
 	if not selectable: return
+	
+	
+	
 	if game_controller.current_card_hovered_uuid != card_uuid: return
+	
+	print_debug(card_uuid)
 	
 	selectable = false
 	await flip_to_face_up()

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmkv5uvumtuy2"]
+
+[ext_resource type="Script" uid="uid://d4f7t2mkuoe32" path="res://tools/main/game_phases/advert_base.gd" id="1_xtwvt"]
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_xtwvt"]
+resource_local_to_scene = true
+file = "res://imported_assets/video/test_video.ogg"
+
+[node name="AdvertTwo" type="Panel" node_paths=PackedStringArray("dev_button", "video")]
+script = ExtResource("1_xtwvt")
+advert_name = "advert_two"
+dev_button = NodePath("Node2D/DevButton")
+dev_mode = true
+video = NodePath("Node2D/VideoStreamPlayer")
+metadata/_custom_type_script = "uid://d4f7t2mkuoe32"
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-34.59, -18)
+
+[node name="Panel" type="Panel" parent="Node2D"]
+offset_right = 880.0
+offset_bottom = 495.0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Node2D"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.345, 0.345)
+stream = SubResource("VideoStreamTheora_xtwvt")
+autoplay = true
+
+[node name="DevButton" type="Button" parent="Node2D"]
+offset_left = 392.59
+offset_top = 367.0
+offset_right = 501.59
+offset_bottom = 398.0
+theme_override_font_sizes/font_size = 8
+text = "SKIP ADVERT"
+
+[node name="TempLabel" type="Label" parent="Node2D"]
+offset_left = 95.0
+offset_top = 83.0
+offset_right = 287.0
+offset_bottom = 106.0
+text = "PLACEHOLDER CONTENT"

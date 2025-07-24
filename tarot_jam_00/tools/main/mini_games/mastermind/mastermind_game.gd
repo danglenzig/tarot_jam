@@ -1,10 +1,15 @@
 class_name MastermindGame
 extends Panel
 
+@export var dev_mode := false
+
 @onready var symbols_holder: MastermindSymbolsHolder = $SymbolsHolder
 @onready var solution_holder: MastermindSolutionHolder = $SolutionHolder
 @onready var mouse_chaser: MouseChaser = $MouseChaser
 @onready var continue_button: Button = $ContinueButton
+@onready var dev_button: Button = $DevButton
+@onready var take_hit_button: Button = $TakeHitButton
+
 
 var round_number := 0
 
@@ -35,8 +40,13 @@ signal symbol_dropped(uuid: String, symbol_idx: String)
 signal symbol_placed(symbol_idx: String)
 signal symbol_clicked(symbol_uuid)
 signal puzzle_solved
+signal game_complete
 
 func _ready() -> void:
+	
+	dev_button.visible = false
+	take_hit_button.visible = false
+	
 	continue_button.visible = false
 	for symbol in symbols_holder.symbols_array:
 		symbol.game_controller = self
@@ -52,6 +62,11 @@ func _ready() -> void:
 	puzzle_solution = _get_random_solution()
 	print_debug("The solution is: ", puzzle_solution)
 	_assign_solution_values(puzzle_solution)
+	
+	dev_button.visible = dev_mode
+	take_hit_button.visible = dev_mode
+	dev_button.pressed.connect(_on_dev_button_pressed)
+	take_hit_button.pressed.connect(_on_take_hit_button_pressed)
 	
 
 func _assign_solution_values(solution: Array[int]):
@@ -227,3 +242,7 @@ func _replace_tarot_sprites_with_standard_sprites(number_to_change):
 		)
 		symbols_holder.symbols_array[rando_symbol_number].sprite_2d.texture = standard_texture
 		
+func _on_dev_button_pressed():
+	game_complete.emit()
+func _on_take_hit_button_pressed():
+	SingletonHolder.game_manager.take_hit("mastermind")

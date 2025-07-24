@@ -1,9 +1,14 @@
 class_name MemoryGame
 extends Panel
 
+@export var dev_mode := false
+
 @onready var card_holder: GridContainer = $CardHolder
 @onready var results_holder: MemoryResultsHolder = $ResultsHolder
 @onready var continue_button: Button = $ContinueButton
+
+@onready var dev_button: Button = $DevButton
+@onready var take_hit_button: Button = $TakeHitButton
 
 
 var cards: Array[MemoryGameCard] = []
@@ -27,10 +32,14 @@ var current_card_hovered_uuid := "":
 signal first_card_selected
 signal second_card_selected
 signal continue_signal
+signal game_complete
 
 const RESULT_DELAY := 0.25
 
 func _ready() -> void:
+	dev_button.visible = false
+	take_hit_button.visible = false
+	
 	continue_button.visible = false
 	continue_button.pressed.connect(
 		func()->void:
@@ -49,12 +58,22 @@ func _ready() -> void:
 		card.card_selected.connect(_on_card_selected)
 		
 		
-	SingletonHolder.event_bus.start_minigame.connect(
-		func()->void:
-		await _set_up_game()
-	)
+	#SingletonHolder.event_bus.start_minigame.connect(
+	#	func()->void:
+	#	await _set_up_game()
+	#)
+	
+	dev_button.visible = dev_mode
+	take_hit_button.visible = dev_mode
+	dev_button.pressed.connect(_on_dev_button_pressed)
+	take_hit_button.pressed.connect(_on_take_hit_button_pressed)
+	
+	_set_up_game()
+	
 		
 func _set_up_game()->bool:
+	
+	print_debug("FFFFFFFFFOOOOOOOOOOO")
 	
 	var possible_card_values = []
 	for i in range(SingletonHolder.deck_helper.face_up_data.keys().size()):
@@ -96,7 +115,10 @@ func _set_up_game()->bool:
 	
 	for card in cards:
 		await card.flip_to_face_down()
-		
+	
+	
+	
+	
 	for card in cards:
 		card.selectable = true
 		card.select_rect.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -183,3 +205,8 @@ func _on_card_selected(card: MemoryGameCard):
 		selected_card_a_idx = cards.find(card)
 	else:
 		selected_card_b_idx = cards.find(card)
+
+func _on_dev_button_pressed():
+	game_complete.emit()
+func _on_take_hit_button_pressed():
+	SingletonHolder.game_manager.take_hit("memory")
