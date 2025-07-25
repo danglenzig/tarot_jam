@@ -19,9 +19,9 @@ var main: Main = null:
 		
 var damage_per_hit := {
 	# these values will need tuning & balancing
-	"mastermind": 		10.0,
-	"memory": 			5.0,
-	"three_card_monte": 20.0
+	"mastermind": 		100.0,
+	"memory": 			50.0,
+	"three_card_monte": 100.0
 }
 const MAX_HP := 1000.0
 

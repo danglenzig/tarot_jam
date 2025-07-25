@@ -104,5 +104,6 @@ portrait_texture = ExtResource("3_36l7d")
 portrait_side = 1
 text = "Fastastic! Our first round is a little game we like to call..."
 is_quit = true
+begin_signal_data_string = "fantastic"
 end_signal_data_string = "end_of_intro"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"

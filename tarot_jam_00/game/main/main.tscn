@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b578jtugl6bw6"]
+[gd_scene load_steps=53 format=3 uid="uid://b578jtugl6bw6"]
 
 [ext_resource type="Script" uid="uid://duwgp8a3wh5ha" path="res://tools/main/main.gd" id="1_5520f"]
 [ext_resource type="Script" uid="uid://ei305fu26y4r" path="res://tools/main/game_phases/intro.gd" id="2_kmyu1"]
@@ -49,6 +49,7 @@
 [ext_resource type="Script" uid="uid://b37nqqaqg3pv" path="res://tools/main/sound_manager.gd" id="47_ip5y8"]
 [ext_resource type="AudioStream" uid="uid://vj7uq1421tk3" path="res://imported_assets/Sound/sine_440hz.ogg" id="48_fjw5i"]
 [ext_resource type="AudioStream" uid="uid://b01mets2qvi2e" path="res://imported_assets/Sound/sine_220hz.ogg" id="49_mfvav"]
+[ext_resource type="AudioStream" uid="uid://cov5ygdd35fn1" path="res://imported_assets/Sound/GUI_Scroll_Short_7.wav" id="50_xeauh"]
 
 [sub_resource type="Theme" id="Theme_8uf10"]
 
@@ -647,6 +648,7 @@ script = ExtResource("47_ip5y8")
 bus = &"Music"
 
 [node name="OneShotSFX" type="AudioStreamPlayer" parent="SoundManager"]
+bus = &"SFX"
 
 [node name="SinePlayer" type="AudioStreamPlayer" parent="SoundManager"]
 stream = ExtResource("48_fjw5i")
@@ -655,3 +657,10 @@ bus = &"SFX"
 
 [node name="LowSinePlayer" type="AudioStreamPlayer" parent="SoundManager"]
 stream = ExtResource("49_mfvav")
+bus = &"SFX"
+
+[node name="AudienceReactionPlayer" type="AudioStreamPlayer" parent="SoundManager"]
+bus = &"SFX"
+
+[node name="CardShiftPlayer" type="AudioStreamPlayer" parent="SoundManager"]
+stream = ExtResource("50_xeauh")

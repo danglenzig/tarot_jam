@@ -107,6 +107,7 @@ const face_up_data := {
 	20: {
 		"name": "Judgement",
 		"texture_path": "res://imported_assets/cards/Card png/Judgement.png",
+		# ACE OF HEARTS
 		"standard_face_texture_path": "res://imported_assets/cards/standard/updated/21.png",
 	},
 	21: {

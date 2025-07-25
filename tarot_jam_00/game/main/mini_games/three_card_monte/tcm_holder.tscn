@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8n6m3d5ovmco"]
+
+[ext_resource type="Script" uid="uid://bw5o6upalxufa" path="res://tools/main/mini_games/three_card_monte/tcm_holder.gd" id="1_cer3o"]
+[ext_resource type="FontFile" uid="uid://b0k8jkn78gdgh" path="res://imported_assets/fonts/Dynamo.ttf" id="2_mhxo7"]
+
+[node name="TcmHolder" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 1
+script = ExtResource("1_cer3o")
+
+[node name="LabelHolder" type="Node2D" parent="."]
+position = Vector2(384, 215)
+
+[node name="RoundNumberLabel" type="Label" parent="LabelHolder"]
+z_index = 1
+offset_left = -340.0
+offset_top = -36.0
+offset_right = 384.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_mhxo7")
+theme_override_font_sizes/font_size = 90
+text = "ROUND N"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

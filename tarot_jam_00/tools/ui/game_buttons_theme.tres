@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dsw0e4bkycftp"]
+
+[ext_resource type="FontFile" uid="uid://bemtfcrjhd0vw" path="res://imported_assets/fonts/IMPACT.TTF" id="1_ui0ko"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ojl4"]
+bg_color = Color(0.097971, 0.335316, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.00392157, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[resource]
+Button/colors/font_color = Color(0, 1, 0, 1)
+Button/fonts/font = ExtResource("1_ui0ko")
+Button/styles/normal = SubResource("StyleBoxFlat_1ojl4")

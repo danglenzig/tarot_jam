@@ -67,11 +67,13 @@ func _on_start_tcm():
 
 func _on_dialogue_data_signal_rxd(data: String):
 	if not active: return
+	var sm:SoundManager = main.sound_manager
 	match data:
 		"show_red_x":
 			_on_show_red_x()
 			
 		"show_tcm":
+			sm.play_audience_reaction(sm.APPLAUSE_01)
 			_on_show_tcm()
 			
 		"start_three_card_monte":

@@ -13,7 +13,7 @@ signal game_env_ready
 signal minigame_complete
 
 const game_paths := {
-	"three_card_monte": "res://game/main/mini_games/three_card_monte/three_card_monte.tscn",
+	"three_card_monte": "res://game/main/mini_games/three_card_monte/tcm_holder.tscn",
 	"mastermind": "res://game/main/mini_games/mastermind/MastermindGame.tscn",
 	"memory": "res://game/main/mini_games/memory/memory_game.tscn",
 }

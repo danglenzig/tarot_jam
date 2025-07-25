@@ -4,21 +4,31 @@ extends Panel
 var ab_tween: Tween = null
 var ba_tween: Tween = null
 
-const SHUFFLE_TWEEN_DURATION := 0.1
+const SHUFFLE_TWEEN_DURATION := 0.33
+const DISPLAY_CARDS_DURATION := 1.75
 
-@export var dev_mode := false
+#@export var dev_mode := false
 
 @onready var card_holder: Node2D = $CardHolder
 @onready var position_holder: Node2D = $PositionHolder
 @onready var shuffle_button: Button = $ShuffleButton
 @onready var dev_button: Button = $DevButton
 @onready var take_hit_button: Button = $TakeHitButton
+@onready var continue_button: Button = $ContinueButton
+
 
 
 
 var round_number := -1
+var always_lose := false
+var round_over := false
 
-signal game_complete
+@warning_ignore("unused_signal")
+signal continue_signal
+signal shuffle_complete
+signal round_complete(round_won: bool)
+signal round_ready
+signal take_hit
 
 var curently_active_card_uuid := "":
 	set(new_value):
@@ -28,13 +38,15 @@ var curently_active_card_uuid := "":
 var card_list: Array[MonteCard] = []
 var position_list: Array[MontePosition] = []
 
-@warning_ignore("unused_signal")
-signal continue_signal
-signal shuffle_complete
+var winning_card: MonteCard = null
 
 func _ready() -> void:
-	dev_button.visible = false
-	take_hit_button.visible = false
+	#dev_button.visible = false
+	#take_hit_button.visible = false
+	
+	continue_button.visible = false
+	
+	shuffle_button.visible = false
 	
 	for child: Node in position_holder.get_children():
 		position_list.append(child as MontePosition)
@@ -45,24 +57,40 @@ func _ready() -> void:
 	for card in card_list:
 		
 		card.game_controller = self
+		card.win_signal.connect(_on_win_signal)
+		card.lose_signal.connect(_on_lose_signal)
+		if card.is_target_card:
+			winning_card = card
+		
 	
 	shuffle_button.pressed.connect(
 		func()->void:
 			shuffle_button.visible = false
 			shuffle_cards()
 	)
-	shuffle_complete.connect(
-		func()->void: shuffle_button.visible = true
-	)
+	#shuffle_complete.connect(
+	#	func()->void: shuffle_button.visible = true
+	#)
 	_assign_face_texture_paths()
 	_setup_cards()
 	
-	dev_button.visible = dev_mode
-	take_hit_button.visible = dev_mode
-	dev_button.pressed.connect(_on_dev_button_pressed)
-	take_hit_button.pressed.connect(_on_take_hit_pressed)
+	await display_all_cards_sequence()
+	
+	if winning_card:
+		print("FOOO")
+		await winning_card.highlight_sequence(true)
+	
+	#dev_button.visible = dev_mode
+	#take_hit_button.visible = dev_mode
+	#dev_button.pressed.connect(_on_dev_button_pressed)
+	#take_hit_button.pressed.connect(_on_take_hit_pressed)
 	
 	
+	
+	
+	shuffle_button.visible = true
+	
+	round_ready.emit()
 	
 	
 func _setup_cards():
@@ -78,10 +106,8 @@ func _setup_cards():
 				
 	
 func shuffle_cards():
-	for monte_card in card_list:
-		monte_card.select_enabled = false
-		
-	# await flip all three cards face down
+	#for monte_card in card_list:
+		#monte_card.select_enabled = false
 	
 	var swaps := randi_range(12,24)
 	var swap_count := 0
@@ -125,6 +151,11 @@ func shuffle_cards():
 		var pos_2_card_path_follow := pos_2_card_path.get_node("PathFollow2D") as PathFollow2D
 		pos_2_card.reparent(pos_2_card_path_follow)
 		
+		
+		var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+		#sm.play_one_shot_sfx(sm.CARD_SLIDE)
+		sm.play_card_shift()
+		
 		# tween pos_1_card to its destination
 		_clear_tween(ab_tween)
 		ab_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
@@ -152,8 +183,7 @@ func shuffle_cards():
 		
 		swap_count += 1
 		
-	for card in card_list:
-		card.select_enabled = true
+	_set_cards_selectable(true)
 		
 	shuffle_complete.emit()
 	
@@ -169,29 +199,84 @@ func _assign_face_texture_paths():
 	var symbol_number_bucket := []
 	for i in range(SingletonHolder.deck_helper.face_up_data.keys().size()):
 		symbol_number_bucket.append(i)
-	for card in card_list:
-		var rando_symol_idx = symbol_number_bucket.pick_random()
-		symbol_number_bucket.erase(rando_symol_idx)
-		var face_texture_path = SingletonHolder.deck_helper.face_up_data[rando_symol_idx]["texture_path"]
-		card.face_texture_path = face_texture_path
+	
+	# erase Ace of Hearts
+	symbol_number_bucket.erase(20)
 		
-	match round_number:
-		0:
-			pass
-		1:
-			pass
-		2:
-			pass
-		3:
-			pass
-		_:
-			pass
+	for card in card_list:
+		
+		if card.is_target_card:
+			var winner_face_texture_path = (
+				# winner is allways Ace of Hearts
+				SingletonHolder.deck_helper.face_up_data[20]["standard_face_texture_path"]
+			)
+			card.face_texture_path = winner_face_texture_path
+		else:
+			
+			var rando_symol_idx = symbol_number_bucket.pick_random()
+			symbol_number_bucket.erase(rando_symol_idx)
+			var face_texture_path = (
+				SingletonHolder.deck_helper.face_up_data[rando_symol_idx]["standard_face_texture_path"]
+			)
+			card.face_texture_path = face_texture_path
+			
+	#match round_number:
+	#	0:
+	#		pass
+	#	1:
+	#		pass
+	#	2:
+	#		pass
+	#	3:
+	#		pass
+	#	_:
+	#		pass
 			
 func _replace_tarot_with_standard_texture(number_of_cards):
 	pass
 	
-func _on_dev_button_pressed():
-	game_complete.emit()
+func _on_win_signal():
+	#print_debug("WIN ROUND!")
+	_set_cards_selectable(false)
 	
-func _on_take_hit_pressed():
-	SingletonHolder.game_manager.take_hit("three_card_monte")
+	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+	sm.play_one_shot_sfx(sm.DA_DING)
+	
+	await winning_card.highlight_sequence(false)
+	
+	round_complete.emit(true)
+	
+func _on_lose_signal(losing_card: MonteCard):
+	#print_debug("LOSE ROUND :/ ")
+	_set_cards_selectable(false)
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+	sm.play_one_shot_sfx(sm.BUZZ_2)
+	
+	await losing_card.display_x_sequence()
+	
+	round_complete.emit(false)
+	
+	
+	
+	
+func _set_cards_selectable(selectable: bool):
+	for card in card_list:
+		card.select_enabled = selectable
+
+
+func display_all_cards_sequence()->bool:
+	
+	for card in card_list:
+		card._flip_card()
+		await card.card_flip_complete
+		
+	await get_tree().create_timer(DISPLAY_CARDS_DURATION).timeout
+	
+	for card in card_list:
+		card._flip_card()
+		await card.card_flip_complete
+		
+	return true

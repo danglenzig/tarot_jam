@@ -98,10 +98,15 @@ func _on_theme_alert()->bool:
 
 func _on_dialogue_data_signal_rxd(data: String):
 	if not active: return
+	
 	var bg: BackgroundSprite = main.game_environment.background_sprite
+	var sm: SoundManager = main.sound_manager
+	
 	match data:
 		"tv_turned_on":
 			_on_tv_turned_on()
+			await get_tree().create_timer(0.5).timeout
+			sm.play_audience_reaction(sm.APPLAUSE_01)
 		"this_will_do":
 			_on_this_will_do_pressed()
 			
@@ -113,6 +118,10 @@ func _on_dialogue_data_signal_rxd(data: String):
 		"show_contestants":
 			
 			bg.texture = load("res://imported_assets/contestants.png")
+			sm.play_audience_reaction(sm.BOO)
 			
 		"studio_cam_1":
 			bg.texture = load("res://imported_assets/01.jpg")
+			
+		"fantastic":
+			sm.play_audience_reaction(sm.APPLAUSE_01)

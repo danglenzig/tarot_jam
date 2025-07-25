@@ -6,6 +6,10 @@ extends Node2D
 
 @onready var sprite_2d: Sprite2D =$CardSprite
 
+signal win_signal
+signal lose_signal(losing_card: MonteCard)
+
+@export var is_target_card := false
 
 var value := ""
 var game_controller: ThreeCardMonte = null:
@@ -14,7 +18,7 @@ var game_controller: ThreeCardMonte = null:
 		if game_controller:
 			controller_ready.emit()
 			
-var select_enabled := true:
+var select_enabled := false:
 	set(new_value):
 		select_enabled = new_value
 		if select_enabled:
@@ -47,14 +51,22 @@ var _y_rot := 0.0:
 		
 
 var flip_tween: Tween = null
-var flip_duration := 0.2
+var flip_duration := 0.1
 
 signal controller_ready
 signal card_flip_complete
 
 const REVERSE_TEXTURE_PATH: String = "res://imported_assets/cards/Card png/reverse_01.png"
+const HIGHLIGHT_DURATION := 0.25
+const HIGHLIGHT_REPEAT := 3
 
 func _ready() -> void:
+	
+	if has_node("RedX"):
+		($RedX as Sprite2D).visible = false
+	if has_node("HighlightRect"):
+		($HighlightRect as ColorRect).visible = false
+	
 	_shader_mat = sprite_2d.material as ShaderMaterial
 	value = self.name
 	value = value.replace("Card","")
@@ -73,23 +85,37 @@ func _ready() -> void:
 	)
 	
 func _input(event: InputEvent) -> void:
+	if not game_controller: return
 	if game_controller.curently_active_card_uuid != card_uuid: return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.is_pressed():
+				
+				if not select_enabled: return
+				
+				
 			
 				select_enabled = false
 				_flip_card()
 				await card_flip_complete
-				select_enabled = true
+				
+				if is_target_card:
+					win_signal.emit()
+				else:
+					lose_signal.emit(self)
+					
+				
+				#select_enabled = true
 				
 				
 func _flip_card():
+	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
 	
 	print_debug("Flippinng card with uuid ", card_uuid)
 	
 	if flip_tween: return
 	flip_tween = create_tween()
+	sm.tween_up_sine_tone(flip_duration)
 	if face_up:
 		flip_tween.tween_property(
 			self,
@@ -116,4 +142,36 @@ func _flip_card():
 				flip_tween = null
 				card_flip_complete.emit()
 		)
+		
+func highlight_sequence(flip_card: bool)->bool:
+	assert(is_target_card)
+	assert(has_node("HighlightRect"))
+	if flip_card:
+		_show_card()
+	for i in range(HIGHLIGHT_REPEAT + 1):
+		await get_tree().create_timer(HIGHLIGHT_DURATION * 0.5).timeout
+		print_debug("ON")
+		($HighlightRect as ColorRect).visible = true
+		await get_tree().create_timer(HIGHLIGHT_DURATION).timeout
+		print_debug("OFF")
+		($HighlightRect as ColorRect).visible = false
+	return true
+	
+func display_x_sequence()->bool:
+	assert(not is_target_card)
+	assert(has_node("RedX"))
+	
+	var wait_time = ((HIGHLIGHT_DURATION * 0.5) + HIGHLIGHT_DURATION) * HIGHLIGHT_REPEAT
+	($RedX as Sprite2D).visible = true
+	await get_tree().create_timer(wait_time).timeout
+	($RedX as Sprite2D).visible = false
+	
+	return true
+	
+func _show_card():
+	_flip_card()
+	await card_flip_complete
+	await get_tree().create_timer(HIGHLIGHT_DURATION * 4).timeout
+	_flip_card()
+	
 		

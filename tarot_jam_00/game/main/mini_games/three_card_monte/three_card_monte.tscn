@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dgx38x6f5wlqd"]
+[gd_scene load_steps=21 format=3 uid="uid://dgx38x6f5wlqd"]
 
 [ext_resource type="Script" uid="uid://c5bf7885t8fw4" path="res://tools/main/mini_games/three_card_monte/three_card_monte.gd" id="1_deflt"]
 [ext_resource type="Script" uid="uid://bfksjdp187ath" path="res://tools/main/mini_games/three_card_monte/monte_position.gd" id="2_0ofkl"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://gwwlopwmi0pw" path="res://tools/main/mini_games/select_rect.gd" id="5_gh4nw"]
 [ext_resource type="Shader" uid="uid://d0m8rw3q77jpq" path="res://game/main/mini_games/memory/card_flip_shader.gdshader" id="6_aeuem"]
 [ext_resource type="Texture2D" uid="uid://chogmcc8pyc8q" path="res://imported_assets/cards/Card png/reverse_01.png" id="7_7k3y3"]
+[ext_resource type="Shader" uid="uid://7dyaresh0q65" path="res://game/main/mini_games/three_card_monte/three_card_monte.gdshader" id="8_0ofkl"]
+[ext_resource type="Texture2D" uid="uid://bpivy57lrq53x" path="res://imported_assets/red_x.png" id="8_fn0uo"]
+[ext_resource type="Theme" uid="uid://dsw0e4bkycftp" path="res://tools/ui/game_buttons_theme.tres" id="10_aqb4p"]
 
 [sub_resource type="Curve2D" id="Curve2D_btqdn"]
 _data = {
@@ -53,6 +56,25 @@ shader_parameter/y_rot = 0.0
 shader_parameter/x_rot = 0.0
 shader_parameter/inset = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gh4nw"]
+resource_local_to_scene = true
+shader = ExtResource("8_0ofkl")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/size = 1.571
+shader_parameter/squishness = Vector2(1, 1)
+shader_parameter/color1 = Vector4(1, 1, 0, 1)
+shader_parameter/color2 = Vector4(0.75, 0.75, 0, 1)
+shader_parameter/color3 = Vector4(0.5, 0.5, 0, 1)
+shader_parameter/color4 = Vector4(0.25, 0.25, 0, 1)
+shader_parameter/color5 = Vector4(0.15, 0.15, 0, 1)
+shader_parameter/color6 = Vector4(0, 0, 0, 1)
+shader_parameter/step1 = 0.159
+shader_parameter/step2 = 0.182
+shader_parameter/step3 = 0.233
+shader_parameter/step4 = 0.264
+shader_parameter/step5 = 0.265
+shader_parameter/step6 = 0.266
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fn0uo"]
 resource_local_to_scene = true
 shader = ExtResource("6_aeuem")
@@ -76,7 +98,6 @@ self_modulate = Color(0, 0, 0, 1)
 offset_right = 800.0
 offset_bottom = 450.0
 script = ExtResource("1_deflt")
-dev_mode = true
 
 [node name="PositionHolder" type="Node2D" parent="."]
 
@@ -174,9 +195,15 @@ material = SubResource("ShaderMaterial_0ofkl")
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("7_7k3y3")
 
+[node name="RedX" type="Sprite2D" parent="CardHolder/CardA"]
+visible = false
+scale = Vector2(0.205, 0.41)
+texture = ExtResource("8_fn0uo")
+
 [node name="CardB" type="Node2D" parent="CardHolder"]
 position = Vector2(392, 379)
 script = ExtResource("4_aqb4p")
+is_target_card = true
 
 [node name="SelectRect" type="ColorRect" parent="CardHolder/CardB"]
 offset_left = -37.8
@@ -185,6 +212,15 @@ offset_right = 37.8
 offset_bottom = 53.4
 script = ExtResource("5_gh4nw")
 metadata/_custom_type_script = "uid://gwwlopwmi0pw"
+
+[node name="HighlightRect" type="ColorRect" parent="CardHolder/CardB"]
+visible = false
+material = SubResource("ShaderMaterial_gh4nw")
+offset_left = -79.0
+offset_top = -98.0
+offset_right = 77.0
+offset_bottom = 93.0
+mouse_filter = 2
 
 [node name="CardSprite" type="Sprite2D" parent="CardHolder/CardB"]
 material = SubResource("ShaderMaterial_fn0uo")
@@ -209,12 +245,18 @@ position = Vector2(1, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("7_7k3y3")
 
+[node name="RedX" type="Sprite2D" parent="CardHolder/CardC"]
+visible = false
+scale = Vector2(0.205, 0.41)
+texture = ExtResource("8_fn0uo")
+
 [node name="ShuffleButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 706.0
 offset_top = 383.0
 offset_right = 769.0
 offset_bottom = 414.0
+theme = ExtResource("10_aqb4p")
 text = "Shuffle"
 
 [node name="DevButton" type="Button" parent="."]
@@ -232,3 +274,13 @@ offset_top = 81.0
 offset_right = 720.0
 offset_bottom = 112.0
 text = "Take Hit"
+
+[node name="ContinueButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 707.0
+offset_top = 387.0
+offset_right = 769.0
+offset_bottom = 410.0
+theme = ExtResource("10_aqb4p")
+text = "Continue"

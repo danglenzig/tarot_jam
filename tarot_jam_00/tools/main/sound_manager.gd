@@ -10,6 +10,9 @@ extends Node
 @onready var one_shot_sfx: AudioStreamPlayer = $OneShotSFX
 @onready var sine_player: AudioStreamPlayer = $SinePlayer
 @onready var low_sine_player: AudioStreamPlayer = $LowSinePlayer
+@onready var audience_reaction_player: AudioStreamPlayer = $AudienceReactionPlayer
+@onready var card_shift_player: AudioStreamPlayer = $CardShiftPlayer
+
 
 
 
@@ -49,6 +52,12 @@ const BUZZ_2 = preload("res://imported_assets/Sound/GUI_Cancel_2.wav")
 
 const DIALOGUE_ADVANCE = preload("res://imported_assets/Sound/GUI_Accept_7.wav")
 const UI_BUTTON = preload("res://imported_assets/Sound/GUI_Cancel_7.wav")
+
+const APPLAUSE_01 = preload("res://imported_assets/Sound/applause_01.ogg")
+const OOOH_01 = preload("res://imported_assets/Sound/oooh_01.ogg")
+const BOO = preload("res://imported_assets/Sound/boo.ogg")
+
+const CARD_SLIDE = preload("res://imported_assets/Sound/GUI_Scroll_Short_7.wav")
 
 const MUSIC_MAX_VOLUME := 0.0
 const MUSIC_MIN_VOLUME := -30.0
@@ -104,23 +113,12 @@ func tween_music_up(duration: float):
 			music_volume_tween = null
 	)
 
-func play_bell():
-	if one_shot_sfx.playing:
-		one_shot_sfx.stop()
-	one_shot_sfx.stream = BELL
-	one_shot_sfx.play()
-	
-func play_buzz(buzz_sound: Resource):
-	if one_shot_sfx.playing:
-		one_shot_sfx.stop()
-	one_shot_sfx.stream = buzz_sound
-	one_shot_sfx.play()
-	
-func play_da_ding():
-	if one_shot_sfx.playing:
-		one_shot_sfx.stop()
-	one_shot_sfx.stream = DA_DING
-	one_shot_sfx.play()
+func play_audience_reaction(sfx: Resource):
+	if audience_reaction_player.playing:
+		audience_reaction_player.stop()
+	audience_reaction_player.stream = sfx
+	audience_reaction_player.play()
+
 	
 func play_one_shot_sfx(sfx: Resource):
 	if one_shot_sfx.playing:
@@ -158,6 +156,13 @@ func tween_up_sine_tone(duration: float):
 			sine_player.stop()
 			low_sine_player.stop()
 	)
-	
+
+func play_card_shift():
+	card_shift_player.pitch_scale = 1.0
+	var rando:= randf_range(0.0, 0.2)
+	if randi()%2 == 0:
+		rando *= -1
+	card_shift_player.pitch_scale += rando
+	card_shift_player.play()
 	
 		
