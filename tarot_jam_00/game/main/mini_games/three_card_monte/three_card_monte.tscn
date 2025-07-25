@@ -227,6 +227,11 @@ material = SubResource("ShaderMaterial_fn0uo")
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("7_7k3y3")
 
+[node name="RedX" type="Sprite2D" parent="CardHolder/CardB"]
+visible = false
+scale = Vector2(0.205, 0.41)
+texture = ExtResource("8_fn0uo")
+
 [node name="CardC" type="Node2D" parent="CardHolder"]
 position = Vector2(620, 380)
 script = ExtResource("4_aqb4p")

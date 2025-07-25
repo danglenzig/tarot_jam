@@ -19,7 +19,7 @@ var main: Main = null:
 		
 var damage_per_hit := {
 	# these values will need tuning & balancing
-	"mastermind": 		100.0,
+	"mastermind": 		20.0,
 	"memory": 			50.0,
 	"three_card_monte": 100.0
 }

@@ -135,6 +135,7 @@ mouse_filter = 2
 script = ExtResource("3_yil3p")
 
 [node name="HudPanel" type="Panel" parent="MainCanvas/Hud"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -163,14 +164,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="MainCanvas/Hud/HudPanel"]
-layout_mode = 0
-offset_left = 955.0
-offset_top = 17.0
-offset_right = 1240.0
-offset_bottom = 44.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.5
+offset_top = -9.5
+offset_right = 142.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("10_3uspg")
 max_value = 1000.0
 value = 666.0
+show_percentage = false
 
 [node name="StartMenu" type="Control" parent="MainCanvas"]
 unique_name_in_owner = true
@@ -378,6 +387,7 @@ offset_bottom = 40.0
 script = ExtResource("25_p63cf")
 
 [node name="Panel" type="Panel" parent="MainCanvas/MasterMind"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 103.0
 offset_top = 215.0
@@ -416,6 +426,7 @@ offset_bottom = 40.0
 script = ExtResource("28_25ivp")
 
 [node name="Panel" type="Panel" parent="MainCanvas/Memory"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 103.0
 offset_top = 215.0
@@ -647,9 +658,6 @@ script = ExtResource("47_ip5y8")
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="SoundManager"]
 bus = &"Music"
 
-[node name="OneShotSFX" type="AudioStreamPlayer" parent="SoundManager"]
-bus = &"SFX"
-
 [node name="SinePlayer" type="AudioStreamPlayer" parent="SoundManager"]
 stream = ExtResource("48_fjw5i")
 volume_db = -20.0
@@ -664,3 +672,12 @@ bus = &"SFX"
 
 [node name="CardShiftPlayer" type="AudioStreamPlayer" parent="SoundManager"]
 stream = ExtResource("50_xeauh")
+
+[node name="OneShotPlayers" type="Node" parent="SoundManager"]
+
+[node name="OneShotSFX_1" type="AudioStreamPlayer" parent="SoundManager/OneShotPlayers"]
+bus = &"SFX"
+
+[node name="OneShotSFX_2" type="AudioStreamPlayer" parent="SoundManager/OneShotPlayers"]
+
+[node name="OneShotSFX_3" type="AudioStreamPlayer" parent="SoundManager/OneShotPlayers"]

@@ -81,7 +81,7 @@ offset_left = -101.0
 offset_top = -60.0
 offset_right = -10.28
 offset_bottom = 71.76
-color = Color(0.314, 0.314, 0.314, 0.322)
+color = Color(0.313726, 0.313726, 0.313726, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="SolutionHolder/SolutionSlot0/SolutionRect"]
 position = Vector2(45, 65)
@@ -97,7 +97,7 @@ offset_left = -101.0
 offset_top = -60.0
 offset_right = -10.28
 offset_bottom = 71.76
-color = Color(0.314, 0.314, 0.314, 0.322)
+color = Color(0.313726, 0.313726, 0.313726, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="SolutionHolder/SolutionSlot1/SolutionRect"]
 position = Vector2(45, 66)
@@ -113,7 +113,7 @@ offset_left = -101.0
 offset_top = -60.0
 offset_right = -10.28
 offset_bottom = 71.76
-color = Color(0.314, 0.314, 0.314, 0.322)
+color = Color(0.313726, 0.313726, 0.313726, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="SolutionHolder/SolutionSlot2/SolutionRect"]
 position = Vector2(46, 67)
@@ -129,7 +129,7 @@ offset_left = -101.0
 offset_top = -60.0
 offset_right = -10.28
 offset_bottom = 71.76
-color = Color(0.314, 0.314, 0.314, 0.322)
+color = Color(0.313726, 0.313726, 0.313726, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="SolutionHolder/SolutionSlot3/SolutionRect"]
 position = Vector2(45, 67)

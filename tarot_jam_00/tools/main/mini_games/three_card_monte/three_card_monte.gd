@@ -20,8 +20,13 @@ const DISPLAY_CARDS_DURATION := 1.75
 
 
 var round_number := -1
-var always_lose := false
 var round_over := false
+
+var always_lose := false:
+	set(new_value):
+		always_lose = new_value
+		if always_lose:
+			print_debug("Get ready to lose.")
 
 @warning_ignore("unused_signal")
 signal continue_signal
@@ -220,20 +225,8 @@ func _assign_face_texture_paths():
 			)
 			card.face_texture_path = face_texture_path
 			
-	#match round_number:
-	#	0:
-	#		pass
-	#	1:
-	#		pass
-	#	2:
-	#		pass
-	#	3:
-	#		pass
-	#	_:
-	#		pass
-			
-func _replace_tarot_with_standard_texture(number_of_cards):
-	pass
+#func _replace_tarot_with_standard_texture(number_of_cards):
+#	pass
 	
 func _on_win_signal():
 	#print_debug("WIN ROUND!")

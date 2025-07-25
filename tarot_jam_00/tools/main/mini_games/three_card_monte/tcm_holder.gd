@@ -13,7 +13,7 @@ signal game_complete
 
 const TCM_SCENE: PackedScene = preload("res://game/main/mini_games/three_card_monte/three_card_monte.tscn")
 
-const NUMBER_OF_ROUNDS := 4
+const NUMBER_OF_ROUNDS := 3
 const LABEL_TWEEN_DURATION := 0.25
 
 

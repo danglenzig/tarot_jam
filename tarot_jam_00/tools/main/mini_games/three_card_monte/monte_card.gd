@@ -93,6 +93,10 @@ func _input(event: InputEvent) -> void:
 				
 				if not select_enabled: return
 				
+				if game_controller.always_lose:
+					_on_auto_lose()
+					return
+					
 				
 			
 				select_enabled = false
@@ -107,7 +111,17 @@ func _input(event: InputEvent) -> void:
 				
 				#select_enabled = true
 				
-				
+
+func _on_auto_lose():
+	
+	face_texture_path = (
+		# the fool
+		SingletonHolder.deck_helper.face_up_data[0]["texture_path"]
+	)
+	_flip_card()
+	await card_flip_complete
+	lose_signal.emit(self)
+
 func _flip_card():
 	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
 	
@@ -158,7 +172,7 @@ func highlight_sequence(flip_card: bool)->bool:
 	return true
 	
 func display_x_sequence()->bool:
-	assert(not is_target_card)
+	#assert(not is_target_card)
 	assert(has_node("RedX"))
 	
 	var wait_time = ((HIGHLIGHT_DURATION * 0.5) + HIGHLIGHT_DURATION) * HIGHLIGHT_REPEAT

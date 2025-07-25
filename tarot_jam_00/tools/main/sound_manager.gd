@@ -7,18 +7,25 @@ extends Node
 @onready var sfx_bus_idx = AudioServer.get_bus_index("SFX")
 @onready var music_bus_idx = AudioServer.get_bus_index("Music")
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
-@onready var one_shot_sfx: AudioStreamPlayer = $OneShotSFX
+
+@onready var one_shot_sfx_1: AudioStreamPlayer = $OneShotPlayers/OneShotSFX_1
+@onready var one_shot_sfx_2: AudioStreamPlayer = $OneShotPlayers/OneShotSFX_2
+@onready var one_shot_sfx_3: AudioStreamPlayer = $OneShotPlayers/OneShotSFX_3
+
+
+
 @onready var sine_player: AudioStreamPlayer = $SinePlayer
 @onready var low_sine_player: AudioStreamPlayer = $LowSinePlayer
 @onready var audience_reaction_player: AudioStreamPlayer = $AudienceReactionPlayer
 @onready var card_shift_player: AudioStreamPlayer = $CardShiftPlayer
 
 
-
+var one_shot_players: Array[AudioStreamPlayer]
 
 var music_volume_tween: Tween
 var sine_pitch_tween: Tween
 
+var sm_ready := false
 
 var master_volume: float:
 	set(new_value):
@@ -67,6 +74,13 @@ const SINE_MIN_PITCH := 0.25
 
 func _ready() -> void:	
 	music_volume = MUSIC_MIN_VOLUME
+	
+	one_shot_players.append(one_shot_sfx_1)
+	one_shot_players.append(one_shot_sfx_2)
+	one_shot_players.append(one_shot_sfx_3)
+	
+	sm_ready = true
+	
 	
 func _play_main_music(play_music := true):
 	if play_music:
@@ -121,10 +135,15 @@ func play_audience_reaction(sfx: Resource):
 
 	
 func play_one_shot_sfx(sfx: Resource):
-	if one_shot_sfx.playing:
-		one_shot_sfx.stop()
-	one_shot_sfx.stream = sfx
-	one_shot_sfx.play()
+	if not sm_ready: return
+	var one_shot_player: AudioStreamPlayer = null
+	for player in one_shot_players:
+		if not player.playing:
+			one_shot_player = player
+			break
+	if not one_shot_player: return
+	one_shot_player.stream = sfx
+	one_shot_player.play()
 	
 func tween_up_sine_tone(duration: float):
 	duration = clamp(duration, 0.1, 5.0)
