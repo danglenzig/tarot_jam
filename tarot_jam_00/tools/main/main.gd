@@ -30,6 +30,8 @@ signal outro_complete
 func _ready() -> void:
 	SingletonHolder.game_manager.main = self
 	
+	var ls: LogoSplash = main_canvas.logo_splash
+	ls.main = self
 	
 	#main_canvas.dialogue.dialogue_choice_taken.connect(_on_rx_dialogue_choice_taken)
 	
@@ -47,13 +49,18 @@ func _ready() -> void:
 		func()->void:
 			var gm: GameManager = SingletonHolder.game_manager
 			gm.hp = gm.MAX_HP
-			
+			gm.first_game = false
 			# fade in black
 			get_tree().reload_current_scene()
 			# fade out black
 	)
 	
 	_initialize_game_phases()
+	
+	if SingletonHolder.game_manager.first_game:
+		main_canvas.show_layer(ls, true)
+		await ls.activate()
+		main_canvas.show_layer(ls, false)
 	
 	_show_start_menu() # start game signal emitted when player hits start
 
@@ -70,6 +77,7 @@ func _initialize_game_phases():
 
 func _show_start_menu():
 	main_canvas.show_layer(main_canvas.start_menu, true, true)
+	sound_manager._play_main_music(true)
 
 func _play_intro():
 	intro.play()

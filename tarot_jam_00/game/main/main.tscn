@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://b578jtugl6bw6"]
+[gd_scene load_steps=57 format=3 uid="uid://b578jtugl6bw6"]
 
 [ext_resource type="Script" uid="uid://duwgp8a3wh5ha" path="res://tools/main/main.gd" id="1_5520f"]
 [ext_resource type="Script" uid="uid://ei305fu26y4r" path="res://tools/main/game_phases/intro.gd" id="2_kmyu1"]
@@ -44,8 +44,11 @@
 [ext_resource type="Script" uid="uid://bu0kyn26ihist" path="res://tools/main/mini_game_holder.gd" id="18_kmyu1"]
 [ext_resource type="PackedScene" uid="uid://uj14jva7sule" path="res://game/dialogue/maddie_outro_convo_01.tscn" id="19_tm1wi"]
 [ext_resource type="Script" uid="uid://qvjaiwl36kd7" path="res://game/main/master_mind_label.gd" id="25_p63cf"]
+[ext_resource type="Texture2D" uid="uid://rw0y68d0l8i6" path="res://imported_assets/logo/valley_logdge_logo_1.png" id="27_h270u"]
 [ext_resource type="Script" uid="uid://cu6ijknjcdrl4" path="res://game/main/memory_label.gd" id="28_25ivp"]
 [ext_resource type="Script" uid="uid://bsqdd5qsaabm0" path="res://tools/main/advert_manager.gd" id="33_qfxf6"]
+[ext_resource type="Script" uid="uid://bvkrg6si5meex" path="res://tools/ui/manny_ui.gd" id="45_w0qoj"]
+[ext_resource type="Texture2D" uid="uid://diokwp0k7j4xj" path="res://imported_assets/mannequin_ui/0_125.png" id="46_0myvo"]
 [ext_resource type="Script" uid="uid://b37nqqaqg3pv" path="res://tools/main/sound_manager.gd" id="47_ip5y8"]
 [ext_resource type="AudioStream" uid="uid://vj7uq1421tk3" path="res://imported_assets/Sound/sine_440hz.ogg" id="48_fjw5i"]
 [ext_resource type="AudioStream" uid="uid://b01mets2qvi2e" path="res://imported_assets/Sound/sine_220hz.ogg" id="49_mfvav"]
@@ -71,6 +74,27 @@ shader_parameter/brightness_amount = 0.0
 shader_parameter/warmth_amount = 0.0
 shader_parameter/contrast_amount = 0.0
 shader_parameter/chromatic_abberation_seperation = 0.016
+shader_parameter/chromatic_abberation_intensity = 1.5
+shader_parameter/chromatic_abberation_blur_strength = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w0qoj"]
+resource_local_to_scene = true
+shader = ExtResource("9_kk62w")
+shader_parameter/shader_enabled = true
+shader_parameter/saturation_enabled = true
+shader_parameter/sharpness_enabled = true
+shader_parameter/brightness_enabled = true
+shader_parameter/warmth_enabled = true
+shader_parameter/contrast_enabled = true
+shader_parameter/chromatic_abberation_enabled = true
+shader_parameter/saturation_amount = 3.0
+shader_parameter/monochrome_color = Color(0.145, 0.145, 0.145, 1)
+shader_parameter/sharpness_size = 1.0
+shader_parameter/sharpness_intensity = 3.0
+shader_parameter/brightness_amount = -0.11
+shader_parameter/warmth_amount = 0.0
+shader_parameter/contrast_amount = 0.0
+shader_parameter/chromatic_abberation_seperation = 0.05
 shader_parameter/chromatic_abberation_intensity = 1.5
 shader_parameter/chromatic_abberation_blur_strength = 1.0
 
@@ -126,6 +150,7 @@ script = ExtResource("2_psm6y")
 
 [node name="Hud" type="Control" parent="MainCanvas"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
@@ -275,6 +300,18 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_sifka")
 
+[node name="ColorRect" type="ColorRect" parent="MainCanvas/LogoSplash"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -14.0
+offset_right = 1312.0
+offset_bottom = 741.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="MainCanvas/LogoSplash"]
+position = Vector2(627, 372)
+texture = ExtResource("27_h270u")
+
 [node name="ThemeAlert" type="Control" parent="MainCanvas"]
 visible = false
 layout_mode = 3
@@ -311,6 +348,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GeneralKnowledge" type="Control" parent="MainCanvas"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -380,6 +418,7 @@ position = Vector2(405, 131)
 texture = ExtResource("16_6q5ef")
 
 [node name="MasterMind" type="Control" parent="MainCanvas"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -419,6 +458,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Memory" type="Control" parent="MainCanvas"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -458,6 +498,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Dialogue" type="Control" parent="MainCanvas"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -633,6 +674,29 @@ script = ExtResource("13_0j5er")
 unique_name_in_owner = true
 scale = Vector2(0.445, 0.445)
 texture = ExtResource("11_7q7ho")
+
+[node name="MannyUI" type="Node2D" parent="GameEnvironment/TVFrameSprite"]
+unique_name_in_owner = true
+script = ExtResource("45_w0qoj")
+
+[node name="BGRect" type="ColorRect" parent="GameEnvironment/TVFrameSprite/MannyUI"]
+offset_left = 910.0
+offset_top = -791.0
+offset_right = 1400.0
+offset_bottom = -31.0
+color = Color(0, 0, 0, 0.67451)
+
+[node name="MannySprite" type="Sprite2D" parent="GameEnvironment/TVFrameSprite/MannyUI"]
+position = Vector2(1150.56, -395.506)
+scale = Vector2(3, 3)
+texture = ExtResource("46_0myvo")
+
+[node name="EffectsRect" type="ColorRect" parent="GameEnvironment/TVFrameSprite/MannyUI"]
+material = SubResource("ShaderMaterial_w0qoj")
+offset_left = 906.0
+offset_top = -796.0
+offset_right = 1407.0
+offset_bottom = -27.0
 
 [node name="GameCamera" type="Camera2D" parent="GameEnvironment"]
 unique_name_in_owner = true

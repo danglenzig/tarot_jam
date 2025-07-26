@@ -9,8 +9,12 @@ var game_env: GameEnvironment = null:
 		if game_env:
 			game_env_ready.emit()
 
+signal started_mini_game(game_idx: int)
+
 signal game_env_ready
 signal minigame_complete
+const CLASSROOM = preload("res://game/main/mini_games/tutorials/Skärmbild 2025-07-26 205419.png")
+const NORMAL_BG = preload("res://imported_assets/01.jpg")
 
 const game_paths := {
 	"three_card_monte": "res://game/main/mini_games/three_card_monte/tcm_holder.tscn",
@@ -41,6 +45,8 @@ func start_mini_game(game_id: int):
 	await clear_minigame()
 	await _adjust_camera("in")
 	
+	started_mini_game.emit(game_id)
+	
 	match game_id:
 		0: # THREE_CARD_MONTE
 			_load_game("three_card_monte")
@@ -69,13 +75,17 @@ func _load_game(game_string: String):
 		"memory":
 			tutorial_scene = load(tutorial_paths["memory"])
 			game_scene = load(game_paths["memory"])
-			
+	
+	_tutorialize_background()
+	
 	tutorial_node = tutorial_scene.instantiate()
 	call_deferred("add_child", tutorial_node)
 	await tutorial_node.tree_entered	
 	
 	assert(tutorial_node.has_signal("tutorial_finished"))
 	await tutorial_node.tutorial_finished
+	
+	_reset_background()
 	
 	tutorial_node.call_deferred("queue_free")
 	await tutorial_node.tree_exited
@@ -115,6 +125,14 @@ func _adjust_camera(direction: String)->bool:
 		await cammy.zoom_out_complete
 		return true
 	return true
+	
+func _tutorialize_background():
+	var bg: Sprite2D = SingletonHolder.game_manager.main.game_environment.background_sprite
+	bg.texture = CLASSROOM
+	
+func _reset_background():
+	var bg: Sprite2D = SingletonHolder.game_manager.main.game_environment.background_sprite
+	bg.texture = NORMAL_BG
 
 func end_mini_game():
 	pass

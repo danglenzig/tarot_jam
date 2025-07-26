@@ -1,19 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://cek4jhpl7ku3i"]
+[gd_scene load_steps=11 format=3 uid="uid://cek4jhpl7ku3i"]
 
 [ext_resource type="Script" uid="uid://cqa70ryykyngc" path="res://tools/main/mini_games/tutorials/three_card_monte/three_card_monte_tutorial.gd" id="1_8icmq"]
 [ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="2_uh181"]
+[ext_resource type="Texture2D" uid="uid://dbfn643r15g8m" path="res://game/main/mini_games/tutorials/three_card_monte/Skärmbild 2025-07-26 202019.png" id="2_xk6hq"]
+[ext_resource type="Theme" uid="uid://cr1rehv3xwm7d" path="res://game/main/mini_games/tutorials/tutorial_label_theme.tres" id="3_lj0k2"]
+[ext_resource type="Texture2D" uid="uid://cfjq02cwiqv1v" path="res://game/main/mini_games/tutorials/three_card_monte/Skärmbild 2025-07-26 202125.png" id="4_lj0k2"]
+[ext_resource type="Texture2D" uid="uid://b84iukn0rfmsq" path="res://game/main/mini_games/tutorials/three_card_monte/Skärmbild 2025-07-26 202203.png" id="5_3q3ch"]
+[ext_resource type="Theme" uid="uid://dsw0e4bkycftp" path="res://tools/ui/game_buttons_theme.tres" id="5_n6n3x"]
+[ext_resource type="Texture2D" uid="uid://berk0pdei0imp" path="res://game/main/mini_games/tutorials/three_card_monte/1236844.png" id="6_ff6sm"]
+[ext_resource type="Texture2D" uid="uid://chsk68t3v18jt" path="res://game/main/mini_games/tutorials/Skärmbild 2025-07-26 223539.png" id="7_3ce2b"]
+[ext_resource type="Texture2D" uid="uid://c37my76uf0nie" path="res://imported_assets/Scholar-Hat-PNG-Photo.png" id="8_ff6sm"]
 
 [node name="ThreeCardMonteTutorial" type="Panel"]
 offset_right = 800.0
 offset_bottom = 450.0
 script = ExtResource("1_8icmq")
 
-[node name="MaddieSprite" type="Sprite2D" parent="."]
-position = Vector2(573, 352)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_uh181")
-
 [node name="TempLabel" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 189.0
 offset_top = 144.0
@@ -24,10 +28,107 @@ tutorial coming soon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Slide01" type="Node2D" parent="."]
+visible = false
+position = Vector2(34, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide01"]
+position = Vector2(244, -225)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_xk6hq")
+
+[node name="Label" type="Label" parent="Slide01"]
+offset_left = -12.0
+offset_top = -62.0
+offset_right = 360.0
+offset_bottom = -39.0
+theme = ExtResource("3_lj0k2")
+text = "There are exactly three cards in Three-Card Monte."
+vertical_alignment = 1
+
+[node name="Slide02" type="Node2D" parent="."]
+visible = false
+position = Vector2(34, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide02"]
+position = Vector2(244, -225)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_lj0k2")
+
+[node name="Label" type="Label" parent="Slide02"]
+offset_left = -12.0
+offset_top = -62.0
+offset_right = 360.0
+offset_bottom = -39.0
+theme = ExtResource("3_lj0k2")
+text = "Follow the Ace of Hearts!"
+vertical_alignment = 1
+
+[node name="Slide03" type="Node2D" parent="."]
+visible = false
+position = Vector2(34, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide03"]
+position = Vector2(244, -225)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_3q3ch")
+
+[node name="Arrow" type="Sprite2D" parent="Slide03"]
+position = Vector2(294, -315)
+rotation = 3.14159
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("6_ff6sm")
+
+[node name="Label" type="Label" parent="Slide03"]
+offset_left = -12.0
+offset_top = -62.0
+offset_right = 336.0
+offset_bottom = -25.0
+theme = ExtResource("3_lj0k2")
+text = "Picking the wrong card causes eats away at your humanity!"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Slide04" type="Node2D" parent="."]
+position = Vector2(34, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide04"]
+position = Vector2(244, -225)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_3ce2b")
+
+[node name="Arrow" type="Sprite2D" parent="Slide04"]
+position = Vector2(306, -224)
+rotation = 4.34063
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("6_ff6sm")
+
+[node name="Label" type="Label" parent="Slide04"]
+offset_left = -12.0
+offset_top = -62.0
+offset_right = 336.0
+offset_bottom = -25.0
+theme = ExtResource("3_lj0k2")
+text = "As you lose humanity, you gradually turn into a mannequin dummy."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="MaddieSprite" type="Sprite2D" parent="."]
+position = Vector2(593.995, 352)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_uh181")
+
+[node name="Sprite2D" type="Sprite2D" parent="MaddieSprite"]
+position = Vector2(73.8188, -785)
+scale = Vector2(0.589248, 0.585)
+texture = ExtResource("8_ff6sm")
+
 [node name="ContinueButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 223.0
-offset_top = 211.0
-offset_right = 302.0
-offset_bottom = 242.0
+offset_left = 467.0
+offset_top = 10.0
+offset_right = 546.0
+offset_bottom = 41.0
+theme = ExtResource("5_n6n3x")
 text = "Continue"

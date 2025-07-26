@@ -7,6 +7,8 @@ const SAVE_PATH = "user://game_data.tres"
 
 var game_data: GameData = null
 
+var first_game := true
+
 var hp := 1000.0:
 	set(new_value):
 		hp = new_value

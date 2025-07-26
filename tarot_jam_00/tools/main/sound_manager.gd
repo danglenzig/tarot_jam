@@ -70,6 +70,8 @@ const CARD_SLIDE = preload("res://imported_assets/Sound/GUI_Scroll_Short_7.wav")
 const CRICKETS = preload("res://imported_assets/Sound/crickets.ogg")
 const LAUGH = preload("res://imported_assets/Sound/laugh.ogg")
 
+const THUD = preload("res://imported_assets/Sound/thud.ogg")
+
 const MUSIC_MAX_VOLUME := 0.0
 const MUSIC_MIN_VOLUME := -20.0
 const SINE_MAX_PITCH := 1.5

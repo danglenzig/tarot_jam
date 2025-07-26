@@ -188,7 +188,14 @@ func shuffle_cards():
 		
 		swap_count += 1
 		
+		
+	for card in card_list:
+		card._show_qm_label(true)
+		
 	_set_cards_selectable(true)
+	
+	
+	
 		
 	shuffle_complete.emit()
 	
@@ -229,6 +236,10 @@ func _assign_face_texture_paths():
 #	pass
 	
 func _on_win_signal():
+	
+	for card in card_list:
+		card._show_qm_label(false)
+	
 	#print_debug("WIN ROUND!")
 	_set_cards_selectable(false)
 	
@@ -241,6 +252,10 @@ func _on_win_signal():
 	
 func _on_lose_signal(losing_card: MonteCard):
 	#print_debug("LOSE ROUND :/ ")
+	
+	for card in card_list:
+		card._show_qm_label(false)
+	
 	_set_cards_selectable(false)
 	
 	await get_tree().create_timer(0.5).timeout

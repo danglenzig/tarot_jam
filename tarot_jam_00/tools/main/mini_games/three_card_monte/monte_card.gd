@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var select_rect: SelectRect = $SelectRect
 @onready var card_uuid: String = SingletonHolder.misc_tools.get_uuid()
+@onready var qm_label: Label = $QMLabel
 
 @onready var sprite_2d: Sprite2D =$CardSprite
 
@@ -62,6 +63,8 @@ const HIGHLIGHT_REPEAT := 3
 
 func _ready() -> void:
 	
+	qm_label.visible = false
+	
 	if has_node("RedX"):
 		($RedX as Sprite2D).visible = false
 	if has_node("HighlightRect"):
@@ -84,6 +87,13 @@ func _ready() -> void:
 			game_controller.curently_active_card_uuid = ""
 	)
 	
+func _show_qm_label(show: bool)->bool:
+	if show:
+		qm_label.visible = true
+	else:
+		qm_label.visible = false
+	return true
+			
 func _input(event: InputEvent) -> void:
 	if not game_controller: return
 	if game_controller.curently_active_card_uuid != card_uuid: return

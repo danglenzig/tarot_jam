@@ -16,6 +16,7 @@ func _ready() -> void:
 func _on_start_menu_button_pressed(button: Button):
 	
 	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
+	sm._play_main_music(false)
 	sm.play_one_shot_sfx(sm.UI_BUTTON)
 	
 	match button:

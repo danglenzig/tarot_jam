@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dgx38x6f5wlqd"]
+[gd_scene load_steps=22 format=3 uid="uid://dgx38x6f5wlqd"]
 
 [ext_resource type="Script" uid="uid://c5bf7885t8fw4" path="res://tools/main/mini_games/three_card_monte/three_card_monte.gd" id="1_deflt"]
 [ext_resource type="Script" uid="uid://bfksjdp187ath" path="res://tools/main/mini_games/three_card_monte/monte_position.gd" id="2_0ofkl"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://chogmcc8pyc8q" path="res://imported_assets/cards/Card png/reverse_01.png" id="7_7k3y3"]
 [ext_resource type="Shader" uid="uid://7dyaresh0q65" path="res://game/main/mini_games/three_card_monte/three_card_monte.gdshader" id="8_0ofkl"]
 [ext_resource type="Texture2D" uid="uid://bpivy57lrq53x" path="res://imported_assets/red_x.png" id="8_fn0uo"]
+[ext_resource type="Theme" uid="uid://qbxoqqddrw8u" path="res://game/main/mini_games/qm_label_theme.tres" id="9_gh4nw"]
 [ext_resource type="Theme" uid="uid://dsw0e4bkycftp" path="res://tools/ui/game_buttons_theme.tres" id="10_aqb4p"]
 
 [sub_resource type="Curve2D" id="Curve2D_btqdn"]
@@ -107,6 +108,7 @@ script = ExtResource("2_0ofkl")
 start_value = "A"
 
 [node name="MarkerSprite" type="Sprite2D" parent="PositionHolder/Position01"]
+visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_fn0uo")
 
@@ -132,6 +134,7 @@ script = ExtResource("2_0ofkl")
 start_value = "B"
 
 [node name="Sprite2D" type="Sprite2D" parent="PositionHolder/Position02"]
+visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_fn0uo")
 
@@ -157,6 +160,7 @@ script = ExtResource("2_0ofkl")
 start_value = "C"
 
 [node name="Sprite2D" type="Sprite2D" parent="PositionHolder/Position03"]
+visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_fn0uo")
 
@@ -200,6 +204,16 @@ visible = false
 scale = Vector2(0.205, 0.41)
 texture = ExtResource("8_fn0uo")
 
+[node name="QMLabel" type="Label" parent="CardHolder/CardA"]
+offset_left = -27.0
+offset_top = -37.0
+offset_right = 13.0
+offset_bottom = -14.0
+theme = ExtResource("9_gh4nw")
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CardB" type="Node2D" parent="CardHolder"]
 position = Vector2(392, 379)
 script = ExtResource("4_aqb4p")
@@ -232,6 +246,16 @@ visible = false
 scale = Vector2(0.205, 0.41)
 texture = ExtResource("8_fn0uo")
 
+[node name="QMLabel" type="Label" parent="CardHolder/CardB"]
+offset_left = -27.0
+offset_top = -37.0
+offset_right = 13.0
+offset_bottom = -14.0
+theme = ExtResource("9_gh4nw")
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CardC" type="Node2D" parent="CardHolder"]
 position = Vector2(620, 380)
 script = ExtResource("4_aqb4p")
@@ -255,16 +279,27 @@ visible = false
 scale = Vector2(0.205, 0.41)
 texture = ExtResource("8_fn0uo")
 
+[node name="QMLabel" type="Label" parent="CardHolder/CardC"]
+offset_left = -27.0
+offset_top = -37.0
+offset_right = 30.0
+offset_bottom = 43.0
+theme = ExtResource("9_gh4nw")
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ShuffleButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 706.0
-offset_top = 383.0
-offset_right = 769.0
-offset_bottom = 414.0
+offset_left = 351.0
+offset_top = 363.0
+offset_right = 432.0
+offset_bottom = 394.0
 theme = ExtResource("10_aqb4p")
 text = "Shuffle"
 
 [node name="DevButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 635.0
 offset_top = 36.0
@@ -273,6 +308,7 @@ offset_bottom = 67.0
 text = "Dev Override"
 
 [node name="TakeHitButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 648.0
 offset_top = 81.0
@@ -285,7 +321,7 @@ visible = false
 layout_mode = 0
 offset_left = 707.0
 offset_top = 387.0
-offset_right = 769.0
+offset_right = 787.0
 offset_bottom = 410.0
 theme = ExtResource("10_aqb4p")
 text = "Continue"
