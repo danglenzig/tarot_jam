@@ -15,7 +15,7 @@ signal minigame_complete
 const game_paths := {
 	"three_card_monte": "res://game/main/mini_games/three_card_monte/tcm_holder.tscn",
 	"mastermind": "res://game/main/mini_games/mastermind/mastermind_holder.tscn",
-	"memory": "res://game/main/mini_games/memory/memory_game.tscn",
+	"memory": "res://game/main/mini_games/memory/memory_game_holder.tscn",
 }
 
 const tutorial_paths := {

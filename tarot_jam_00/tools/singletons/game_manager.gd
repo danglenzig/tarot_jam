@@ -20,7 +20,7 @@ var main: Main = null:
 var damage_per_hit := {
 	# these values will need tuning & balancing
 	"mastermind": 		20.0,
-	"memory": 			50.0,
+	"memory": 			20.0,
 	"three_card_monte": 100.0
 }
 const MAX_HP := 1000.0
@@ -28,21 +28,21 @@ const MAX_HP := 1000.0
 func _ready() -> void:
 	start_new_game()
 
-func _recalculate_mannequinity(_hp):
-	pass # TODO
+#func _recalculate_mannequinity(_hp):
+#	pass # TODO
 	
-func _on_fully_mannequin():
-	pass # TODO
+#func _on_fully_mannequin():
+#	pass # TODO
 
 func take_hit(mini_game_name: String):
 	#if not game_data: return
 	assert(mini_game_name in damage_per_hit.keys())
 	var damage: float = damage_per_hit[mini_game_name]
+	
+	# ensures hp never goes < 0
 	if hp - damage > 0:
 		hp -= damage
-		_recalculate_mannequinity(hp)
-	else:
-		_on_fully_mannequin() # master lose condition
+	#_recalculate_mannequinity(hp)
 		
 func _load_saved_data()->void:
 	if ResourceLoader.exists(SAVE_PATH):

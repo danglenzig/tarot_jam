@@ -10,6 +10,10 @@ extends Panel
 @onready var dev_button: Button = $DevButton
 @onready var take_hit_button: Button = $TakeHitButton
 
+#var incorrect_guesses := 0
+var total_guesses := 0
+
+var listen_for_click := false
 
 var cards: Array[MemoryGameCard] = []
 
@@ -32,13 +36,27 @@ var current_card_hovered_uuid := "":
 signal first_card_selected
 signal second_card_selected
 signal continue_signal
-signal game_complete
+
+signal game_complete # remove this
+
+signal round_complete
+signal round_ready
+
+signal take_hit
 
 const RESULT_DELAY := 0.25
+const AUTO_CONTINUE := 2.5
 
 func _ready() -> void:
 	dev_button.visible = false
 	take_hit_button.visible = false
+	
+	listen_for_click = false
+
+	continue_button.visibility_changed.connect(
+		func()->void:
+			listen_for_click = continue_button.visible
+	)
 	
 	continue_button.visible = false
 	continue_button.pressed.connect(
@@ -65,11 +83,12 @@ func _ready() -> void:
 	
 	dev_button.visible = dev_mode
 	take_hit_button.visible = dev_mode
-	dev_button.pressed.connect(_on_dev_button_pressed)
+	#dev_button.pressed.connect(_on_dev_button_pressed)
 	take_hit_button.pressed.connect(_on_take_hit_button_pressed)
 	
-	_set_up_game()
+	await _set_up_game()
 	
+	round_ready.emit()
 		
 func _set_up_game()->bool:
 	
@@ -136,7 +155,7 @@ func _on_second_card_selected():
 	results_holder.show_card_b(selected_card.card_sprite.texture)
 	for card in cards:
 		card.selectable = false
-		_check_result()
+	_check_result()
 		
 func _check_result():
 	assert(
@@ -145,11 +164,18 @@ func _check_result():
 	)
 	var card_a: MemoryGameCard = cards[selected_card_a_idx]
 	var card_b: MemoryGameCard = cards[selected_card_b_idx]
+	total_guesses += 1
 	if card_a.face_value == card_b.face_value:
 		_on_success()
 	else:
 		_on_failure()
-		
+
+func _timeout_continue():
+	await get_tree().create_timer(AUTO_CONTINUE).timeout
+	if not listen_for_click: return
+	continue_signal.emit()
+	
+
 func _on_success():
 	assert(
 		selected_card_a_idx >= 0 and 
@@ -159,6 +185,7 @@ func _on_success():
 	results_holder.check_label.visible = true
 	
 	continue_button.visible = true
+	_timeout_continue()
 	await continue_signal
 	
 	var card_a = cards[selected_card_a_idx]
@@ -174,6 +201,8 @@ func _on_success():
 	
 	for card in cards:
 		card.selectable = true
+		
+	_check_if_game_over()
 	
 func _on_failure():
 	assert(
@@ -184,6 +213,7 @@ func _on_failure():
 	results_holder.ex_label.visible = true
 	
 	continue_button.visible = true
+	_timeout_continue()
 	await continue_signal
 	
 	results_holder._clear_results_holder()
@@ -199,6 +229,20 @@ func _on_failure():
 	
 	for card in cards:
 		card.selectable = true
+	
+	#incorrect_guesses += 1
+	take_hit.emit()
+	
+	_check_if_game_over()
+
+func _check_if_game_over():
+	var game_over := true
+	for card in cards:
+		if card.card_sprite.visible:
+			game_over = false
+			break
+	if game_over:
+		round_complete.emit(total_guesses)
 
 func _on_card_selected(card: MemoryGameCard):
 	if selected_card_a_idx < 0:
@@ -206,7 +250,14 @@ func _on_card_selected(card: MemoryGameCard):
 	else:
 		selected_card_b_idx = cards.find(card)
 
-func _on_dev_button_pressed():
-	game_complete.emit()
+#func _on_dev_button_pressed():
+	#game_complete.emit()
 func _on_take_hit_button_pressed():
 	SingletonHolder.game_manager.take_hit("memory")
+	
+func _input(event: InputEvent) -> void:
+	if not listen_for_click: return
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.is_pressed():
+				continue_signal.emit()
