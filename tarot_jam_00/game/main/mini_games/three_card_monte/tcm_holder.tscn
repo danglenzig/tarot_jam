@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8n6m3d5ovmco"]
+[gd_scene load_steps=4 format=3 uid="uid://c8n6m3d5ovmco"]
 
 [ext_resource type="Script" uid="uid://bw5o6upalxufa" path="res://tools/main/mini_games/three_card_monte/tcm_holder.gd" id="1_cer3o"]
 [ext_resource type="FontFile" uid="uid://b0k8jkn78gdgh" path="res://imported_assets/fonts/Dynamo.ttf" id="2_mhxo7"]
+[ext_resource type="FontFile" uid="uid://rydj71xjixua" path="res://imported_assets/fonts/double-feature.regular.ttf" id="3_mhxo7"]
 
 [node name="TcmHolder" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -12,6 +13,7 @@ script = ExtResource("1_cer3o")
 position = Vector2(384, 215)
 
 [node name="RoundNumberLabel" type="Label" parent="LabelHolder"]
+visible = false
 z_index = 1
 offset_left = -340.0
 offset_top = -36.0
@@ -29,3 +31,50 @@ text = "ROUND N"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="ResultsPanel" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+offset_right = 800.0
+offset_bottom = 450.0
+
+[node name="ResultsLabelHolder" type="Node2D" parent="ResultsPanel"]
+position = Vector2(374, 218)
+
+[node name="ResultsCommentLabel" type="Label" parent="ResultsPanel/ResultsLabelHolder"]
+offset_left = -338.0
+offset_top = -113.0
+offset_right = 361.0
+offset_bottom = 133.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_mhxo7")
+theme_override_font_sizes/font_size = 80
+text = "DON'T BE
+A
+FOOL!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RemainingHumanityLabel" type="Label" parent="ResultsPanel/ResultsLabelHolder"]
+visible = false
+offset_left = -338.0
+offset_top = -113.0
+offset_right = 361.0
+offset_bottom = 133.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_mhxo7")
+theme_override_font_sizes/font_size = 80
+text = "REMAINING
+HUMANITY:
+NN%"
+horizontal_alignment = 1
+vertical_alignment = 1

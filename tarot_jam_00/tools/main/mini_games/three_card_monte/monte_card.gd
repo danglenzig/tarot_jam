@@ -125,7 +125,7 @@ func _on_auto_lose():
 func _flip_card():
 	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
 	
-	print_debug("Flippinng card with uuid ", card_uuid)
+	#print_debug("Flippinng card with uuid ", card_uuid)
 	
 	if flip_tween: return
 	flip_tween = create_tween()
@@ -164,10 +164,10 @@ func highlight_sequence(flip_card: bool)->bool:
 		_show_card()
 	for i in range(HIGHLIGHT_REPEAT + 1):
 		await get_tree().create_timer(HIGHLIGHT_DURATION * 0.5).timeout
-		print_debug("ON")
+		#print_debug("ON")
 		($HighlightRect as ColorRect).visible = true
 		await get_tree().create_timer(HIGHLIGHT_DURATION).timeout
-		print_debug("OFF")
+		#print_debug("OFF")
 		($HighlightRect as ColorRect).visible = false
 	return true
 	

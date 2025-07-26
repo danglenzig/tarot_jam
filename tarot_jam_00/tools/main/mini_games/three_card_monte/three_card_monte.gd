@@ -82,7 +82,7 @@ func _ready() -> void:
 	await display_all_cards_sequence()
 	
 	if winning_card:
-		print("FOOO")
+		#print("FOOO")
 		await winning_card.highlight_sequence(true)
 	
 	#dev_button.visible = dev_mode

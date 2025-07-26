@@ -7,6 +7,7 @@
 [node name="InrtoMonologue" type="Node" node_paths=PackedStringArray("dialogue_lines")]
 script = ExtResource("1_l0wi3")
 dialogue_lines = [NodePath("Bored"), NodePath("Sad"), NodePath("Lonely"), NodePath("BoredSadLonely"), NodePath("WhatsOnTv")]
+begin_convo_signal_data_string = "play_crickets"
 metadata/_custom_type_script = "uid://dqr60we44mcdv"
 
 [node name="Bored" type="Node" parent="."]
@@ -38,6 +39,7 @@ script = ExtResource("2_1fw6q")
 speaker_name = "(Inner Monologue)"
 text = "I wonder what's on TV."
 is_quit = true
+end_signal_data_string = "stop_crickets"
 choices = [NodePath("TurnOnTVChoice")]
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 

@@ -681,3 +681,6 @@ bus = &"SFX"
 [node name="OneShotSFX_2" type="AudioStreamPlayer" parent="SoundManager/OneShotPlayers"]
 
 [node name="OneShotSFX_3" type="AudioStreamPlayer" parent="SoundManager/OneShotPlayers"]
+
+[node name="LoopSFXPlayer" type="AudioStreamPlayer" parent="SoundManager"]
+volume_db = -10.0

@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1shnmu06acyh"]
+[gd_scene load_steps=9 format=3 uid="uid://b1shnmu06acyh"]
 
 [ext_resource type="Script" uid="uid://dqr60we44mcdv" path="res://tools/dialogue/conversation.gd" id="1_cnvi1"]
 [ext_resource type="Script" uid="uid://dymadn8xeg0aj" path="res://tools/dialogue/dialogue_line.gd" id="2_gvues"]
 [ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="3_36l7d"]
 [ext_resource type="Script" uid="uid://kwf8edpxnkk1" path="res://tools/dialogue/dialogue_choice.gd" id="4_2krig"]
+[ext_resource type="Texture2D" uid="uid://cpq5twjdwbyk" path="res://game/dialogue/maddie_dialogue_portrait_0000018.png" id="4_qvos2"]
+[ext_resource type="Texture2D" uid="uid://4nqd46rx4xa" path="res://game/dialogue/maddie_dialogue_portrait_0000004.png" id="5_fblft"]
+[ext_resource type="Texture2D" uid="uid://cwx04g1fdq5cv" path="res://game/dialogue/maddie_dialogue_portrait_0000003.png" id="6_omgdy"]
+[ext_resource type="Texture2D" uid="uid://dcii4qxo65g4x" path="res://game/dialogue/maddie_dialogue_portrait_0000001.png" id="8_18hxj"]
 
 [node name="MaddieIntroConvo01" type="Node" node_paths=PackedStringArray("dialogue_lines")]
 script = ExtResource("1_cnvi1")
@@ -30,7 +34,7 @@ metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 [node name="2" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = "Madame Massacre"
-portrait_texture = ExtResource("3_36l7d")
+portrait_texture = ExtResource("4_qvos2")
 portrait_side = 1
 text = "...but you can call me Maddie."
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
@@ -38,7 +42,7 @@ metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 [node name="3" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = "Maddie"
-portrait_texture = ExtResource("3_36l7d")
+portrait_texture = ExtResource("5_fblft")
 portrait_side = 1
 text = "This is normally where I'd introduce our contestants. But frankly I'm sick of them and their stupid faces."
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
@@ -53,7 +57,7 @@ metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 [node name="5" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = "Maddie"
-portrait_texture = ExtResource("3_36l7d")
+portrait_texture = ExtResource("6_omgdy")
 portrait_side = 1
 text = "So instead of that...Are YOU ready to play?"
 begin_signal_data_string = "studio_cam_1"
@@ -65,6 +69,7 @@ speaker_name = ""
 portrait_texture = ExtResource("3_36l7d")
 portrait_side = 1
 text = "..."
+begin_signal_data_string = "play_crickets"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
 [node name="7" type="Node" parent="." node_paths=PackedStringArray("choices")]
@@ -80,12 +85,13 @@ metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 script = ExtResource("4_2krig")
 text = "...who, me?"
 target_line_index = 8
+signal_data_string = "stop_crickets"
 metadata/_custom_type_script = "uid://kwf8edpxnkk1"
 
 [node name="8" type="Node" parent="." node_paths=PackedStringArray("choices")]
 script = ExtResource("2_gvues")
 speaker_name = "Maddie"
-portrait_texture = ExtResource("3_36l7d")
+portrait_texture = ExtResource("8_18hxj")
 portrait_side = 1
 text = "Yes! You, the sad, bored and lonely person at home on your cheap Ikea futon!"
 choices = [NodePath("UhOkChoice")]

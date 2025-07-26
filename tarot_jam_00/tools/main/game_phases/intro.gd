@@ -125,3 +125,9 @@ func _on_dialogue_data_signal_rxd(data: String):
 			
 		"fantastic":
 			sm.play_audience_reaction(sm.APPLAUSE_01)
+			
+		"play_crickets":
+			sm.play_loop_sfx(sm.CRICKETS)
+			
+		"stop_crickets":
+			sm.play_loop_sfx(null, false)

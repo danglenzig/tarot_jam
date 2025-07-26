@@ -18,6 +18,8 @@ extends Node
 @onready var low_sine_player: AudioStreamPlayer = $LowSinePlayer
 @onready var audience_reaction_player: AudioStreamPlayer = $AudienceReactionPlayer
 @onready var card_shift_player: AudioStreamPlayer = $CardShiftPlayer
+@onready var loop_sfx_player: AudioStreamPlayer = $LoopSFXPlayer
+
 
 
 var one_shot_players: Array[AudioStreamPlayer]
@@ -65,9 +67,11 @@ const OOOH_01 = preload("res://imported_assets/Sound/oooh_01.ogg")
 const BOO = preload("res://imported_assets/Sound/boo.ogg")
 
 const CARD_SLIDE = preload("res://imported_assets/Sound/GUI_Scroll_Short_7.wav")
+const CRICKETS = preload("res://imported_assets/Sound/crickets.ogg")
+const LAUGH = preload("res://imported_assets/Sound/laugh.ogg")
 
 const MUSIC_MAX_VOLUME := 0.0
-const MUSIC_MIN_VOLUME := -30.0
+const MUSIC_MIN_VOLUME := -20.0
 const SINE_MAX_PITCH := 1.5
 const SINE_MIN_PITCH := 0.25
 
@@ -183,5 +187,16 @@ func play_card_shift():
 		rando *= -1
 	card_shift_player.pitch_scale += rando
 	card_shift_player.play()
+	
+func play_loop_sfx(sfx: Resource, play: bool = true):
+	if not play:
+		loop_sfx_player.stop()
+		loop_sfx_player.stream = null
+		return
+	if loop_sfx_player.playing:
+		loop_sfx_player.stop()
+	loop_sfx_player.stream = sfx
+	loop_sfx_player.play()
+	
 	
 		
