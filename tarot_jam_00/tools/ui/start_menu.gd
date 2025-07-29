@@ -16,14 +16,16 @@ func _ready() -> void:
 func _on_start_menu_button_pressed(button: Button):
 	
 	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
-	sm._play_main_music(false)
+	
 	sm.play_one_shot_sfx(sm.UI_BUTTON)
 	
 	match button:
 		start_button:
+			sm._play_main_music(false)
 			var main = SingletonHolder.game_manager.main
 			main.start_game_signal.emit()
 		about_button:
-			pass
+			var mc: MainCanvas = SingletonHolder.game_manager.main.main_canvas
+			mc.show_layer(mc.about, true)
 		quit_button:
 			get_tree().quit()

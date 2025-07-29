@@ -10,6 +10,7 @@ extends CanvasLayer
 @onready var general_knowledge: GeneralKnowledge = $GeneralKnowledge
 @onready var master_mind: MastermindLabel = $MasterMind
 @onready var memory: MemoryLabel = %Memory
+@onready var about: Control = $About
 
 
 @onready var event_bus: EventBus = SingletonHolder.event_bus
@@ -20,6 +21,10 @@ func _ready() -> void:
 	
 	event_bus.dialogue_started.connect(_on_dialogue_started)
 	event_bus.dialogue_ended.connect(_on_dialogue_ended)
+	event_bus.hide_about.connect(
+		func()->void:
+			show_layer(about, false)
+	)
 
 func show_layer(the_layer: Control, show_value: bool, hide_others: bool = false):
 	var layers := get_children()

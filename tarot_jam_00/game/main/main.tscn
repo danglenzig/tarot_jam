@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://b578jtugl6bw6"]
+[gd_scene load_steps=62 format=3 uid="uid://b578jtugl6bw6"]
 
 [ext_resource type="Script" uid="uid://duwgp8a3wh5ha" path="res://tools/main/main.gd" id="1_5520f"]
 [ext_resource type="Script" uid="uid://ei305fu26y4r" path="res://tools/main/game_phases/intro.gd" id="2_kmyu1"]
@@ -46,6 +46,10 @@
 [ext_resource type="Texture2D" uid="uid://dk2y3yi13uc2" path="res://imported_assets/logo/vl_logo_adjusted.png" id="28_0myvo"]
 [ext_resource type="Script" uid="uid://cu6ijknjcdrl4" path="res://game/main/memory_label.gd" id="28_25ivp"]
 [ext_resource type="Script" uid="uid://bsqdd5qsaabm0" path="res://tools/main/advert_manager.gd" id="33_qfxf6"]
+[ext_resource type="Theme" uid="uid://uf6jy56vbqe6" path="res://about_theme.tres" id="37_7qal7"]
+[ext_resource type="Texture2D" uid="uid://cwcq3p6qcbg6f" path="res://imported_assets/About.jpg" id="37_yvrhf"]
+[ext_resource type="Script" uid="uid://cvavr0ybfi7h2" path="res://game/main/about.gd" id="38_aa2ef"]
+[ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="39_aa2ef"]
 [ext_resource type="Script" uid="uid://bvkrg6si5meex" path="res://tools/ui/manny_ui.gd" id="45_w0qoj"]
 [ext_resource type="Texture2D" uid="uid://diokwp0k7j4xj" path="res://imported_assets/mannequin_ui/0_125.png" id="46_0myvo"]
 [ext_resource type="Script" uid="uid://b37nqqaqg3pv" path="res://tools/main/sound_manager.gd" id="47_ip5y8"]
@@ -624,6 +628,175 @@ offset_top = -24.0
 offset_right = 81.0
 offset_bottom = -1.0
 text = "Maddie"
+
+[node name="About" type="Control" parent="MainCanvas"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 640.0
+offset_top = 361.0
+offset_right = 680.0
+offset_bottom = 401.0
+theme = ExtResource("37_7qal7")
+script = ExtResource("38_aa2ef")
+
+[node name="Sprite2D" type="Sprite2D" parent="MainCanvas/About"]
+texture = ExtResource("37_yvrhf")
+
+[node name="Panel" type="Panel" parent="MainCanvas/About"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -364.0
+offset_right = 600.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainCanvas/About/Panel"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -573.0
+offset_top = 39.0
+offset_right = 47.0
+offset_bottom = 625.0
+grow_horizontal = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="MainCanvas/About/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("16_lw3xc")
+theme_override_font_sizes/font_size = 50
+text = "ABOUT THIS GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MainCanvas/About/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+text = "Madame Massacre's Midnight Mashup was created in 10 days for Tarot Jam 2025 (hosted by Figerox Studio) by HANNAH KJELLIN and BRAD NEAL of Valley Lodge Games."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="MainCanvas/About/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+text = "TOOLS and ASSETS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="GridContainer" type="GridContainer" parent="MainCanvas/About/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 30
+columns = 2
+
+[node name="Label" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Engine:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Godot Engine v4.4.1"
+
+[node name="Label3" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Character Art:"
+horizontal_alignment = 2
+
+[node name="Label4" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Adobe FUSE, Mixamo"
+
+[node name="Label5" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Sound:"
+horizontal_alignment = 2
+
+[node name="Label6" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Audacity, Caustic 3"
+
+[node name="Label7" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "2D Assets:"
+horizontal_alignment = 2
+
+[node name="Label8" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Original and fair-use stock photography"
+
+[node name="Label13" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "2D Image Manipulation:"
+horizontal_alignment = 2
+
+[node name="Label14" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "GIMP, MS Photo"
+
+[node name="Label15" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Fonts:"
+horizontal_alignment = 2
+
+[node name="Label16" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "1001fonts.com"
+
+[node name="Label9" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Video:"
+horizontal_alignment = 2
+
+[node name="Label10" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Clip Studio Paint Debut"
+
+[node name="Label11" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Collaboration:"
+horizontal_alignment = 2
+
+[node name="Label12" type="Label" parent="MainCanvas/About/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Discord, Miro"
+
+[node name="Label4" type="Label" parent="MainCanvas/About/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+text = "All photographic, sound effect, and font assets used in this game are utilized in accordance with their respective licenses, allowing for free and unrestricted use in hobby projects."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="MainCanvas/About/Panel/VBoxContainer/Label4"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 246.0
+offset_top = 101.0
+offset_right = 353.0
+offset_bottom = 141.0
+theme = ExtResource("23_w0qoj")
+theme_override_font_sizes/font_size = 30
+text = "Main"
+
+[node name="MaddieSprite" type="Sprite2D" parent="MainCanvas/About/Panel"]
+position = Vector2(973, 436)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("39_aa2ef")
 
 [node name="PostProcessCanvas" type="CanvasLayer" parent="."]
 
