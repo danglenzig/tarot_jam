@@ -1,37 +1,46 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1shnmu06acyh"]
+[gd_scene load_steps=11 format=3 uid="uid://b1shnmu06acyh"]
 
 [ext_resource type="Script" uid="uid://dqr60we44mcdv" path="res://tools/dialogue/conversation.gd" id="1_cnvi1"]
 [ext_resource type="Script" uid="uid://dymadn8xeg0aj" path="res://tools/dialogue/dialogue_line.gd" id="2_gvues"]
 [ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="3_36l7d"]
+[ext_resource type="Texture2D" uid="uid://du4hkap22goou" path="res://game/dialogue/dialogue_portraits_1/maddie_02_58.png" id="3_omgdy"]
 [ext_resource type="Script" uid="uid://kwf8edpxnkk1" path="res://tools/dialogue/dialogue_choice.gd" id="4_2krig"]
 [ext_resource type="Texture2D" uid="uid://cpq5twjdwbyk" path="res://game/dialogue/maddie_dialogue_portrait_0000018.png" id="4_qvos2"]
+[ext_resource type="Texture2D" uid="uid://646iihmnajt4" path="res://game/dialogue/dialogue_portraits_1/maddie_07_35.png" id="5_18hxj"]
 [ext_resource type="Texture2D" uid="uid://4nqd46rx4xa" path="res://game/dialogue/maddie_dialogue_portrait_0000004.png" id="5_fblft"]
 [ext_resource type="Texture2D" uid="uid://cwx04g1fdq5cv" path="res://game/dialogue/maddie_dialogue_portrait_0000003.png" id="6_omgdy"]
 [ext_resource type="Texture2D" uid="uid://dcii4qxo65g4x" path="res://game/dialogue/maddie_dialogue_portrait_0000001.png" id="8_18hxj"]
 
 [node name="MaddieIntroConvo01" type="Node" node_paths=PackedStringArray("dialogue_lines")]
 script = ExtResource("1_cnvi1")
-dialogue_lines = [NodePath("0"), NodePath("1"), NodePath("2"), NodePath("3"), NodePath("4"), NodePath("5"), NodePath("6"), NodePath("7"), NodePath("8"), NodePath("9")]
+dialogue_lines = [NodePath("_0"), NodePath("_1"), NodePath("_2"), NodePath("_3"), NodePath("_4"), NodePath("_5"), NodePath("_6"), NodePath("_7"), NodePath("_8"), NodePath("_9"), NodePath("9")]
 metadata/_custom_type_script = "uid://dqr60we44mcdv"
 
-[node name="0" type="Node" parent="."]
+[node name="_0" type="Node" parent="."]
+script = ExtResource("2_gvues")
+portrait_texture = ExtResource("3_omgdy")
+portrait_side = 1
+text = "Greetings goblins and ghoulfriends!"
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="_1" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = "Madame Massacre"
 portrait_texture = ExtResource("3_36l7d")
 portrait_side = 1
-text = "Hi everybody! Welcome to the show!"
+text = "Welcome to the show!"
 end_signal_data_string = "theme_alert"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="1" type="Node" parent="."]
+[node name="_2" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = "Madame Massacre"
-portrait_texture = ExtResource("3_36l7d")
+portrait_texture = ExtResource("5_18hxj")
 portrait_side = 1
 text = "As always, I'm your host Madame Massacre..."
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="2" type="Node" parent="."]
+[node name="_3" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = "Madame Massacre"
 portrait_texture = ExtResource("4_qvos2")
@@ -39,7 +48,7 @@ portrait_side = 1
 text = "...but you can call me Maddie."
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="3" type="Node" parent="."]
+[node name="_4" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = "Maddie"
 portrait_texture = ExtResource("5_fblft")
@@ -47,14 +56,14 @@ portrait_side = 1
 text = "This is normally where I'd introduce our contestants. But frankly I'm sick of them and their stupid faces."
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="4" type="Node" parent="."]
+[node name="_5" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = "Maddie"
 text = "Seriously -- just look at their stupid faces."
 begin_signal_data_string = "show_contestants"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="5" type="Node" parent="."]
+[node name="_6" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = "Maddie"
 portrait_texture = ExtResource("6_omgdy")
@@ -63,7 +72,7 @@ text = "So instead of that...Are YOU ready to play?"
 begin_signal_data_string = "studio_cam_1"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="6" type="Node" parent="."]
+[node name="_7" type="Node" parent="."]
 script = ExtResource("2_gvues")
 speaker_name = ""
 portrait_texture = ExtResource("3_36l7d")
@@ -72,7 +81,7 @@ text = "..."
 begin_signal_data_string = "play_crickets"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="7" type="Node" parent="." node_paths=PackedStringArray("choices")]
+[node name="_8" type="Node" parent="." node_paths=PackedStringArray("choices")]
 script = ExtResource("2_gvues")
 speaker_name = ""
 portrait_texture = ExtResource("3_36l7d")
@@ -81,14 +90,14 @@ text = "..."
 choices = [NodePath("WhoMeChoice")]
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="WhoMeChoice" type="Node" parent="7"]
+[node name="WhoMeChoice" type="Node" parent="_8"]
 script = ExtResource("4_2krig")
 text = "...who, me?"
-target_line_index = 8
+target_line_index = 9
 signal_data_string = "stop_crickets"
 metadata/_custom_type_script = "uid://kwf8edpxnkk1"
 
-[node name="8" type="Node" parent="." node_paths=PackedStringArray("choices")]
+[node name="_9" type="Node" parent="." node_paths=PackedStringArray("choices")]
 script = ExtResource("2_gvues")
 speaker_name = "Maddie"
 portrait_texture = ExtResource("8_18hxj")
@@ -97,10 +106,10 @@ text = "Yes! You, the sad, bored and lonely person at home on your cheap Ikea fu
 choices = [NodePath("UhOkChoice")]
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="UhOkChoice" type="Node" parent="8"]
+[node name="UhOkChoice" type="Node" parent="_9"]
 script = ExtResource("4_2krig")
 text = "Uh...okay, I guess."
-target_line_index = 9
+target_line_index = 10
 metadata/_custom_type_script = "uid://kwf8edpxnkk1"
 
 [node name="9" type="Node" parent="."]

@@ -189,6 +189,7 @@ func _setup_buttons():
 		dialog_choices_vbox.call_deferred("add_child", new_button)
 		await  new_button.tree_entered
 		new_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		new_button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		new_button.text = choice.text
 		if choice.is_quit:
 			new_button.pressed.connect(

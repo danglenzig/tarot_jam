@@ -37,7 +37,7 @@ signal first_card_selected
 signal second_card_selected
 signal continue_signal
 
-signal game_complete # remove this
+#signal game_complete # remove this
 
 signal round_complete
 signal round_ready
@@ -92,7 +92,7 @@ func _ready() -> void:
 		
 func _set_up_game()->bool:
 	
-	print_debug("FFFFFFFFFOOOOOOOOOOO")
+	#print_debug("FFFFFFFFFOOOOOOOOOOO")
 	
 	var possible_card_values = []
 	for i in range(SingletonHolder.deck_helper.face_up_data.keys().size()):

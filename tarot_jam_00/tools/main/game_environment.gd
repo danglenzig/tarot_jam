@@ -13,6 +13,7 @@ var game_mode: GameMode = GameMode.NONE
 @onready var mini_game_manager: MiniGameManager = %MiniGameManager
 @onready var advert_manager: AdvertManager = %AdvertManager
 @onready var manny_ui: MannyUi = %MannyUI
+@onready var legs_view: LegsView = $LegsView
 
 
 @onready var event_bus: EventBus = SingletonHolder.event_bus

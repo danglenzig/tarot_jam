@@ -56,7 +56,7 @@ func _load_saved_data()->void:
 		#print_debug(game_data.objective_tracker_data)	
 		
 	else:
-		print_debug("No saved data found")
+		#print_debug("No saved data found")
 		start_new_game()
 
 func start_new_game()->void:

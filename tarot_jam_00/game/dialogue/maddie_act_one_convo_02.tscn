@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://crtal61tsqeyv"]
+[gd_scene load_steps=7 format=3 uid="uid://crtal61tsqeyv"]
 
 [ext_resource type="Script" uid="uid://dqr60we44mcdv" path="res://tools/dialogue/conversation.gd" id="1_1c6yj"]
 [ext_resource type="Script" uid="uid://dymadn8xeg0aj" path="res://tools/dialogue/dialogue_line.gd" id="2_5qq4f"]
-[ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="3_bk3v5"]
+[ext_resource type="Texture2D" uid="uid://bnftn507pipwd" path="res://game/dialogue/maddie_dialogue_portrait_0000019.png" id="3_bk3v5"]
+[ext_resource type="Texture2D" uid="uid://du4hkap22goou" path="res://game/dialogue/dialogue_portraits_1/maddie_02_58.png" id="4_1hhj3"]
+[ext_resource type="Script" uid="uid://kwf8edpxnkk1" path="res://tools/dialogue/dialogue_choice.gd" id="5_1hhj3"]
+[ext_resource type="Texture2D" uid="uid://cwx04g1fdq5cv" path="res://game/dialogue/maddie_dialogue_portrait_0000003.png" id="6_r58cx"]
 
 [node name="MaddieActOneConvo02" type="Node" node_paths=PackedStringArray("dialogue_lines")]
 script = ExtResource("1_1c6yj")
-dialogue_lines = [NodePath("1"), NodePath("2")]
+dialogue_lines = [NodePath("0"), NodePath("1"), NodePath("2"), NodePath("3")]
 end_convo_signal_data_string = "show_commercial"
 metadata/_custom_type_script = "uid://dqr60we44mcdv"
 
-[node name="1" type="Node" parent="."]
+[node name="0" type="Node" parent="."]
 script = ExtResource("2_5qq4f")
 speaker_name = "Maddie"
 portrait_texture = ExtResource("3_bk3v5")
@@ -18,10 +21,43 @@ portrait_side = 1
 text = "We learned a valuable lesson about scams today, didn't we?"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="2" type="Node" parent="."]
+[node name="1" type="Node" parent="." node_paths=PackedStringArray("choices")]
 script = ExtResource("2_5qq4f")
 speaker_name = "Maddie"
-portrait_texture = ExtResource("3_bk3v5")
+portrait_texture = ExtResource("4_1hhj3")
+text = "How are those legs feeling? A bit stiff? Wooden...?"
+is_quit = true
+begin_signal_data_string = "a_bit_wooden"
+choices = [NodePath("DialogueChoice")]
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="DialogueChoice" type="Node" parent="1"]
+script = ExtResource("5_1hhj3")
+text = "What? No, not really...?"
+target_line_index = 2
+metadata/_custom_type_script = "uid://kwf8edpxnkk1"
+
+[node name="2" type="Node" parent="." node_paths=PackedStringArray("choices")]
+script = ExtResource("2_5qq4f")
+speaker_name = ""
+text = "!!!"
+begin_signal_data_string = "show_legs"
+choices = [NodePath("DialogueChoice")]
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="DialogueChoice" type="Node" parent="2"]
+script = ExtResource("5_1hhj3")
+text = "Noooononono!"
+target_line_index = 3
+signal_data_string = "hide_legs"
+metadata/_custom_type_script = "uid://kwf8edpxnkk1"
+
+[node name="3" type="Node" parent="."]
+script = ExtResource("2_5qq4f")
+speaker_name = "Maddie"
+portrait_texture = ExtResource("6_r58cx")
+portrait_side = 1
 text = "We'll be right back after a word from our sponsors!"
 is_quit = true
+begin_signal_data_string = "sponsors"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"

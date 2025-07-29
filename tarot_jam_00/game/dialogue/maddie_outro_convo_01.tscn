@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dqr60we44mcdv" path="res://tools/dialogue/conversation.gd" id="1_8hdtt"]
 [ext_resource type="Script" uid="uid://dymadn8xeg0aj" path="res://tools/dialogue/dialogue_line.gd" id="2_ddksn"]
-[ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="3_2dx4x"]
+[ext_resource type="Texture2D" uid="uid://cpq5twjdwbyk" path="res://game/dialogue/maddie_dialogue_portrait_0000018.png" id="3_2dx4x"]
 
 [node name="MaddieOutroConvo01" type="Node" node_paths=PackedStringArray("dialogue_lines")]
 script = ExtResource("1_8hdtt")
-dialogue_lines = [NodePath("0")]
+dialogue_lines = [NodePath("0"), NodePath("1")]
 end_convo_signal_data_string = "outro_finished"
 metadata/_custom_type_script = "uid://dqr60we44mcdv"
 
@@ -14,6 +14,13 @@ metadata/_custom_type_script = "uid://dqr60we44mcdv"
 script = ExtResource("2_ddksn")
 speaker_name = "Maddie"
 portrait_texture = ExtResource("3_2dx4x")
-text = "Bye!"
+text = "I think it's time you joined us..."
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="1" type="Node" parent="."]
+script = ExtResource("2_ddksn")
+speaker_name = "Maddie"
+text = "...Don't you?"
 is_quit = true
+begin_signal_data_string = "show _audience_1"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"

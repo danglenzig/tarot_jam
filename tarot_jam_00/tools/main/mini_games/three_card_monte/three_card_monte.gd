@@ -7,7 +7,9 @@ var ba_tween: Tween = null
 const SHUFFLE_TWEEN_DURATION := 0.33
 const DISPLAY_CARDS_DURATION := 1.75
 
-#@export var dev_mode := false
+var round_one_shuffle_speed_modifier := 1.0
+
+@export var dev_mode := false
 
 @onready var card_holder: Node2D = $CardHolder
 @onready var position_holder: Node2D = $PositionHolder
@@ -25,20 +27,18 @@ var round_over := false
 var always_lose := false:
 	set(new_value):
 		always_lose = new_value
-		if always_lose:
-			print_debug("Get ready to lose.")
 
 @warning_ignore("unused_signal")
 signal continue_signal
 signal shuffle_complete
 signal round_complete(round_won: bool)
 signal round_ready
-signal take_hit
+#signal take_hit
 
 var curently_active_card_uuid := "":
 	set(new_value):
 		curently_active_card_uuid = new_value
-		print_debug(curently_active_card_uuid)
+		#print_debug(curently_active_card_uuid)
 		
 var card_list: Array[MonteCard] = []
 var position_list: Array[MontePosition] = []
@@ -85,7 +85,8 @@ func _ready() -> void:
 		#print("FOOO")
 		await winning_card.highlight_sequence(true)
 	
-	#dev_button.visible = dev_mode
+	
+	dev_button.visible = dev_mode
 	#take_hit_button.visible = dev_mode
 	#dev_button.pressed.connect(_on_dev_button_pressed)
 	#take_hit_button.pressed.connect(_on_take_hit_pressed)
@@ -161,17 +162,26 @@ func shuffle_cards():
 		#sm.play_one_shot_sfx(sm.CARD_SLIDE)
 		sm.play_card_shift()
 		
+		
+		var duration_mod := randf_range(0.1, 0.2)
+		if randi() % 2 == 0: duration_mod *= -1
+		if duration_mod > 0:
+			duration_mod *= 0.5
+		
+		var shuffle_dur = (SHUFFLE_TWEEN_DURATION + duration_mod) * round_one_shuffle_speed_modifier
+		#print_debug(round_one_shuffle_speed_modifier)
+		
 		# tween pos_1_card to its destination
 		_clear_tween(ab_tween)
 		ab_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-		ab_tween.tween_property(pos_1_card_path_follow, "progress_ratio", 1.0,SHUFFLE_TWEEN_DURATION)
+		ab_tween.tween_property(pos_1_card_path_follow, "progress_ratio", 1.0, shuffle_dur)
 		
 		await get_tree().create_timer(0.1).timeout
 		
 		# and vice versa
 		_clear_tween(ba_tween)
 		ba_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-		ba_tween.tween_property(pos_2_card_path_follow, "progress_ratio", 1.0, SHUFFLE_TWEEN_DURATION)
+		ba_tween.tween_property(pos_2_card_path_follow, "progress_ratio", 1.0, shuffle_dur)
 		
 		# wait for the second one to finish
 		await ba_tween.finished
@@ -212,8 +222,9 @@ func _assign_face_texture_paths():
 	for i in range(SingletonHolder.deck_helper.face_up_data.keys().size()):
 		symbol_number_bucket.append(i)
 	
-	# erase Ace of Hearts
+	# erase aces of Hearts
 	symbol_number_bucket.erase(20)
+	symbol_number_bucket.erase(21)
 		
 	for card in card_list:
 		
@@ -221,6 +232,7 @@ func _assign_face_texture_paths():
 			var winner_face_texture_path = (
 				# winner is allways Ace of Hearts
 				SingletonHolder.deck_helper.face_up_data[20]["standard_face_texture_path"]
+				#SingletonHolder.deck_helper.face_up_data[20]["texture_path"]
 			)
 			card.face_texture_path = winner_face_texture_path
 		else:
@@ -228,9 +240,12 @@ func _assign_face_texture_paths():
 			var rando_symol_idx = symbol_number_bucket.pick_random()
 			symbol_number_bucket.erase(rando_symol_idx)
 			var face_texture_path = (
+				#SingletonHolder.deck_helper.face_up_data[rando_symol_idx]["texture_path"]
 				SingletonHolder.deck_helper.face_up_data[rando_symol_idx]["standard_face_texture_path"]
 			)
 			card.face_texture_path = face_texture_path
+			
+			
 			
 #func _replace_tarot_with_standard_texture(number_of_cards):
 #	pass

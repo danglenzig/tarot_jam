@@ -87,8 +87,8 @@ func _ready() -> void:
 			game_controller.curently_active_card_uuid = ""
 	)
 	
-func _show_qm_label(show: bool)->bool:
-	if show:
+func _show_qm_label(show_qm: bool)->bool:
+	if show_qm:
 		qm_label.visible = true
 	else:
 		qm_label.visible = false
@@ -124,10 +124,19 @@ func _input(event: InputEvent) -> void:
 
 func _on_auto_lose():
 	
-	face_texture_path = (
-		# the fool
-		SingletonHolder.deck_helper.face_up_data[0]["texture_path"]
-	)
+	var tcm_holder = game_controller.get_parent() as TCMHolder
+	var round_number: int = game_controller.round_number
+	
+	match round_number:
+		2:
+			face_texture_path = (
+				SingletonHolder.deck_helper.face_up_data[18]["standard_face_texture_path"]
+			)
+		tcm_holder.NUMBER_OF_ROUNDS:
+			face_texture_path = (
+				# the fool
+				SingletonHolder.deck_helper.face_up_data[0]["texture_path"]
+			)
 	_flip_card()
 	await card_flip_complete
 	lose_signal.emit(self)

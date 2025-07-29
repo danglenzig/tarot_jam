@@ -1,28 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://duamv8iv67e1g"]
+[gd_scene load_steps=7 format=3 uid="uid://duamv8iv67e1g"]
 
 [ext_resource type="Script" uid="uid://dqr60we44mcdv" path="res://tools/dialogue/conversation.gd" id="1_ib3xt"]
 [ext_resource type="Script" uid="uid://dymadn8xeg0aj" path="res://tools/dialogue/dialogue_line.gd" id="2_crw2t"]
-[ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="3_f7ybc"]
+[ext_resource type="Texture2D" uid="uid://bry1r0swkj7bm" path="res://game/dialogue/maddie_dialogue_portrait_0000017.png" id="3_uq4jo"]
+[ext_resource type="Texture2D" uid="uid://4nqd46rx4xa" path="res://game/dialogue/maddie_dialogue_portrait_0000004.png" id="5_3tbb2"]
+[ext_resource type="Script" uid="uid://kwf8edpxnkk1" path="res://tools/dialogue/dialogue_choice.gd" id="5_uq4jo"]
+[ext_resource type="Texture2D" uid="uid://cb51dniegkt5w" path="res://game/dialogue/maddie_dialogue_portrait_0000007.png" id="6_uq4jo"]
 
 [node name="MaddieActThreeConvo02" type="Node" node_paths=PackedStringArray("dialogue_lines")]
 script = ExtResource("1_ib3xt")
-dialogue_lines = [NodePath("0"), NodePath("1")]
+dialogue_lines = [NodePath("0"), NodePath("1"), NodePath("2"), NodePath("3")]
 end_convo_signal_data_string = "end_of_act_three"
 metadata/_custom_type_script = "uid://dqr60we44mcdv"
 
 [node name="0" type="Node" parent="."]
 script = ExtResource("2_crw2t")
 speaker_name = "Maddie"
-portrait_texture = ExtResource("3_f7ybc")
+portrait_texture = ExtResource("3_uq4jo")
 portrait_side = 1
-text = "That was certainly exciting."
+text = "Wow, finally some excitement on this stupid game show!"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="1" type="Node" parent="."]
+[node name="1" type="Node" parent="." node_paths=PackedStringArray("choices")]
 script = ExtResource("2_crw2t")
 speaker_name = "Maddie"
-portrait_texture = ExtResource("3_f7ybc")
 portrait_side = 1
-text = "More fucking commercials!"
+text = "How are we feeling after that!"
+is_quit = true
+begin_signal_data_string = "show_audience"
+choices = [NodePath("DialogueChoice")]
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="DialogueChoice" type="Node" parent="1"]
+script = ExtResource("5_uq4jo")
+text = "..."
+target_line_index = 2
+metadata/_custom_type_script = "uid://kwf8edpxnkk1"
+
+[node name="2" type="Node" parent="."]
+script = ExtResource("2_crw2t")
+speaker_name = "Maddie"
+portrait_texture = ExtResource("5_3tbb2")
+portrait_side = 1
+text = "Well, no time for that..."
+begin_signal_data_string = "show_bg"
+end_signal_data_string = "laugh"
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="3" type="Node" parent="."]
+script = ExtResource("2_crw2t")
+speaker_name = "Maddie"
+portrait_texture = ExtResource("6_uq4jo")
+portrait_side = 1
+text = "More adverts!"
 is_quit = true
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"

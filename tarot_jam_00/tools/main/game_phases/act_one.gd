@@ -1,8 +1,10 @@
 class_name ActOne
 extends Node
 
-@export var maddie_convo_01_scene: PackedScene
+#@export var maddie_convo_01_scene: PackedScene
 @export var maddie_convo_02_scene: PackedScene
+
+
 
 var main: Main = null:
 	set(new_value):
@@ -23,17 +25,9 @@ func _ready() -> void:
 
 func play():
 	active = true
-	print_debug("Act one begins")
-	var mc: MainCanvas = main.main_canvas
+	#print_debug("Act one begins")
 	
-	var gk_ui: GeneralKnowledge = mc.general_knowledge
-	mc.show_layer(mc.general_knowledge,true)
-	await gk_ui.activate()
-	
-	await get_tree().create_timer(1.5).timeout
-	
-	var maddie_convo_01: Conversation = maddie_convo_01_scene.instantiate()
-	mc.dialogue._start_dialogue(maddie_convo_01)
+	_on_start_tcm()
 	
 	
 
@@ -63,11 +57,28 @@ func _on_start_tcm():
 	var maddie_convo: Conversation = maddie_convo_02_scene.instantiate()
 	mc.dialogue._start_dialogue(maddie_convo)
 	
+func _on_show_legs():
+	var hp = SingletonHolder.game_manager.hp
+	#var bg: BackgroundSprite = (
+	#	SingletonHolder.game_manager.main.game_environment.background_sprite
+	#)
+	var legs_view: LegsView = main.game_environment.legs_view
+	if hp <= 750:
+		legs_view.show_legs(2)
+	else:
+		legs_view.show_legs(1) 
+	
+		
+	
+
+func _on_hide_legs():
+	pass
 	
 
 func _on_dialogue_data_signal_rxd(data: String):
 	if not active: return
 	var sm:SoundManager = main.sound_manager
+	var bg: BackgroundSprite = main.game_environment.background_sprite
 	match data:
 		"show_red_x":
 			_on_show_red_x()
@@ -82,6 +93,27 @@ func _on_dialogue_data_signal_rxd(data: String):
 		"show_commercial":
 			
 			_on_end_of_act_one()
+			
+		"a_bit_wooden":
+			sm.play_audience_reaction(sm.LAUGH)
+			
+			bg.texture = load(
+				"res://imported_assets/audience/Audience 1.png"
+				#"res://imported_assets/Audience5.png"
+				#"res://imported_assets/Audience5med.png"
+			)
+			
+		"show_legs":
+			_on_show_legs()
+			
+		"hide_legs":
+			var lv: LegsView = SingletonHolder.game_manager.main.game_environment.legs_view
+			lv.visible = false
+			
+		"sponsors":
+			bg.texture = load(
+				"res://imported_assets/01.jpg"
+			)
 		
 		_:
 			pass

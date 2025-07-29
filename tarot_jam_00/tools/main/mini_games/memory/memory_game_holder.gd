@@ -61,8 +61,8 @@ func _on_round_complete(total_guesses: int):
 	
 func _show_results_comment(
 	total_guesses: int,
-	incorrect_guesses: int,
-	guesses_per_pair: float
+	_incorrect_guesses: int,
+	_guesses_per_pair: float
 )->bool:
 	
 	

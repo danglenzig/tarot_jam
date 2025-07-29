@@ -23,18 +23,43 @@ func play():
 	active = true
 	print("PLAY OUTRO")
 	
+	var hp := SingletonHolder.game_manager.hp
+	
+	if hp <= 125:
+		_play_outro_one()
+		return
+	else:
+		_play_outro_two()
+		#_play_outro_two()
+		return
+	
 	var mc: MainCanvas = main.main_canvas
 	var convo_01: Conversation = maddie_convo_01_scene.instantiate()
 	mc.dialogue._start_dialogue(convo_01)
 	
 	
-	
+
+func _play_outro_one():
+	var mc: MainCanvas = main.main_canvas
+	var convo_01: Conversation = maddie_convo_01_scene.instantiate()
+	mc.dialogue._start_dialogue(convo_01)
+
+func _play_outro_two():
+	var mc: MainCanvas = main.main_canvas
+	var convo_02: Conversation = maddie_convo_02_scene.instantiate()
+	mc.dialogue._start_dialogue(convo_02)
+
 	
 func _on_outro_finished():
 	
 	# temp
 	
 	print("BYE!")
+	
+	var bg: BackgroundSprite = main.game_environment.background_sprite
+	bg.texture = load(
+		"res://imported_assets/01.jpg"
+	)
 	
 	await get_tree().create_timer(1.0).timeout
 	
@@ -46,6 +71,12 @@ func _on_dialogue_data_signal_rxd(data: String):
 		
 		"outro_finished":
 			_on_outro_finished()
-		
+		"show _audience_1":
+			var sm: SoundManager = main.sound_manager
+			sm.play_audience_reaction(sm.APPLAUSE_01)
+			var bg: BackgroundSprite = main.game_environment.background_sprite
+			bg.texture = load(
+				"res://imported_assets/audience/Audience 5.png"
+			)
 		_:
 			pass

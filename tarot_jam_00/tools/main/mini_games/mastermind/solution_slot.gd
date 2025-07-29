@@ -89,10 +89,10 @@ func check_solution():
 		
 func on_continue():
 	match slot_state:
-		0: # EMPTY
-			assert(true, "this should never happen")
-		1: # UNDETERMINED
-			assert(true, "this should never happen")
+		#0: # EMPTY
+		#	assert(true, "this should never happen")
+		#1: # UNDETERMINED
+		#	assert(true, "this should never happen")
 		2: # CORRECT
 			pass # leave it be
 		3: # WRONG_POSITION

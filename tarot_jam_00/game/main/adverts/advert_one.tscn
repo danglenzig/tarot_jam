@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://hwwtwqf8xl2v"]
 
 [ext_resource type="Script" uid="uid://d4f7t2mkuoe32" path="res://tools/main/game_phases/advert_base.gd" id="1_kfxsa"]
-[ext_resource type="VideoStream" uid="uid://c0bam05vwvgj8" path="res://imported_assets/video/test_video.ogv" id="2_dmno6"]
+[ext_resource type="VideoStream" uid="uid://cg14g6oggqd4p" path="res://imported_assets/video/Advert_1.ogv" id="2_dmno6"]
 
 [node name="AdvertOne" type="Panel" node_paths=PackedStringArray("dev_button", "video")]
 offset_right = 880.0
@@ -14,12 +14,11 @@ video = NodePath("Holder/VideoStreamPlayer")
 metadata/_custom_type_script = "uid://d4f7t2mkuoe32"
 
 [node name="Holder" type="Node2D" parent="."]
-position = Vector2(-34.59, -18)
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Holder"]
-offset_right = 2560.0
-offset_bottom = 1440.0
-scale = Vector2(0.345, 0.345)
+offset_right = 2048.0
+offset_bottom = 1152.0
+scale = Vector2(0.405, 0.405)
 stream = ExtResource("2_dmno6")
 autoplay = true
 

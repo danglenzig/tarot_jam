@@ -17,6 +17,8 @@ extends Panel
 #		if holder:
 #			holder_ready.emit()
 
+var listen_for_click := false
+
 var round_number := 0:
 	set(new_value):
 		round_number = new_value
@@ -43,13 +45,13 @@ var active_symbol_rect_uuid := "":
 var attempts := 0:
 	set(new_value):
 		attempts = new_value
-		print_debug("Attempts: ", attempts)
+		#print_debug("Attempts: ", attempts)
 		
 signal symbol_dropped(uuid: String, symbol_idx: String)
 signal symbol_placed(symbol_idx: String)
 signal symbol_clicked(symbol_uuid)
-signal puzzle_solved
-signal game_complete
+#signal puzzle_solved
+#signal game_complete
 
 signal round_complete(round_tries_result: int)
 signal round_ready
@@ -60,6 +62,12 @@ func _ready() -> void:
 	take_hit_button.visible = false
 	
 	continue_button.visible = false
+	continue_button.visibility_changed.connect(
+		func()->void:
+			listen_for_click = continue_button.visible
+	)
+	
+	
 	for symbol in symbols_holder.symbols_array:
 		symbol.game_controller = self
 	for slot in solution_holder.solution_array:
@@ -106,13 +114,18 @@ func _input(event: InputEvent) -> void:
 				currently_holding_symbol_idx = -1
 				select_mode = true
 				
+		#if event.button_index == MOUSE_BUTTON_RIGHT:
+		#	if event.is_pressed():
+		#		if not listen_for_click: return
+		#		_on_continue_pressed()
+				
 func _on_symbol_clicked(uuid: String):
 	assert(currently_holding_symbol_idx == -1, "Something weid happened")
 	assert(active_symbol_rect_uuid == uuid, "Something weird happened")
 	for card in symbols_holder.symbols_array:
 		if card.card_uuid == uuid:
 			currently_holding_symbol_idx = symbols_holder.symbols_array.find(card)
-			print_debug("currently holding card number ", currently_holding_symbol_idx)
+			#print_debug("currently holding card number ", currently_holding_symbol_idx)
 			break
 			
 func _get_random_solution()->Array[int]:

@@ -1,22 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfh3fe86iq76k"]
+[gd_scene load_steps=8 format=3 uid="uid://dfh3fe86iq76k"]
 
 [ext_resource type="Script" uid="uid://dphiybq8ao062" path="res://tools/main/mini_games/tutorials/mastermind/mastermind_tutorial.gd" id="1_8fxtk"]
+[ext_resource type="Theme" uid="uid://dsw0e4bkycftp" path="res://tools/ui/game_buttons_theme.tres" id="2_df4f4"]
+[ext_resource type="Texture2D" uid="uid://bdp06yml1k2tu" path="res://game/main/mini_games/tutorials/mastermind/2.png" id="2_es3tj"]
 [ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="2_il3ip"]
+[ext_resource type="Texture2D" uid="uid://c37my76uf0nie" path="res://imported_assets/Scholar-Hat-PNG-Photo.png" id="3_1kbry"]
+[ext_resource type="Theme" uid="uid://cr1rehv3xwm7d" path="res://game/main/mini_games/tutorials/tutorial_label_theme.tres" id="4_o2omv"]
+[ext_resource type="Texture2D" uid="uid://berk0pdei0imp" path="res://game/main/mini_games/tutorials/three_card_monte/1236844.png" id="5_o2omv"]
 
 [node name="MastermindTutorial" type="Panel"]
 offset_right = 800.0
 offset_bottom = 450.0
 script = ExtResource("1_8fxtk")
 
-[node name="ContinueButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 65.0
-offset_top = 368.0
-offset_right = 144.0
-offset_bottom = 399.0
-text = "Continue"
-
 [node name="TempLabel" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 297.0
 offset_top = 177.0
@@ -27,7 +25,187 @@ tutorial comming soon..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Slide01" type="Node2D" parent="."]
+visible = false
+position = Vector2(34, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide01"]
+position = Vector2(244, -225)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_es3tj")
+
+[node name="Label" type="Label" parent="Slide01"]
+offset_left = -12.0
+offset_top = -62.0
+offset_right = 360.0
+offset_bottom = -39.0
+theme = ExtResource("4_o2omv")
+text = "Mastermind is a classic code-breaking game."
+vertical_alignment = 1
+
+[node name="Slide02" type="Node2D" parent="."]
+visible = false
+position = Vector2(34, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide02"]
+position = Vector2(244, -225)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_es3tj")
+
+[node name="Label" type="Label" parent="Slide02"]
+offset_left = -12.0
+offset_top = -62.0
+offset_right = 360.0
+offset_bottom = -39.0
+theme = ExtResource("4_o2omv")
+text = "Find the secret code! It's a sequence of the cards above."
+vertical_alignment = 1
+
+[node name="Slide03" type="Node2D" parent="."]
+visible = false
+position = Vector2(34, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide03"]
+position = Vector2(244, -225)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_es3tj")
+
+[node name="Label" type="Label" parent="Slide03"]
+offset_left = -12.0
+offset_top = -62.0
+offset_right = 360.0
+offset_bottom = -39.0
+theme = ExtResource("4_o2omv")
+text = "After each guess, we'll give you some feedback..."
+vertical_alignment = 1
+
+[node name="Arrow" type="Sprite2D" parent="Slide03"]
+position = Vector2(52, -146)
+rotation = -1.5708
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("5_o2omv")
+
+[node name="Slide04" type="Node2D" parent="."]
+visible = false
+position = Vector2(34, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide04"]
+position = Vector2(244, -225)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_es3tj")
+
+[node name="Label" type="Label" parent="Slide04"]
+offset_left = -12.0
+offset_top = -62.0
+offset_right = 360.0
+offset_bottom = -39.0
+theme = ExtResource("4_o2omv")
+text = "Green means you've put the correct card in the correct place."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Arrow" type="Sprite2D" parent="Slide04"]
+position = Vector2(171, -202)
+rotation = -0.785398
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("5_o2omv")
+
+[node name="Slide05" type="Node2D" parent="."]
+visible = false
+position = Vector2(34, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide05"]
+position = Vector2(244, -225)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_es3tj")
+
+[node name="Label" type="Label" parent="Slide05"]
+offset_left = -12.0
+offset_top = -62.0
+offset_right = 360.0
+offset_bottom = -39.0
+theme = ExtResource("4_o2omv")
+text = "Yellow indicates a card that is somewhere in the code, but is in the incorrect place."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Arrow" type="Sprite2D" parent="Slide05"]
+position = Vector2(307.92, -202)
+rotation = -0.785398
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("5_o2omv")
+
+[node name="Slide06" type="Node2D" parent="."]
+visible = false
+position = Vector2(34, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide06"]
+position = Vector2(244, -225)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_es3tj")
+
+[node name="Label" type="Label" parent="Slide06"]
+offset_left = -12.0
+offset_top = -62.0
+offset_right = 360.0
+offset_bottom = -39.0
+theme = ExtResource("4_o2omv")
+text = "Red indicates a card that isn't in the secret code at all."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Arrow" type="Sprite2D" parent="Slide06"]
+position = Vector2(242.12, -202)
+rotation = -0.785398
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("5_o2omv")
+
+[node name="Arrow2" type="Sprite2D" parent="Slide06"]
+position = Vector2(103.37, -202)
+rotation = -0.785398
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("5_o2omv")
+
+[node name="Slide07" type="Node2D" parent="."]
+visible = false
+position = Vector2(34, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide07"]
+position = Vector2(244, -225)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_es3tj")
+
+[node name="Label" type="Label" parent="Slide07"]
+offset_left = -12.0
+offset_top = -62.0
+offset_right = 360.0
+offset_bottom = -39.0
+theme = ExtResource("4_o2omv")
+text = "You lose more humanity every time you guess wrong, so be careful!"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Arrow" type="Sprite2D" parent="Slide07"]
+position = Vector2(283, -305)
+rotation = 3.14159
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("5_o2omv")
+
 [node name="MaddieSprite" type="Sprite2D" parent="."]
 position = Vector2(591, 366)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_il3ip")
+
+[node name="Sprite2D" type="Sprite2D" parent="MaddieSprite"]
+position = Vector2(73.8188, -785)
+scale = Vector2(0.589248, 0.585)
+texture = ExtResource("3_1kbry")
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 10.0
+offset_right = 546.0
+offset_bottom = 41.0
+theme = ExtResource("2_df4f4")
+text = "Continue"

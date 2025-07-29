@@ -43,13 +43,20 @@ func _load_game()->bool:
 		
 	new_game.round_number = round_number
 	
-	if round_number == NUMBER_OF_ROUNDS:
+	if (
+		round_number == NUMBER_OF_ROUNDS or 
+		round_number == 2
+	):
 		new_game.always_lose = true
+		
+	if round_number == 1:
+		new_game.round_one_shuffle_speed_modifier = 1.35
+	
 	
 	new_game.round_complete.connect(_on_round_complete)
 	new_game.dev_button.pressed.connect(_on_dev_button_pressed)
 	new_game.take_hit_button.pressed.connect(_on_take_hit)
-	new_game.take_hit.connect(_on_take_hit)
+	#new_game.take_hit.connect(_on_take_hit)
 	
 	return true
 	
@@ -118,7 +125,7 @@ func _show_remaining_humanity_label()-> bool:
 func _show_results_comment(round_won: bool)->bool:
 	
 	
-	print_debug("RESULTS FOR ROUND NUMBER ", round_number)
+	#print_debug("RESULTS FOR ROUND NUMBER ", round_number)
 	
 	var sm: SoundManager = SingletonHolder.game_manager.main.sound_manager
 

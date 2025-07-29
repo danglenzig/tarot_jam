@@ -2,8 +2,8 @@ class_name Intro
 extends Node
 
 @export var intro_monologue_scene: PackedScene
-@export var this_will_do_scene: PackedScene
-@export var maddie_intro_convo_scene_01: PackedScene
+#@export var this_will_do_scene: PackedScene
+#@export var maddie_intro_convo_scene_01: PackedScene
 
 
 signal main_ready
@@ -19,6 +19,115 @@ var main: Main = null:
 func _ready() -> void:
 	await main_ready
 	main.main_canvas.dialogue.dialogue_data_signal.connect(_on_dialogue_data_signal_rxd)
+	
+func play():
+	active = true
+	
+	var mc: MainCanvas = main.main_canvas
+	var ge: GameEnvironment = main.game_environment
+	
+	mc.show_layer(mc.transition_screen, true)
+	var ts: TransitionScreen = mc.transition_screen
+	
+	ts.fade_in()
+	await ts.fade_in_complete	
+	mc.show_layer(mc.start_menu, false)
+	var background: BackgroundSprite = ge.background_sprite
+	background.texture = load("res://imported_assets/black_screenjp.jpg")
+	await get_tree().create_timer(1.0).timeout
+	
+	ts.fade_out()
+	
+	await ts.fade_out_complete
+	mc.show_layer(mc.transition_screen, false)
+	
+	var dialogue: Dialogue = mc.dialogue
+	var intro_monologue := intro_monologue_scene.instantiate() as Conversation
+	dialogue._start_dialogue(intro_monologue)
+	
+func _on_dialogue_data_signal_rxd(data: String):
+	if not active: return
+	var bg: BackgroundSprite = main.game_environment.background_sprite
+	var sm: SoundManager = main.sound_manager
+	
+	match data:
+		
+		"begin":
+			bg.texture = load(
+				"res://imported_assets/black_screenjp.jpg"
+			)
+			sm.play_loop_sfx(sm.CRICKETS,true)
+		
+		"turn_on_tv":
+			sm.play_loop_sfx(sm.CRICKETS, false)
+			sm.play_audience_reaction(sm.APPLAUSE_01)
+			sm._play_main_music(true)
+			bg.fade_in_title()
+			bg.texture = load(
+				"res://imported_assets/01.jpg"
+			)
+			bg.game_show_title_label.visible = true
+			#_on_turn_on_tv()
+			
+		"turn_off_title":
+			bg.game_show_title_label.visible = false
+			
+		"theme_alert":
+			var mc: MainCanvas = main.main_canvas
+			#var ta: ThemeAlert = mc.theme_alert
+			mc.show_layer(mc.theme_alert, true)
+			#await ta.theme_alret_complete
+			
+		"show_contestants":
+			bg.texture = load(
+				"res://imported_assets/contestants.png"
+			)
+			sm.play_audience_reaction(sm.BOO)
+		
+		"end_show_contestants":
+			bg.texture = load(
+				"res://imported_assets/01.jpg"
+			)
+			
+		"show_general_knowledge":
+			
+			var mc: MainCanvas = SingletonHolder.game_manager.main.main_canvas
+			var gk_ui: GeneralKnowledge = mc.general_knowledge
+			mc.show_layer(gk_ui,true)
+			sm.play_audience_reaction(sm.APPLAUSE_01)
+			await gk_ui.activate()
+			
+		"show_red_x":
+			var gk_ui: GeneralKnowledge = main.main_canvas.general_knowledge
+			gk_ui.show_red_X()
+			
+		"show_tcm":
+			var gk_ui: GeneralKnowledge = main.main_canvas.general_knowledge
+			await gk_ui.show_tcm()
+		
+		"quit":
+			await get_tree().create_timer(1.0).timeout
+			
+			#var mc: MainCanvas = SingletonHolder.game_manager.main.main_canvas
+			#var gk_ui: GeneralKnowledge = mc.general_knowledge
+			#mc.show_layer(gk_ui,false)
+			sm.play_audience_reaction(sm.APPLAUSE_01)
+			active = false
+			main.intro_complete.emit()
+			
+			
+		_:
+			pass
+			
+func _on_turn_on_tv():
+	pass
+		
+		
+
+	
+	
+
+"""
 
 func play():
 	
@@ -131,3 +240,4 @@ func _on_dialogue_data_signal_rxd(data: String):
 			
 		"stop_crickets":
 			sm.play_loop_sfx(null, false)
+"""

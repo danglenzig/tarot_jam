@@ -5,10 +5,15 @@ extends Panel
 @onready var slide_02: Node2D = $Slide02
 @onready var slide_03: Node2D = $Slide03
 @onready var slide_04: Node2D = $Slide04
+@onready var slide_05: Node2D = $Slide05
 
 
 @onready var continue_button: Button = $ContinueButton
 
+const CONTINUE_DELAY := 0.5
+const FLASH_DURATION := 0.1
+
+var flash_tween: Tween
 
 var slides := []
 
@@ -19,14 +24,20 @@ var current_slide := -1:
 		for slide: Node2D in slides:
 			slide.visible = false
 		(slides[current_slide] as Node2D).visible = true
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(CONTINUE_DELAY).timeout
 		continue_button.visible = true
 
 
 signal tutorial_finished
 
 func _ready() -> void:
-	slides = [slide_01, slide_02, slide_03, slide_04]
+	slides = [
+		slide_01,
+		slide_02,
+		slide_03,
+		slide_04,
+		slide_05,
+	]
 	current_slide += 1
 	
 	
@@ -38,4 +49,11 @@ func _ready() -> void:
 			else:
 				tutorial_finished.emit()
 			
+	)
+	continue_button.visibility_changed.connect(
+		func()->void:
+			if continue_button.visible:
+				continue_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				await SingletonHolder.tween_service.flash_button(continue_button, FLASH_DURATION)
+				continue_button.mouse_filter = Control.MOUSE_FILTER_STOP
 	)

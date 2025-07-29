@@ -110,7 +110,7 @@ func flip_to_face_down()->bool:
 	
 func flip_to_face_up()->bool:
 	if face_up:
-		print_debug("already face up")
+		#print_debug("already face up")
 		return true
 	assert(not flip_tween)
 	flip_tween = create_tween()

@@ -1,26 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://vamosmrbs67y"]
+[gd_scene load_steps=6 format=3 uid="uid://vamosmrbs67y"]
 
 [ext_resource type="Script" uid="uid://dqr60we44mcdv" path="res://tools/dialogue/conversation.gd" id="1_012lm"]
 [ext_resource type="Script" uid="uid://dymadn8xeg0aj" path="res://tools/dialogue/dialogue_line.gd" id="2_24smu"]
 [ext_resource type="Texture2D" uid="uid://bpnhn6x6rtm13" path="res://imported_assets/maddie.png" id="3_1b0pq"]
+[ext_resource type="Texture2D" uid="uid://4nqd46rx4xa" path="res://game/dialogue/maddie_dialogue_portrait_0000004.png" id="3_icpuy"]
+[ext_resource type="Script" uid="uid://kwf8edpxnkk1" path="res://tools/dialogue/dialogue_choice.gd" id="4_y8c7m"]
 
 [node name="MaddieActTwoConvo02" type="Node" node_paths=PackedStringArray("dialogue_lines")]
 script = ExtResource("1_012lm")
-dialogue_lines = [NodePath("0"), NodePath("1")]
+dialogue_lines = [NodePath("0"), NodePath("1"), NodePath("2")]
 end_convo_signal_data_string = "end_of_act_two"
 metadata/_custom_type_script = "uid://dqr60we44mcdv"
 
-[node name="0" type="Node" parent="."]
+[node name="0" type="Node" parent="." node_paths=PackedStringArray("choices")]
 script = ExtResource("2_24smu")
 speaker_name = "Maddie"
-portrait_texture = ExtResource("3_1b0pq")
+portrait_texture = ExtResource("3_icpuy")
 portrait_side = 1
+text = "See that wasn't so bad, was it?"
+choices = [NodePath("DialogueChoice")]
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"
 
-[node name="1" type="Node" parent="."]
+[node name="DialogueChoice" type="Node" parent="0"]
+script = ExtResource("4_y8c7m")
+text = "Was it...?"
+target_line_index = 1
+metadata/_custom_type_script = "uid://kwf8edpxnkk1"
+
+[node name="1" type="Node" parent="." node_paths=PackedStringArray("choices")]
 script = ExtResource("2_24smu")
 speaker_name = "Maddie"
 portrait_texture = ExtResource("3_1b0pq")
-text = "And now another word from our sponsors..."
+text = "There are advantages to wooden arms I'm sure!"
+begin_signal_data_string = "show_legs"
+choices = [NodePath("DialogueChoice")]
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="DialogueChoice" type="Node" parent="1"]
+script = ExtResource("4_y8c7m")
+text = "What's happening to me!?"
+target_line_index = 2
+signal_data_string = "advert"
+metadata/_custom_type_script = "uid://kwf8edpxnkk1"
+
+[node name="2" type="Node" parent="."]
+script = ExtResource("2_24smu")
+speaker_name = "Maddie"
+text = "What do the sponsorship Gods want us to spend our money on this time? Let's find out!"
 is_quit = true
+begin_signal_data_string = "cheer"
 metadata/_custom_type_script = "uid://dymadn8xeg0aj"

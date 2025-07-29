@@ -148,6 +148,7 @@ offset_bottom = 404.0
 text = "Continue"
 
 [node name="DevButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 30.0
 offset_top = 324.0
@@ -156,6 +157,7 @@ offset_bottom = 355.0
 text = "DEV OVERRIDE"
 
 [node name="TakeHitButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 20.0
 offset_top = 368.0

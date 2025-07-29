@@ -83,7 +83,7 @@ func _adjust_camera(direction: String)->bool:
 		return true
 	return true
 	
-func _on_advert_complete(advert_string):
+func _on_advert_complete(_advert_string):
 	#var main: Main = SingletonHolder.game_manager.main
 	#match advert_string:
 	#	"advert_one":

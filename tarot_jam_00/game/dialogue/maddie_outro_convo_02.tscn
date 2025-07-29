@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd1ovm6xl6tsn"]
+
+[ext_resource type="Script" uid="uid://dqr60we44mcdv" path="res://tools/dialogue/conversation.gd" id="1_jmo8s"]
+[ext_resource type="Script" uid="uid://dymadn8xeg0aj" path="res://tools/dialogue/dialogue_line.gd" id="2_kbqbf"]
+
+[node name="MaddieOutroConvo02" type="Node" node_paths=PackedStringArray("dialogue_lines")]
+script = ExtResource("1_jmo8s")
+dialogue_lines = [NodePath("1"), NodePath("2")]
+metadata/_custom_type_script = "uid://dqr60we44mcdv"
+
+[node name="1" type="Node" parent="."]
+script = ExtResource("2_kbqbf")
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
+
+[node name="2" type="Node" parent="."]
+script = ExtResource("2_kbqbf")
+metadata/_custom_type_script = "uid://dymadn8xeg0aj"
