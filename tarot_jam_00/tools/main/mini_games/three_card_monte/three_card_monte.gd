@@ -50,7 +50,7 @@ func _ready() -> void:
 	#take_hit_button.visible = false
 	
 	continue_button.visible = false
-	
+	dev_button.visible = false
 	shuffle_button.visible = false
 	
 	for child: Node in position_holder.get_children():
@@ -86,7 +86,7 @@ func _ready() -> void:
 		await winning_card.highlight_sequence(true)
 	
 	
-	dev_button.visible = dev_mode
+	#dev_button.visible = dev_mode
 	#take_hit_button.visible = dev_mode
 	#dev_button.pressed.connect(_on_dev_button_pressed)
 	#take_hit_button.pressed.connect(_on_take_hit_pressed)

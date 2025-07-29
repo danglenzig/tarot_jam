@@ -23,7 +23,7 @@ func play():
 	active = true
 	print("PLAY OUTRO")
 	
-	var hp := SingletonHolder.game_manager.hp
+	var hp: float = SingletonHolder.game_manager.hp
 	
 	if hp <= 125:
 		_play_outro_one()

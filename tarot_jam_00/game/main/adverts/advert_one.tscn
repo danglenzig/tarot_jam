@@ -9,7 +9,6 @@ offset_bottom = 495.0
 script = ExtResource("1_kfxsa")
 advert_name = "advert_one"
 dev_button = NodePath("Holder/DevButton")
-dev_mode = true
 video = NodePath("Holder/VideoStreamPlayer")
 metadata/_custom_type_script = "uid://d4f7t2mkuoe32"
 
@@ -23,12 +22,14 @@ stream = ExtResource("2_dmno6")
 autoplay = true
 
 [node name="Panel" type="Panel" parent="Holder"]
+visible = false
 offset_left = 90.0
 offset_top = 74.0
 offset_right = 291.0
 offset_bottom = 114.0
 
 [node name="TempLabel" type="Label" parent="Holder"]
+visible = false
 offset_left = 95.0
 offset_top = 83.0
 offset_right = 287.0
@@ -36,6 +37,7 @@ offset_bottom = 106.0
 text = "PLACEHOLDER CONTENT"
 
 [node name="DevButton" type="Button" parent="Holder"]
+visible = false
 offset_left = 401.0
 offset_top = 391.0
 offset_right = 467.0
